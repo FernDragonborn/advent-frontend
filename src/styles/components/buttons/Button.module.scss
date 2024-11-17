@@ -1,0 +1,88 @@
+.button {
+  position: relative;
+
+  padding: 0 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.8rem;
+  height: 3.3rem;
+  min-width: 3.3rem;
+
+  font: var(--font-almaz-xs-extra-bold);
+  line-height: 1;
+  color: var(--text-color-quaternary);
+  text-transform: uppercase;
+
+  background: var(--color-accent-blue);
+  border-radius: 3rem;
+  border: 0.1rem solid var(--text-color-primary);
+
+  transition: var(--transition-primary);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0.2rem 0.2rem var(--color-dark);
+  }
+
+  &.yellow {
+    background-color: var(--color-accent-yellow);
+  }
+  &.pink {
+    background-color: var(--color-accent-pink);
+  }
+  &.red {
+    background-color: var(--color-error);
+  }
+  &.white {
+    background-color: var(--bg-primary);
+  }
+
+  &.yellow,
+  &.white {
+    color: var(--text-color-primary);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  @include desktop {
+    height: 3.6rem;
+  }
+}
+
+.label {
+  height: 0.9rem;
+  color: currentColor;
+
+  @include desktop {
+    .label {
+      height: 1.1rem;
+    }
+  }
+}
+
+.transparent {
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemAfterWrapper {
+  display: inline-flex;
+}

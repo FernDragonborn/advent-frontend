@@ -1,0 +1,93 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+
+  &.disabled {
+    .inputWrapper {
+      cursor: not-allowed;
+    }
+
+    .label,
+    .input {
+      color: var(--text-color-secondary);
+    }
+    .input {
+      pointer-events: none;
+      background: var(--color-disabled);
+    }
+  }
+}
+
+.label {
+  font: var(--font-almaz-xs-medium);
+  line-height: 1;
+  color: var(--text-color-primary);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  padding: 0 1.6rem;
+  height: 4.8rem;
+  width: 100%;
+
+  font: var(--font-roboto-xs-regular);
+  color: var(--text-color-primary);
+  background-color: transparent;
+
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
+  border-color: var(--border-color-primary);
+
+  transition: var(--transition-primary);
+
+  &::placeholder {
+    color: var(--text-color-secondary);
+  }
+
+  &:not(:placeholder-shown) {
+    background-color: var(--bg-primary);
+  }
+
+  &:focus:not(:read-only) {
+    color: var(--text-color-primary);
+    border-color: var(--color-accent-blue);
+    background-color: var(--bg-primary);
+  }
+
+  &.hasError {
+    border-color: var(--color-error);
+    background-color: var(--bg-primary);
+  }
+}
+
+.visibilityToggler {
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+  z-index: 1;
+
+  width: 2.4rem;
+  height: 2.4rem;
+
+  transform: translateY(-50%);
+}
+
+.error {
+  font: var(--font-poppins-xs-regular);
+  color: var(--color-error);
+}
+
+.textarea {
+  @extend .input;
+
+  padding: 1.2rem 1.6rem;
+  height: 10rem;
+
+  line-height: 1.2;
+
+  resize: none;
+}

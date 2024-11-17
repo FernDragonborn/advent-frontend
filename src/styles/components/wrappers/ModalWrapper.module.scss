@@ -1,0 +1,40 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  padding: 3.2rem 1.5rem;
+  display: flex;
+  justify-content: center;
+
+  background-color: var(--backdrop-color);
+
+  overflow: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-primary);
+
+  &.isOpen {
+    pointer-events: all;
+    opacity: 1;
+
+    .modal {
+      transform: scale(1);
+    }
+  }
+
+  @include tablet {
+    padding: 3.2rem 10.8rem;
+  }
+}
+
+.modal {
+  margin: auto 0;
+  min-width: 34.5rem;
+
+  transform: scale(0.5);
+  transition: transform var(--transition-primary);
+}

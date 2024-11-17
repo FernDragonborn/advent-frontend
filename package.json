@@ -9,12 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "@hookform/resolvers": "^3.9.1",
+    "@tanstack/react-query": "^5.60.5",
+    "axios": "^1.7.7",
+    "clsx": "^2.1.1",
+    "cookies-next": "^5.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "next": "15.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.53.2",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3"
+    "eslint-config-next": "15.0.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "sass": "^1.81.0"
   }
 }

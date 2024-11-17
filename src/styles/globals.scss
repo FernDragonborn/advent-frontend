@@ -1,0 +1,53 @@
+@import 'normalize.scss';
+@import 'reset.custom.scss';
+@import 'theme-variables.scss';
+
+html {
+  min-height: 100vh;
+
+  font-size: 62.5%;
+  font-weight: 400;
+}
+
+body {
+  min-height: 100vh;
+  min-width: $mobile;
+
+  // font: var(--font-roboto-s-regular);
+  // color: var(--text-color-primary);
+  // background: var(--bg-primary);
+}
+
+svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+a,
+button,
+input {
+  // transition: var(--transition-primary);
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+}
+
+.global-scroll-block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  overflow-y: auto;
+}

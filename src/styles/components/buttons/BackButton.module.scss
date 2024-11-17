@@ -1,0 +1,19 @@
+.button {
+  display: inline-flex;
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    transform: rotate(90deg);
+
+    path {
+      fill: var(--text-color-primary);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}

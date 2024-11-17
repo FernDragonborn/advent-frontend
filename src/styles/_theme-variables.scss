@@ -1,0 +1,20 @@
+:root {
+}
+
+@media screen and (min-width: $desktop) {
+  :root {
+    --font-roboto-m-regular: 1.8rem/120% var(--font-roboto);
+    --font-roboto-s-regular: 1.6rem/146% var(--font-roboto);
+    --font-roboto-xs-regular: 1.4rem/166% var(--font-roboto);
+
+    --font-almaz-xl-extra-bold: 800 3.2rem/130% var(--font-almaz);
+    --font-almaz-l-extra-bold: 800 2.6rem/130% var(--font-almaz);
+    --font-almaz-m-extra-bold: 800 1.8rem/130% var(--font-almaz);
+    --font-almaz-s-extra-bold: 800 1.4rem/130% var(--font-almaz);
+    --font-almaz-xs-extra-bold: 800 1.4rem/130% var(--font-almaz);
+    --font-almaz-xs-medium: 500 1.2rem/130% var(--font-almaz);
+
+    --font-poppins-xs-medium: 500 1.2rem/150% var(--font-poppins);
+    --font-poppins-xs-regular: 400 1.2rem/150% var(--font-poppins);
+  }
+}
