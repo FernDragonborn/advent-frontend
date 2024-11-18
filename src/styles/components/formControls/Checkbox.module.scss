@@ -34,6 +34,8 @@ input:checked + .box {
 }
 
 .error {
+  margin-top: 0.4rem;
+
   font: var(--font-text-4);
   color: var(--color-error);
 }

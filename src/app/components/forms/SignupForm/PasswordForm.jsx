@@ -30,7 +30,7 @@ const PasswordForm = ({ formControl, onSubmit, onBack }) => {
           )}
         />
         <Controller
-          name="password-confirmation"
+          name="passwordConfirmation"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField

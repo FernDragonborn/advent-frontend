@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
   UserInfoForm,
@@ -14,6 +15,13 @@ import {
 } from '@/components';
 import { LogoSvg, DecorationDotsSvg } from '@/svgs';
 import styles from '@/styles/pages/SignupPage.module.scss';
+import {
+  codeSchema,
+  contactInfoSchema,
+  passwordManageSchema,
+  termsSchema,
+  userInfoSchema,
+} from '@/schemas';
 
 const SIGNUP_STEPS = {
   USER_INFO: 'user-info',
@@ -27,23 +35,23 @@ export default function Page() {
   const [signupStep, setSignupStep] = useState(SIGNUP_STEPS.USER_INFO);
 
   const userInfoForm = useForm({
-    // resolver: yupResolver(courseParticipantSchema),
+    resolver: yupResolver(userInfoSchema),
     defaultValues: { name: '', address: '', region: '', class: '' },
   });
   const contactInfoForm = useForm({
-    // resolver: yupResolver(courseParticipantSchema),
+    resolver: yupResolver(contactInfoSchema),
     defaultValues: { email: '', phone: '' },
   });
   const codeForm = useForm({
-    // resolver: yupResolver(courseParticipantSchema),
+    resolver: yupResolver(codeSchema),
     defaultValues: { code: '' },
   });
   const passwordForm = useForm({
-    // resolver: yupResolver(courseParticipantSchema),
-    defaultValues: { password: '', ['password-confirmation']: '' },
+    resolver: yupResolver(passwordManageSchema),
+    defaultValues: { password: '', passwordConfirmation: '' },
   });
   const termsForm = useForm({
-    // resolver: yupResolver(courseParticipantSchema),
+    resolver: yupResolver(termsSchema),
     defaultValues: { isAgreed: false },
   });
 
