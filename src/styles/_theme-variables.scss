@@ -1,20 +1,57 @@
 :root {
+  // colors
+  --color-accent-blue: #0536fc;
+  --color-accent-blue-active: #5073fd;
+  --color-accent-blue-light: #eef0f9;
+  --color-accent-orange: #ff8200;
+  --color-accent-orange-active: #ffa84d;
+  --color-accent-orange-light: #f9f5ee;
+  --color-error: #ff391b;
+  --color-inactive: #666666;
+
+  --color-text-primary: #1b1b1b;
+  --color-text-secondary: #666666;
+  --color-text-tertiary: #a6a6a6;
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9f5ee;
+
+  --color-border-primary: #e5e5e5;
+
+  // fonts
+  --font-heading-1: 700 3.2rem/130% var(--font-grotesque);
+  --font-heading-2: 700 2.8rem/130% var(--font-grotesque);
+  --font-heading-3: 700 2rem/130% var(--font-grotesque);
+  --font-heading-4: 700 1.4rem/2.4rem var(--font-grotesque);
+
+  --font-text-1: 400 2rem/145% var(--font-grotesque);
+  --font-text-2: 400 1.6rem/145% var(--font-grotesque);
+  --font-text-3: 400 1.4rem/145% var(--font-grotesque);
+  --font-text-4: 400 1.2rem/145% var(--font-grotesque);
+
+  --font-button-1: 700 1.4rem/130% var(--font-grotesque);
+  --font-button-1-header: 400 1.4rem/130% var(--font-grotesque);
+  --font-button-2: 700 1.4rem/130% var(--font-grotesque);
+
+  // others
+  --transition-primary: 250ms ease-in-out;
 }
 
 @media screen and (min-width: $desktop) {
   :root {
-    --font-roboto-m-regular: 1.8rem/120% var(--font-roboto);
-    --font-roboto-s-regular: 1.6rem/146% var(--font-roboto);
-    --font-roboto-xs-regular: 1.4rem/166% var(--font-roboto);
+    // fonts
+    --font-heading-1: 700 8rem/130% var(--font-grotesque);
+    --font-heading-2: 700 4rem/130% var(--font-grotesque);
+    --font-heading-3: 700 2.4rem/130% var(--font-grotesque);
+    --font-heading-4: 700 1.6rem/2.4rem var(--font-grotesque);
 
-    --font-almaz-xl-extra-bold: 800 3.2rem/130% var(--font-almaz);
-    --font-almaz-l-extra-bold: 800 2.6rem/130% var(--font-almaz);
-    --font-almaz-m-extra-bold: 800 1.8rem/130% var(--font-almaz);
-    --font-almaz-s-extra-bold: 800 1.4rem/130% var(--font-almaz);
-    --font-almaz-xs-extra-bold: 800 1.4rem/130% var(--font-almaz);
-    --font-almaz-xs-medium: 500 1.2rem/130% var(--font-almaz);
+    --font-text-1: 400 2.4rem/145% var(--font-grotesque);
+    --font-text-2: 400 1.6rem/145% var(--font-grotesque);
+    --font-text-3: 400 1.4rem/145% var(--font-grotesque);
+    --font-text-4: 400 1.2rem/145% var(--font-grotesque);
 
-    --font-poppins-xs-medium: 500 1.2rem/150% var(--font-poppins);
-    --font-poppins-xs-regular: 400 1.2rem/150% var(--font-poppins);
+    --font-button-1: 700 1.8rem/130% var(--font-grotesque);
+    --font-button-1-header: 400 1.6rem/130% var(--font-grotesque);
+    --font-button-2: 700 1.4rem/130% var(--font-grotesque);
   }
 }

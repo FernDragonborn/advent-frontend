@@ -1,0 +1,87 @@
+.sidebarColumn {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.descriptionCard {
+  padding: 7.8rem 2.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  color: var(--color-bg-primary);
+  background:
+    url('/images/auth/decorations.svg') no-repeat right 22px top,
+    var(--color-accent-blue);
+
+  &::before {
+    content: '';
+    margin-bottom: auto;
+    display: inline-block;
+
+    width: 1.2rem;
+    height: 1.2rem;
+
+    border-radius: 100%;
+    background-color: var(--color-bg-primary);
+  }
+}
+
+.descriptionLabel {
+  margin-bottom: 1.6rem;
+  display: inline-block;
+
+  font: var(--font-heading-4);
+  text-transform: uppercase;
+}
+
+.descriptionText {
+  font: var(--font-text-3);
+}
+
+.coveredImage {
+  object-fit: cover;
+}
+
+.logoWrapper {
+  margin-bottom: 7.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include desktop {
+    margin-bottom: 6.4rem;
+  }
+}
+
+.logo {
+  width: 11.01rem;
+  height: 4.63rem;
+}
+
+.dots {
+  width: 11.92rem;
+  height: 2.4rem;
+}
+
+.footer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: center;
+}
+
+.text {
+  font: var(--font-text-2);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.link {
+  color: var(--color-accent-blue);
+  text-decoration: underline;
+}

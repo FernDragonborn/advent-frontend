@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 0.8rem;
+  row-gap: 0.4rem;
 
   &.disabled {
     .inputWrapper {
@@ -10,19 +10,29 @@
 
     .label,
     .input {
-      color: var(--text-color-secondary);
+      color: var(--color-inactive);
     }
     .input {
       pointer-events: none;
-      background: var(--color-disabled);
     }
   }
 }
 
 .label {
-  font: var(--font-almaz-xs-medium);
-  line-height: 1;
-  color: var(--text-color-primary);
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+
+  font: var(--font-heading-4);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+
+  path {
+    stroke: var(--color-accent-blue);
+  }
 }
 
 .inputWrapper {
@@ -30,54 +40,60 @@
 }
 
 .input {
-  padding: 0 1.6rem;
-  height: 4.8rem;
+  padding: 0 1.4rem;
+  height: 4.3rem;
   width: 100%;
 
-  font: var(--font-roboto-xs-regular);
-  color: var(--text-color-primary);
-  background-color: transparent;
-
-  border-width: 0.1rem;
-  border-radius: 0.5rem;
-  border-color: var(--border-color-primary);
+  font: var(--font-text-2);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  border: 0.1rem solid var(--color-border-primary);
+  border-radius: 1.2rem;
 
   transition: var(--transition-primary);
 
   &::placeholder {
-    color: var(--text-color-secondary);
-  }
-
-  &:not(:placeholder-shown) {
-    background-color: var(--bg-primary);
+    color: var(--color-text-tertiary);
   }
 
   &:focus:not(:read-only) {
-    color: var(--text-color-primary);
+    color: var(--color-text-primary);
     border-color: var(--color-accent-blue);
-    background-color: var(--bg-primary);
   }
 
-  &.hasError {
+  &.hasIcon {
+    padding-right: 4.8rem;
+  }
+}
+
+.hasError {
+  .icon path {
+    stroke: var(--color-error);
+  }
+  .input {
     border-color: var(--color-error);
-    background-color: var(--bg-primary);
   }
 }
 
 .visibilityToggler {
   position: absolute;
   top: 50%;
-  right: 1.6rem;
+  right: 1rem;
   z-index: 1;
 
   width: 2.4rem;
   height: 2.4rem;
 
   transform: translateY(-50%);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .error {
-  font: var(--font-poppins-xs-regular);
+  font: var(--font-text-4);
   color: var(--color-error);
 }
 
@@ -86,8 +102,6 @@
 
   padding: 1.2rem 1.6rem;
   height: 10rem;
-
-  line-height: 1.2;
 
   resize: none;
 }

@@ -14,19 +14,24 @@ body {
   min-width: $mobile;
 
   // font: var(--font-roboto-s-regular);
-  // color: var(--text-color-primary);
-  // background: var(--bg-primary);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
 }
 
 svg {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 a,
 button,
 input {
-  // transition: var(--transition-primary);
+  transition: var(--transition-primary);
+}
+
+a {
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.3rem;
 }
 
 .visually-hidden {

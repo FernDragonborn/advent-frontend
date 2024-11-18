@@ -1,0 +1,60 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.title {
+  margin-bottom: 1.2rem;
+
+  font: var(--font-heading-2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.text {
+  font: var(--font-text-2);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.accent {
+  color: var(--color-accent-blue);
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.4rem;
+}
+
+.centered {
+  align-self: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+
+  & > * {
+    flex-grow: 1;
+  }
+
+  @include desktop {
+    & > * {
+      flex-grow: 0;
+    }
+  }
+}
+
+

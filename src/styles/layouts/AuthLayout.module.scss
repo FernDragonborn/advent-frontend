@@ -1,0 +1,55 @@
+.wrapper {
+  padding: 6rem 1.5rem;
+  min-height: 100vh;
+
+  background-color: var(--color-accent-orange-light);
+
+  @include desktop {
+    padding: 3.2rem 6.4rem;
+    display: grid;
+    grid-template-columns: 248fr 330fr 720fr;
+    gap: 0.8rem;
+
+    background: var(--color-bg-primary);
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    & > :first-child,
+    & > :nth-child(2) {
+      display: grid;
+      gap: 0.8rem;
+
+      & > * {
+        border-radius: 2rem;
+      }
+    }
+
+    & > :first-child {
+      grid-template-rows: minmax(30.6rem, 306fr) minmax(43.1rem, 431fr);
+      & > :first-child {
+        background-color: var(--color-accent-orange-light);
+      }
+    }
+
+    & > :nth-child(2) {
+      grid-template-rows: minmax(52rem, 520fr) minmax(21.7rem, 217fr);
+
+      & > :last-child {
+        background-color: var(--color-accent-blue-light);
+      }
+    }
+
+    & > :last-child {
+      padding: 3.2rem 6.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      border-radius: 2rem;
+      background-color: var(--color-accent-orange-light);
+    }
+  }
+}

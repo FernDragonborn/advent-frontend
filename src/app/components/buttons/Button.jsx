@@ -1,50 +1,44 @@
 import clsx from 'clsx';
-import Link from 'next/link';
-import PropTypes from 'prop-types';
 
 import styles from '@/styles/components/buttons/Button.module.scss';
+import { ArrowLeftSvg, ArrowRightSvg } from '@/assets/images/svgs';
 
 const Button = ({
   className,
-  appearance,
-  isLoading,
-  children,
-  isLink,
-  iconAfter,
+  size = 'medium',
+  as: Component = 'button',
   disabled,
-  onClick,
+  isLoading,
+  appearance = 'blue',
+  children,
+  arrowPosition = 'right', // left right none
   ...otherProps
 }) => {
-  const Component = isLink ? Link : 'button';
-
   return (
     <Component
       className={clsx(
         styles.button,
-        appearance === 'yellow' && styles.yellow,
-        appearance === 'pink' && styles.pink,
-        appearance === 'red' && styles.red,
-        appearance === 'white' && styles.white,
+        size === 'large' && styles.large,
+        size === 'small' && styles.small,
+        appearance === 'blue' && styles.blue,
+        appearance === 'orange' && styles.orange,
+        appearance === 'bordered' && styles.bordered,
+        appearance === 'transparent' && styles.transparent,
         disabled && styles.disabled,
         className,
       )}
-      onClick={!disabled && !isLoading ? onClick : undefined}
-      disabled={isLoading || disabled}
+      disabled={disabled}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : undefined}
+      type={Component === 'button' ? 'button' : undefined}
       {...otherProps}>
-      {children && (
-        <span className={clsx(styles.label, isLoading && styles.transparent)}>
-          {children}
-        </span>
+      {arrowPosition === 'left' && (
+        <ArrowLeftSvg className={styles.icon} width={16} height={16} />
       )}
-
-      <span
-        className={clsx(
-          styles.itemAfterWrapper,
-          isLoading && styles.transparent,
-        )}>
-        {iconAfter}
-      </span>
-
+      {children}
+      {arrowPosition === 'right' && (
+        <ArrowRightSvg className={styles.icon} width={16} height={16} />
+      )}
       {/* {isLoading && (
         <Loader className={styles.loader} size={'small'} color="currentColor" />
       )} */}
