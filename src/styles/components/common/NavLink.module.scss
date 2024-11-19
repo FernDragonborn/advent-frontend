@@ -1,0 +1,13 @@
+.link {
+  font-family: var(--font-grotesque);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 130%;
+  letter-spacing: -0.03rem;
+
+  &.active,
+  &:hover,
+  &:focus {
+    color: var(--color-accent-blue);
+  }
+}

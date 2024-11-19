@@ -13,7 +13,8 @@ body {
   min-height: 100vh;
   min-width: $mobile;
 
-  // font: var(--font-roboto-s-regular);
+  font: var(--font-text-2);
+  letter-spacing: -0.03rem;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
 }

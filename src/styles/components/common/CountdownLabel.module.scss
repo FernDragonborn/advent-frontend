@@ -1,0 +1,20 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.4rem;
+
+  font: var(--font-text-2);
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--color-text-secondary);
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.accent {
+  font-weight: 700;
+  color: var(--color-accent-blue);
+}
