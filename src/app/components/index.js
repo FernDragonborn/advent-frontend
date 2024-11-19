@@ -5,6 +5,7 @@ export { default as Button } from './buttons/Button';
 export { default as BackButton } from './buttons/BackButton';
 
 export { default as TextInputField } from './formControls/TextInputField';
+export { default as PhoneInputField } from './formControls/PhoneInputField';
 export { default as Checkbox } from './formControls/Checkbox';
 
 export { default as CodeForm } from './forms/CodeForm';

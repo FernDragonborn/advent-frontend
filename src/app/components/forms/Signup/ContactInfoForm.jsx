@@ -1,8 +1,8 @@
 import { Controller } from 'react-hook-form';
 import clsx from 'clsx';
 
-import { Button, TextInputField } from '@/components';
-import { MailSvg, SmartPhoneSvg } from '@/svgs';
+import { Button, PhoneInputField, TextInputField } from '@/components';
+import { MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
@@ -38,14 +38,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
             name="phone"
             control={formControl}
             render={({ field, fieldState: { error } }) => (
-              <TextInputField
-                type="tel"
-                label="Номер"
-                placeholder="Твій номер"
-                iconComponent={SmartPhoneSvg}
-                error={error}
-                {...field}
-              />
+              <PhoneInputField error={error} {...field} />
             )}
           />
           <p className={clsx(styles.text, styles.alignLeft)}>
