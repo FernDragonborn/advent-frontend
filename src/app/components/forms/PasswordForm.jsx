@@ -2,13 +2,13 @@ import { Controller } from 'react-hook-form';
 
 import { Button, TextInputField } from '@/components';
 import { CirclePasswordSvg } from '@/svgs';
-import styles from '@/styles/components/forms/SignupForm.module.scss';
+import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const PasswordForm = ({ formControl, onSubmit, onBack }) => {
+const PasswordForm = ({ title, formControl, onSubmit, onBack }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
-        <h2 className={styles.title}>Пароль</h2>
+        <h2 className={styles.title}>{title || 'Пароль'}</h2>
         <p className={styles.text}>
           Вигадай пароль, щоб відкривати календар пізніше.
         </p>
@@ -20,11 +20,11 @@ const PasswordForm = ({ formControl, onSubmit, onBack }) => {
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
+              type="password"
               label="Пароль"
               placeholder="Введіть пароль"
               iconComponent={CirclePasswordSvg}
               error={error}
-              type="password"
               {...field}
             />
           )}
@@ -34,11 +34,11 @@ const PasswordForm = ({ formControl, onSubmit, onBack }) => {
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
+              type="password"
               label="Підтвердіть Пароль"
               placeholder="Введіть пароль"
               iconComponent={CirclePasswordSvg}
               error={error}
-              type="password"
               {...field}
             />
           )}

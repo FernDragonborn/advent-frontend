@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 
 import { Button, TextInputField } from '@/components';
 import { CirclePasswordSvg } from '@/svgs';
-import styles from '@/styles/components/forms/SignupForm.module.scss';
+import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const CodeForm = ({ formControl, onSubmit, onBack }) => {
   return (
@@ -22,7 +22,7 @@ const CodeForm = ({ formControl, onSubmit, onBack }) => {
         render={({ field, fieldState: { error } }) => (
           <TextInputField
             label="Код"
-            placeholder="Введіть пароль"
+            placeholder="Введіть код"
             iconComponent={CirclePasswordSvg}
             error={error}
             {...field}

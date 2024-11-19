@@ -7,23 +7,25 @@
 }
 
 .descriptionCard {
-  padding: 7.8rem 2.8rem;
+  padding: 8.9rem 4.8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   color: var(--color-bg-primary);
   background:
-    url('/images/auth/decorations.svg') no-repeat right 22px top,
-    var(--color-accent-blue);
+    url('/images/auth/decorations.svg') no-repeat right 3rem top,
+    var(--color-accent-orange);
+
+  background-size: 11.3rem 22.6rem;
 
   &::before {
     content: '';
-    margin-bottom: 9.7rem;
+    margin-bottom: 12rem;
     display: inline-block;
 
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 
     border-radius: 100%;
     background-color: var(--color-bg-primary);
@@ -39,7 +41,7 @@
 }
 
 .descriptionText {
-  font: var(--font-text-4);
+  font: var(--font-text-2);
   letter-spacing: -0.03rem;
 }
 

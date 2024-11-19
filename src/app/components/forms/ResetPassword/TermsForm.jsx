@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Controller } from 'react-hook-form';
 
 import { Button, Checkbox } from '@/components';
-import styles from '@/styles/components/forms/SignupForm.module.scss';
+import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const TermsForm = ({ formControl, onSubmit, onBack }) => {
   return (

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { Button, TextInputField } from '@/components';
 import { MailSvg, SmartPhoneSvg } from '@/svgs';
-import styles from '@/styles/components/forms/SignupForm.module.scss';
+import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
   return (
@@ -24,6 +24,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
+              type="email"
               label="Електронна пошта"
               placeholder="Твій Е-мейл"
               iconComponent={MailSvg}
@@ -38,6 +39,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
             control={formControl}
             render={({ field, fieldState: { error } }) => (
               <TextInputField
+                type="tel"
                 label="Номер"
                 placeholder="Твій номер"
                 iconComponent={SmartPhoneSvg}

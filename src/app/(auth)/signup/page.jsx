@@ -14,7 +14,6 @@ import {
   TermsForm,
 } from '@/components';
 import { LogoSvg, DecorationDotsSvg } from '@/svgs';
-import styles from '@/styles/pages/SignupPage.module.scss';
 import {
   codeSchema,
   contactInfoSchema,
@@ -22,6 +21,7 @@ import {
   termsSchema,
   userInfoSchema,
 } from '@/schemas';
+import styles from '@/styles/pages/SignupPage.module.scss';
 
 const SIGNUP_STEPS = {
   USER_INFO: 'user-info',
@@ -94,7 +94,7 @@ export default function Page() {
 
       <div>
         <div className={styles.logoWrapper}>
-          <LogoSvg className={styles.logo} width={110} heigt={46} />
+          <LogoSvg className={styles.logo} width={110} height={46} />
           <DecorationDotsSvg className={styles.dots} width={120} height={24} />
         </div>
 

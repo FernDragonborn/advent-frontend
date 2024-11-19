@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 
 import { Button, TextInputField } from '@/components';
 import { BuildingSvg, HomeSvg, RulerPenSvg, UserSvg } from '@/svgs';
-import styles from '@/styles/components/forms/SignupForm.module.scss';
+import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const UserInfoForm = ({ formControl, onSubmit }) => {
   return (

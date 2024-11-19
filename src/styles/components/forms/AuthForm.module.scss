@@ -59,6 +59,18 @@
   }
 }
 
+.link {
+  font: var(--font-text-2);
+
+  color: var(--color-accent-blue);
+  text-decoration: underline;
+}
+
+.topIndent {
+  margin-top: 1.2rem;
+  display: block;
+}
+
 @keyframes formFadeIn {
   0% {
     opacity: 0.25;
