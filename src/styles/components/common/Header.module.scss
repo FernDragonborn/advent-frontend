@@ -11,6 +11,15 @@
     margin-left: auto;
   }
 
+  .score {
+    display: none;
+
+    @include desktop {
+      margin-left: 1.6rem;
+      display: inline-flex;
+    }
+  }
+
   @include desktop {
     justify-content: flex-start;
     border-radius: 1.6rem;
@@ -71,15 +80,6 @@ a:has(.logo) {
     display: flex;
     align-items: center;
     column-gap: 1rem;
-  }
-}
-
-.score {
-  display: none;
-
-  @include desktop {
-    margin-left: 1.6rem;
-    display: inline-flex;
   }
 }
 

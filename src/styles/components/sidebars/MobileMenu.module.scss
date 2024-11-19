@@ -93,23 +93,3 @@ a:has(.logo) {
 .authedActions {
   column-gap: 1.6rem;
 }
-
-.socials {
-  display: flex;
-  align-items: center;
-  column-gap: 2.4rem;
-
-  a {
-    display: inline-flex;
-
-    &:hover,
-    &:focus {
-      transform: scale(1.1);
-    }
-  }
-
-  svg {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-}

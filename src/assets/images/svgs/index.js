@@ -19,3 +19,7 @@ export { default as CrossSvg } from './cross.svg';
 export { default as FacebookSvg } from './facebook.svg';
 export { default as InstagramSvg } from './instagram.svg';
 export { default as XSvg } from './x.svg';
+export { default as SnowflakeSvg } from './snowflake.svg';
+export { default as MailsSvg } from './mails.svg';
+export { default as ToysSvg } from './toys.svg';
+export { default as GiftColoredSvg } from './gift-colored.svg';

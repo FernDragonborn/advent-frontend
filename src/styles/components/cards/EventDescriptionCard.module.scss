@@ -1,0 +1,42 @@
+.wrapper {
+  padding: 4.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3.2rem;
+
+  background-color: var(--color-bg-primary);
+  border-radius: 2.4rem;
+
+  @include desktop {
+    padding: 3.2rem 2rem;
+  }
+}
+
+.icon {
+  margin: 0 auto;
+  display: block;
+  width: 13.5rem;
+  height: 13.5rem;
+
+  @include desktop {
+    width: 20rem;
+    height: 20rem;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.2rem;
+
+  .text,
+  p {
+    font: var(--font-text-2);
+    color: var(--color-text-secondary);
+  }
+}
+
+.title {
+  font: var(--font-heading-3);
+  text-transform: uppercase;
+}
