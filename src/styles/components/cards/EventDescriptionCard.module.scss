@@ -39,4 +39,8 @@
 .title {
   font: var(--font-heading-3);
   text-transform: uppercase;
+
+  &.accent {
+    color: var(--color-error);
+  }
 }

@@ -1,0 +1,60 @@
+.wrapper {
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  @include desktop {
+    margin: -1.2rem -3rem 0;
+    padding: 8.2rem 3rem 7rem;
+    flex-direction: row-reverse;
+    column-gap: 0.8rem;
+  }
+}
+
+.container {
+  @include desktop {
+    flex: 1;
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    background: url('/images/educational-program/snowman-bg.svg') no-repeat
+      right 3rem bottom 1.2rem / 8.4rem 11.4rem;
+  }
+}
+
+.title {
+  margin-bottom: 1.2rem;
+
+  font: var(--font-heading-2);
+  text-transform: uppercase;
+}
+
+.text {
+  margin-bottom: 3.2rem;
+
+  font: var(--font-text-2);
+  color: var(--color-text-secondary);
+}
+
+.picture {
+  align-self: center;
+  width: 34.5rem;
+  height: 35rem;
+
+  border-radius: 2.4rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include desktop {
+    width: 72rem;
+    height: 48.2rem;
+  }
+}

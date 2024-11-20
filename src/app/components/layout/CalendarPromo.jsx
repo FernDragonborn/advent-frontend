@@ -1,18 +1,27 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { Button } from '@/components';
 import styles from '@/styles/components/layout/CalendarPromo.module.scss';
-import Image from 'next/image';
 
-const CalendarPromo = ({}) => {
+const CalendarPromo = () => {
   return (
     <section className={styles.wrapper}>
       <h2 className={styles.title}>Приєднуйся!</h2>
       <p className={styles.text}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+        Як освітні посередники та вірні штурмани українського учнівства у
+        навчальних пригодах, ми переконані, що якісна освіта та зацікавленість
+        дітей у навчанні не повинні бути дивом!
       </p>
+      <p className={styles.text}>
+        Проте саме диво історії може нагади дітям про природну спраглість до
+        відкриттів.{' '}
+      </p>
+      <p className={styles.text}>
+        Давайте разом напишемо історію освітнього дива у різдвяному
+        адвент-календарі ❤️
+      </p>
+
       <Button className={styles.btn} size="large" as={Link} href="/signup">
         Зареєструватись
       </Button>
