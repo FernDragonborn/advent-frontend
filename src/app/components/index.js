@@ -1,10 +1,12 @@
 export { default as Providers } from './common/Providers';
 export { default as Portal } from './common/Portal';
-export { default as Header } from './common/Header';
 export { default as NavLink } from './common/NavLink';
 export { default as CountdownLabel } from './common/CountdownLabel';
 export { default as UserScore } from './common/UserScore';
 export { default as Socials } from './common/Socials';
+
+export { default as Header } from './layout/Header';
+export { default as Footer } from './layout/Footer';
 
 export { default as Button } from './buttons/Button';
 

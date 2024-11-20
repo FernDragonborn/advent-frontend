@@ -6,14 +6,19 @@ import clsx from 'clsx';
 
 import styles from '@/styles/components/common/NavLink.module.scss';
 
-const NavLink = ({ className, href, ...props }) => {
+const NavLink = ({
+  className,
+  href,
+  shouldHighlightActive = true,
+  ...props
+}) => {
   const pathname = usePathname();
 
   return (
     <Link
       className={clsx(
         styles.link,
-        pathname === href && styles.active,
+        shouldHighlightActive && pathname === href && styles.active,
         className,
       )}
       href={href}

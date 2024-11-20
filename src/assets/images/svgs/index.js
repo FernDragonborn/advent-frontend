@@ -23,3 +23,4 @@ export { default as SnowflakeSvg } from './snowflake.svg';
 export { default as MailsSvg } from './mails.svg';
 export { default as ToysSvg } from './toys.svg';
 export { default as GiftColoredSvg } from './gift-colored.svg';
+export { default as LogoEcwSvg } from './logo-ecw.svg';

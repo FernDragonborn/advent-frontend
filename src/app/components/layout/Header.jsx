@@ -11,7 +11,7 @@ import {
   UserScore,
 } from '@/components';
 import { LogoSvg, UserSvg, WidgetSvg } from '@/svgs';
-import styles from '@/styles/components/common/Header.module.scss';
+import styles from '@/styles/components/layout/Header.module.scss';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -1,14 +1,53 @@
 .wrapper {
-  padding: 6rem 1.5rem;
   flex: 1;
+}
+
+.hero {
+  padding: 6rem 1.5rem;
 
   background:
-    url('/images/home/decoration-trees-bg.svg') no-repeat top right,
-    url('/images/home/bubbles-mobile-bg.png') top right,
+    url('/images/home/decoration-trees-bg.svg') no-repeat top 0.1rem right /
+      12.2rem 6.8rem,
+    url('/images/home/bubbles-bg.png') center,
     var(--color-accent-blue);
 
   @include desktop {
     padding: 8rem 3.4rem 4.8rem;
+
+    background:
+      url('/images/home/decoration-trees-bg.svg') no-repeat top -0.5rem right/ 27.2rem
+        14.4rem,
+      url('/images/home/decoration-toys-bg.svg') no-repeat top right 38%/ 12.3rem
+        11.1rem,
+      url('/images/home/snowflake-large-bg.svg') no-repeat top 21.4rem right
+        4.2rem/ 10.5rem 10.9rem,
+      url('/images/home/snowflake-small-bg.svg') no-repeat bottom 5.2rem left
+        11.1rem/ 6.3rem 6.4rem,
+      url('/images/home/bubbles-bg.png') center top 54%,
+      var(--color-accent-blue);
+    border-radius: 2.4rem;
+  }
+
+  @include retina {
+    background:
+      url('/images/home/decoration-trees-bg.svg') no-repeat top 0.1rem right /
+        12.2rem 6.8rem,
+      url('/images/home/bubbles-bg@2x.png') center,
+      var(--color-accent-blue);
+
+    @include desktop {
+      background:
+        url('/images/home/decoration-trees-bg.svg') no-repeat top -0.5rem right/
+          27.2rem 14.4rem,
+        url('/images/home/decoration-toys-bg.svg') no-repeat top right 38%/ 12.3rem
+          11.1rem,
+        url('/images/home/snowflake-large-bg.svg') no-repeat top 21.4rem right
+          4.2rem/ 10.5rem 10.9rem,
+        url('/images/home/snowflake-small-bg.svg') no-repeat bottom 5.2rem left
+          11.1rem/ 6.3rem 6.4rem,
+        url('/images/home/bubbles-bg@2x.png') center top 54%,
+        var(--color-accent-blue);
+    }
   }
 }
 
@@ -19,6 +58,7 @@
   row-gap: 0.8rem;
 
   font: var(--font-heading-1);
+  letter-spacing: -0.08rem;
   color: var(--color-bg-primary);
   text-transform: uppercase;
 
@@ -34,6 +74,17 @@
 
   @include desktop {
     margin-bottom: 5rem;
+
+    span {
+      margin-left: 22.1rem;
+      align-items: center;
+      column-gap: 2.5rem;
+    }
+
+    svg {
+      width: 6.8rem;
+      height: 6rem;
+    }
   }
 }
 

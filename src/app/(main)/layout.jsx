@@ -1,4 +1,4 @@
-import { Header } from '@/components';
+import { Footer, Header } from '@/components';
 import styles from '@/styles/layouts/MainLayout.module.scss';
 
 export default function Layout({ children }) {
@@ -6,6 +6,7 @@ export default function Layout({ children }) {
     <div className={styles.wrapper}>
       <Header />
       {children}
+      <Footer />
     </div>
   );
 }
