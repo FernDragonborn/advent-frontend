@@ -7,6 +7,7 @@ export { default as Socials } from './common/Socials';
 
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';
+export { default as CalendarPromo } from './layout/CalendarPromo';
 
 export { default as Button } from './buttons/Button';
 

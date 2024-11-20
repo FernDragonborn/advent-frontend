@@ -1,0 +1,76 @@
+.wrapper {
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include desktop {
+    padding: 9rem 6.4rem;
+
+    background:
+      url('/images/calendar-promo/snowflakes-bg.svg') no-repeat left 10rem top
+        33.8rem / 13.7rem 14rem,
+      url('/images/calendar-promo/stick-bg.svg') no-repeat left 7rem bottom
+        16.8rem / 13rem 14rem,
+      url('/images/calendar-promo/toy-bg.svg') no-repeat right 9.4rem top
+        33.8rem / 6.8rem 8.3rem,
+      url('/images/calendar-promo/toy-2-bg.svg') no-repeat right 10.9rem bottom
+        30.9rem / 10.6rem 14rem;
+  }
+}
+
+.title {
+  margin-bottom: 1.2rem;
+
+  font: var(--font-heading-2);
+  text-transform: uppercase;
+}
+
+.text {
+  margin-bottom: 3.2rem;
+  max-width: 87.2rem;
+
+  font: var(--font-text-1);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.btn {
+  margin-bottom: 4rem;
+
+  @include desktop {
+    margin-bottom: 5rem;
+  }
+}
+
+.imgWrapper {
+  position: relative;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+
+    display: block;
+
+    background-color: var(--color-accent-orange);
+    border-radius: 1.2rem;
+  }
+}
+
+.img {
+  width: 32.7rem;
+  height: 36.7rem;
+
+  transform: translateY(0.3rem) rotate(-2.4deg);
+
+  @include desktop {
+    width: 60.6rem;
+    height: 68.1rem;
+  }
+}

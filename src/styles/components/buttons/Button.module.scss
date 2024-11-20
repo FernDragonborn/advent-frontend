@@ -21,6 +21,11 @@
 }
 
 .large {
+  padding: 0 2.4rem;
+  height: 5rem;
+
+  font: var(--font-button-1);
+
   @include desktop {
     padding: 0 3.2rem;
     height: 6.3rem;

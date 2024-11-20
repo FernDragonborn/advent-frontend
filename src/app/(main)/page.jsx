@@ -1,6 +1,11 @@
 'use client';
 
-import { Button, EventDescriptionCard, Socials } from '@/components';
+import {
+  Button,
+  CalendarPromo,
+  EventDescriptionCard,
+  Socials,
+} from '@/components';
 import { GiftColoredSvg, MailsSvg, SnowflakeSvg, ToysSvg } from '@/svgs';
 import styles from '@/styles/pages/HomePage.module.scss';
 
@@ -60,6 +65,8 @@ export default function Page() {
           Взяти участь
         </Button>
       </section>
+
+      <CalendarPromo />
     </main>
   );
 }
