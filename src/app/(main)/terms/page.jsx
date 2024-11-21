@@ -71,7 +71,7 @@ export default function Page() {
 
         <Link
           className={styles.link}
-          href="./files/official-rules-of-participation.pdf"
+          href="/files/official-rules-of-participation.pdf"
           target="_blank"
           rel="noopener noreferrer nofollow">
           Офіційні умови участі

@@ -29,11 +29,14 @@ const TermsForm = ({ formControl, onSubmit, onBack }) => {
       />
 
       <p className={styles.text}>
-        <Link className={styles.underlined} href="">
+        <Link
+          className={styles.underlined}
+          href="/privacy-policy"
+          target="_blank">
           Політика конфіденційності
         </Link>{' '}
         та{' '}
-        <Link className={styles.underlined} href="">
+        <Link className={styles.underlined} href="/terms" target="_blank">
           Умовами розіграшу
         </Link>
       </p>

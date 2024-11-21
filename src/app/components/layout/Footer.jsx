@@ -36,7 +36,7 @@ const Footer = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink href="/" shouldHighlightActive={false}>
+                  <NavLink href="/terms" shouldHighlightActive={false}>
                     Умови розіграшу
                   </NavLink>
                 </li>
