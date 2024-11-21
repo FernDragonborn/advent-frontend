@@ -1,0 +1,119 @@
+.wrapper {
+  flex: 1;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url('/images/hero/decoration-toys-bg.svg') no-repeat top left 2rem /
+    10.5rem 8.4rem;
+
+  h1 {
+    width: min-content;
+    text-align: center;
+  }
+
+  @include desktop {
+    background:
+      url('/images/hero/decoration-toys-bg.svg') no-repeat top left 7rem /
+        10.5rem 8.4rem,
+      url('/images/hero/garland-bg.svg') no-repeat top right / 39.8rem 16.5rem;
+  }
+}
+
+.terms {
+  margin: 4rem 0;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font: var(--font-heading-2);
+  }
+  h3,
+  h4,
+  h5,
+  h6 {
+    font: var(--font-heading-3);
+  }
+
+  ol {
+    list-style: decimal;
+    list-style-position: inside;
+
+    padding-left: 1.6rem;
+  }
+
+  .parenthesisedList {
+    counter-reset: list-counter;
+    list-style: none;
+
+    li {
+      counter-increment: list-counter; /* Increment the counter for each <li> */
+      &::before {
+        content: counter(list-counter) ') '; /* Display the counter with ')' */
+      }
+    }
+  }
+
+  ol,
+  .parenthesisedList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.6rem;
+  }
+
+  ol,
+  .text {
+    font: var(--font-text-2);
+    color: var(--color-text-secondary);
+  }
+
+  @include desktop {
+    padding: 9rem 14.6rem;
+  }
+}
+
+.text {
+  &:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
+}
+
+.accent {
+  color: var(--color-accent-blue);
+}
+
+.link {
+  color: var(--color-accent-blue);
+  text-decoration: underline;
+}
+
+.quote {
+  padding-right: 2rem;
+  display: flex;
+  column-gap: 2rem;
+
+  font: var(--font-text-1);
+
+  &::before {
+    content: '';
+
+    display: block;
+    width: 0.2rem;
+    background-color: var(--color-accent-blue);
+  }
+}

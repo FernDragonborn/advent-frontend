@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  min-height: 25rem;
+
+  background:
+    url('/images/hero/bubbles-bg.png') center / 157rem,
+    var(--color-accent-blue);
+
+  border-bottom-left-radius: 2.4rem;
+  border-bottom-right-radius: 2.4rem;
+
+  h1 {
+    font: var(--font-heading-1);
+    letter-spacing: -0.08rem;
+    color: var(--color-bg-primary);
+    text-transform: uppercase;
+  }
+
+  @include desktop {
+    min-height: 32.9rem;
+
+    background:
+      url('/images/hero/bubbles-bg.png') center / 157rem,
+      var(--color-accent-blue);
+    border-radius: 2.4rem;
+  }
+
+  @include retina {
+    background:
+      url('/images/hero/bubbles-bg@2x.png') center / 157rem,
+      var(--color-accent-blue);
+
+    @include desktop {
+      background:
+        url('/images/hero/bubbles-bg@2x.png') center / 157rem,
+        var(--color-accent-blue);
+    }
+  }
+}

@@ -33,6 +33,7 @@ export { default as ProfileForm } from './forms/ProfileForm';
 export { default as ChangePasswordForm } from './forms/ChangePasswordForm';
 
 export { default as ModalWrapper } from './wrappers/ModalWrapper';
+export { default as HeroSection } from './wrappers/HeroSection';
 
 export { default as MobileMenu } from './sidebars/MobileMenu';
 export { default as SettingsSidebar } from './sidebars/SettingsSidebar';
