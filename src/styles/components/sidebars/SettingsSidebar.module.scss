@@ -1,0 +1,19 @@
+.wrapper {
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+  min-height: 50rem;
+
+  background-color: var(--color-accent-blue);
+  border-radius: 1.5rem;
+
+  & > :last-child {
+    margin-top: auto;
+  }
+
+  @include desktop {
+    width: 280px;
+    height: auto;
+  }
+}

@@ -15,17 +15,17 @@
   border-bottom-right-radius: 2.4rem;
 
   @include desktop {
-    padding: 8rem 3.4rem 4.8rem;
+    padding: 8rem 3.4rem 6.2rem;
 
     background:
-      url('/images/home/decoration-trees-bg.svg') no-repeat top -0.5rem right/ 27.2rem
-        14.4rem,
-      url('/images/home/decoration-toys-bg.svg') no-repeat top right 38%/ 12.3rem
-        11.1rem,
-      url('/images/home/snowflake-large-bg.svg') no-repeat top 21.4rem right
-        4.2rem/ 10.5rem 10.9rem,
-      url('/images/home/snowflake-small-bg.svg') no-repeat bottom 5.2rem left
-        11.1rem/ 6.3rem 6.4rem,
+      url('/images/calendar/garland-bg.svg') no-repeat top -0.5rem right/ 43.6rem
+        17.8rem,
+      url('/images/home/snowflake-large-bg.svg') no-repeat bottom 11.6rem right
+        40%/ 10.5rem 10.9rem,
+      url('/images/home/snowflake-small-bg.svg') no-repeat top 7.5rem right 32%/
+        6.3rem 6.4rem,
+      url('/images/calendar/bag-bg.svg') no-repeat bottom 2.7rem right 5.3rem/ 31.6rem
+        26.1rem,
       url('/images/home/bubbles-bg.png') center top 54%,
       var(--color-accent-blue);
     border-radius: 2.4rem;
@@ -40,14 +40,14 @@
 
     @include desktop {
       background:
-        url('/images/home/decoration-trees-bg.svg') no-repeat top -0.5rem right/
-          27.2rem 14.4rem,
-        url('/images/home/decoration-toys-bg.svg') no-repeat top right 38%/ 12.3rem
-          11.1rem,
-        url('/images/home/snowflake-large-bg.svg') no-repeat top 21.4rem right
-          4.2rem/ 10.5rem 10.9rem,
-        url('/images/home/snowflake-small-bg.svg') no-repeat bottom 5.2rem left
-          11.1rem/ 6.3rem 6.4rem,
+        url('/images/calendar/garland-bg.svg') no-repeat top -0.5rem right/ 43.6rem
+          17.8rem,
+        url('/images/home/snowflake-large-bg.svg') no-repeat bottom 11.6rem
+          right 40%/ 10.5rem 10.9rem,
+        url('/images/home/snowflake-small-bg.svg') no-repeat top 7.5rem right
+          32%/ 6.3rem 6.4rem,
+        url('/images/calendar/bag-bg.svg') no-repeat bottom 2.7rem right 5.3rem/
+          31.6rem 26.1rem,
         url('/images/home/bubbles-bg@2x.png') center top 54%,
         var(--color-accent-blue);
     }
@@ -76,8 +76,6 @@
   }
 
   @include desktop {
-    margin-bottom: 5rem;
-
     span {
       margin-left: 22.1rem;
       align-items: center;
@@ -95,34 +93,10 @@
   color: var(--color-accent-blue);
 }
 
-.eventDescriptionCards {
-  margin-bottom: 3.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-
-  li > * {
-    height: 100%;
-  }
-
-  li:nth-child(2n + 1) {
-    & > * {
-      flex-direction: column-reverse;
-      justify-content: flex-end;
-    }
-  }
+.countdown {
+  margin: 0 auto;
 
   @include desktop {
-    margin-bottom: 4rem;
-    flex-direction: row;
-
-    & > li {
-      flex: 1;
-    }
+    margin-left: 10.7rem;
   }
-}
-
-.centeredBtn {
-  margin: 0 auto;
-  display: flex;
 }

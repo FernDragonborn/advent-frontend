@@ -3,7 +3,9 @@
   flex-direction: column;
   row-gap: 2rem;
 
-  animation: formFadeIn var(--transition-primary);
+  &:global {
+    animation: formFadeIn var(--transition-primary);
+  }
 }
 
 .title {
@@ -20,7 +22,9 @@
   text-align: center;
 }
 
-.alignLeft {
+.details {
+  margin-top: 0.4rem;
+
   text-align: left;
 }
 
@@ -69,13 +73,4 @@
 .topIndent {
   margin-top: 1.2rem;
   display: block;
-}
-
-@keyframes formFadeIn {
-  0% {
-    opacity: 0.25;
-  }
-  100% {
-    opacity: 1;
-  }
 }

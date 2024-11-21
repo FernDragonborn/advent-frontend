@@ -26,7 +26,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
             <TextInputField
               type="email"
               label="Електронна пошта"
-              placeholder="Твій Е-мейл"
+              placeholder="user@gmail.com"
               iconComponent={MailSvg}
               error={error}
               {...field}
@@ -41,7 +41,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
               <PhoneInputField error={error} {...field} />
             )}
           />
-          <p className={clsx(styles.text, styles.alignLeft)}>
+          <p className={clsx(styles.text, styles.details)}>
             Він потрібен для того, щоб за необхідності зв&apos;язатись з тобою в
             разі виграшу
           </p>

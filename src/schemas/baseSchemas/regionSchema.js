@@ -2,8 +2,8 @@ import * as yup from 'yup';
 
 import { REQUIRED_MESSAGE } from '@/constants';
 
-export const usernameSchema = yup
+export const regionSchema = yup
   .string()
   .required(REQUIRED_MESSAGE)
   .min(4, 'Мінімільна довжина 4 символи')
-  .max(200, 'Максимальна довжина 200 символів');
+  .max(100, 'Максимальна довжина 100 символів');

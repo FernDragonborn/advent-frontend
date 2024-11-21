@@ -1,0 +1,43 @@
+.button {
+  padding: 0 1.2rem;
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+  height: 4.8rem;
+
+  font: var(--font-text-2);
+  color: var(--color-bg-primary);
+  border-radius: 0.6rem;
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  path {
+    stroke: var(--color-bg-primary);
+
+    transition: var(--transition-primary);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+
+    path {
+      stroke: var(--color-accent-orange);
+    }
+  }
+
+  &.active {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+
+    path {
+      stroke: transparent;
+
+      fill: var(--color-accent-orange);
+    }
+  }
+}

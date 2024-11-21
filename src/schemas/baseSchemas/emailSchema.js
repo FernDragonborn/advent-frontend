@@ -1,6 +1,8 @@
 import * as yup from 'yup';
 
+import { REQUIRED_MESSAGE } from '@/constants';
+
 export const emailSchema = yup
   .string()
-  .email('Невірний формат емейлу')
-  .required("Обов'язкове поле");
+  .required(REQUIRED_MESSAGE)
+  .email('Невірний формат емейлу');

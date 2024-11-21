@@ -57,7 +57,7 @@ const Header = () => {
           appearance="bordered"
           arrowPosition="none"
           as={Link}
-          href="/profile">
+          href="/settings">
           Профіль <UserSvg width={16} height={16} />
         </Button>
       </div>

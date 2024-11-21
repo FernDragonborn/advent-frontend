@@ -21,8 +21,8 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
-              label="Ім’я"
-              placeholder="Напишіть Твоє ім’я"
+              label="ПІБ"
+              placeholder="Іваненко Іван Іванович"
               iconComponent={UserSvg}
               error={error}
               {...field}
@@ -35,7 +35,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           render={({ field, fieldState: { error } }) => (
             <TextInputField
               label="Адреса"
-              placeholder="Твоя адреса"
+              placeholder="вул. Залізнична 23 м. Рівне"
               iconComponent={HomeSvg}
               error={error}
               {...field}
@@ -48,7 +48,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           render={({ field, fieldState: { error } }) => (
             <TextInputField
               label="Область проживання"
-              placeholder="Твоя область"
+              placeholder="Рівненська"
               iconComponent={BuildingSvg}
               error={error}
               {...field}
@@ -60,8 +60,9 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
+              type="number"
               label="Клас"
-              placeholder="Твій клас"
+              placeholder="1-12"
               iconComponent={RulerPenSvg}
               error={error}
               {...field}

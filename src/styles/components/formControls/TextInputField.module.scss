@@ -52,6 +52,17 @@
 
   transition: var(--transition-primary);
 
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+
   &::placeholder {
     color: var(--color-text-tertiary);
   }

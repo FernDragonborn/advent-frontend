@@ -1,22 +1,7 @@
-import moment from 'moment';
+import { splitDuration } from '@/utils';
 
 export const getDuration = startDate => {
-  const currentDateMoment = moment();
-  const startDateMoment = moment(startDate, 'YYYY-MM-DD HH:mm');
-
-  if (currentDateMoment.isAfter(startDate)) {
-    return null;
-  }
-
-  const duration = moment.duration(
-    startDateMoment.diff(currentDateMoment, 'seconds'),
-    'seconds',
-  );
-
-  const days = duration.days();
-  const hours = duration.hours();
-  const minutes = duration.minutes();
-  const seconds = duration.seconds();
+  const { days, hours, minutes, seconds } = splitDuration(startDate);
 
   let formattedDuration = '';
 

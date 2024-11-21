@@ -5,3 +5,4 @@ export * from './termsSchema';
 export * from './userInfoSchema';
 export * from './loginSchema';
 export * from './resetPasswordEmailSchema';
+export * from './profileSchema';

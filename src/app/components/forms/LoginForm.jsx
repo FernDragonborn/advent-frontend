@@ -24,7 +24,7 @@ const LoginForm = ({ formControl, onSubmit }) => {
             <TextInputField
               type="email"
               label="Електронна пошта"
-              placeholder="Твій Е-мейл"
+              placeholder="user@gmail.com"
               iconComponent={MailSvg}
               error={error}
               {...field}

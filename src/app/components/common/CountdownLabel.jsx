@@ -8,9 +8,7 @@ import { CheerfulStarSvg } from '@/assets/images/svgs';
 import styles from '@/styles/components/common/CountdownLabel.module.scss';
 
 const CountdownLabel = ({ className }) => {
-  const [formattedDuration, setFormattedDuration] = useState(() =>
-    getDuration('2024-12-01 00:00'),
-  );
+  const [formattedDuration, setFormattedDuration] = useState('');
   const timerRef = useRef();
 
   useEffect(() => {

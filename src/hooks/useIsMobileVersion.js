@@ -7,7 +7,7 @@ export const useIsMobileVersion = () => {
   const { width } = useWindowDimensions();
 
   useLayoutEffect(() => {
-    setIsMobileVersion(width < 768);
+    setIsMobileVersion(width < 1440);
   }, [width]);
 
   return isMobileVersion;
