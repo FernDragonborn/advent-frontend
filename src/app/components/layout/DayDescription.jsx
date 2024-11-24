@@ -26,10 +26,9 @@ const DayDescription = () => {
   return (
     <section className={styles.wrapper}>
       <div className={styles.container}>
-        <h2 className={styles.title}>День третій</h2>
+        <h2 className={styles.title}>Уже зареєструвались? 😍</h2>
         <p className={styles.text}>
-          Додай інформацію про себе щоб взаємодіяти з календарем та взяти участь
-          у розіграші
+          Натисніть «До календаря», щоб увійти в особистий кабінет учасника.
         </p>
         <Button className={styles.btn} as={Link} href="/calendar">
           До календаря

@@ -21,7 +21,7 @@ export default function Page() {
           Різдвяний{' '}
           <span>
             <SnowflakeSvg width={30} height={26} />
-            Адвент календар
+            адвент-календар
           </span>
         </h1>
         <ul className={styles.eventDescriptionCards}>

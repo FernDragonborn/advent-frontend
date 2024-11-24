@@ -12,7 +12,7 @@ export default function Page() {
           До відкриття{' '}
           <span>
             <SnowflakeSvg width={30} height={26} />
-            Адвент календаря
+            адвент-календаря
           </span>
         </h1>
 
