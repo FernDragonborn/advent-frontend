@@ -7,25 +7,31 @@ import { getDuration } from '@/utils';
 import { CheerfulStarSvg } from '@/assets/images/svgs';
 import styles from '@/styles/components/common/CountdownLabel.module.scss';
 
-const CountdownLabel = ({ className }) => {
+const startDate = '2024-12-01 00:00';
+
+const CountdownLabel = ({ className, onComplete }) => {
   const [formattedDuration, setFormattedDuration] = useState('');
   const timerRef = useRef();
 
   useEffect(() => {
-    const fn = () => {
-      clearTimeout(timerRef.current);
+    const updateDuration = () => {
+      const newDuration = getDuration(startDate);
+      setFormattedDuration(newDuration);
+      newDuration ? setNewTimeout() : onComplete?.();
+    };
 
+    const setNewTimeout = () => {
+      clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
-        const newDuration = getDuration('2024-12-01 00:00');
-        setFormattedDuration(newDuration);
-        fn();
+        updateDuration();
       }, 1000);
     };
 
-    timerRef.current = setTimeout(() => fn(), 1000);
+    setNewTimeout();
+    updateDuration();
 
     return () => clearTimeout(timerRef.current);
-  }, []);
+  }, [onComplete]);
 
   return (
     <span className={clsx(styles.wrapper, className)}>

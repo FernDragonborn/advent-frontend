@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form';
 
 import { Button, TextInputField } from '@/components';
-import { BuildingSvg, HomeSvg, RulerPenSvg, UserSvg } from '@/svgs';
+import { BuildingSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const UserInfoForm = ({ formControl, onSubmit }) => {
@@ -17,7 +17,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
 
       <div className={styles.inputs}>
         <Controller
-          name="name"
+          name="username"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
@@ -30,13 +30,13 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           )}
         />
         <Controller
-          name="address"
+          name="sex"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
-              label="Адреса"
-              placeholder="вул. Залізнична 23 м. Рівне"
-              iconComponent={HomeSvg}
+              label="Стать"
+              placeholder="Обери"
+              iconComponent={UserSvg}
               error={error}
               {...field}
             />
@@ -48,7 +48,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           render={({ field, fieldState: { error } }) => (
             <TextInputField
               label="Область проживання"
-              placeholder="Рівненська"
+              placeholder="Напр.: Київська, Хмельницька, Харківська тощо"
               iconComponent={BuildingSvg}
               error={error}
               {...field}
@@ -56,7 +56,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           )}
         />
         <Controller
-          name="class"
+          name="grade"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField

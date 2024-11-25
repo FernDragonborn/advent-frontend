@@ -22,6 +22,8 @@ import {
   userInfoSchema,
 } from '@/schemas';
 import styles from '@/styles/pages/SignupPage.module.scss';
+import { useAuthMutation } from '@/hooks';
+import { api } from '@/services';
 
 const SIGNUP_STEPS = {
   USER_INFO: 'user-info',
@@ -36,7 +38,7 @@ export default function Page() {
 
   const userInfoForm = useForm({
     resolver: yupResolver(userInfoSchema),
-    defaultValues: { name: '', address: '', region: '', class: '' },
+    defaultValues: { username: '', sex: '', region: '', grade: '' },
   });
   const contactInfoForm = useForm({
     resolver: yupResolver(contactInfoSchema),
@@ -54,6 +56,17 @@ export default function Page() {
     resolver: yupResolver(termsSchema),
     defaultValues: { isAgreed: false },
   });
+
+  const registerMutation = useAuthMutation({
+    mutationFn: api.auth.register,
+  });
+
+  const onRegister = data =>
+    registerMutation.mutate({
+      ...data,
+      // full_name: 'string',
+      password2: data.password,
+    });
 
   return (
     <>
@@ -110,13 +123,23 @@ export default function Page() {
         )}
         {signupStep === SIGNUP_STEPS.CONTACT_INFO && (
           <ContactInfoForm
+            // isLoading={registerMutation.isPending}
             formControl={contactInfoForm.control}
             onSubmit={contactInfoForm.handleSubmit(() =>
-              setSignupStep(SIGNUP_STEPS.CODE),
+              setSignupStep(SIGNUP_STEPS.PASSWORD),
             )}
             onBack={() => setSignupStep(SIGNUP_STEPS.USER_INFO)}
           />
         )}
+
+        {signupStep === SIGNUP_STEPS.PASSWORD && (
+          <PasswordForm
+            formControl={passwordForm.control}
+            onSubmit={passwordForm.handleSubmit(onRegister)}
+            onBack={() => setSignupStep(SIGNUP_STEPS.CONTACT_INFO)}
+          />
+        )}
+
         {signupStep === SIGNUP_STEPS.CODE && (
           <CodeForm
             formControl={codeForm.control}
@@ -126,21 +149,10 @@ export default function Page() {
             onBack={() => setSignupStep(SIGNUP_STEPS.CONTACT_INFO)}
           />
         )}
-        {signupStep === SIGNUP_STEPS.PASSWORD && (
-          <PasswordForm
-            formControl={passwordForm.control}
-            onSubmit={passwordForm.handleSubmit(() =>
-              setSignupStep(SIGNUP_STEPS.TERMS),
-            )}
-            onBack={() => setSignupStep(SIGNUP_STEPS.CODE)}
-          />
-        )}
         {signupStep === SIGNUP_STEPS.TERMS && (
           <TermsForm
             formControl={termsForm.control}
-            onSubmit={termsForm.handleSubmit(() =>
-              setSignupStep(SIGNUP_STEPS.USER_INFO),
-            )}
+            onSubmit={termsForm.handleSubmit(console.log)}
             onBack={() => setSignupStep(SIGNUP_STEPS.PASSWORD)}
           />
         )}

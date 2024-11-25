@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 import { Button, Checkbox } from '@/components';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const TermsForm = ({ formControl, onSubmit, onBack }) => {
+const TermsForm = ({ formControl, isLoading, onSubmit, onBack }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -45,7 +45,9 @@ const TermsForm = ({ formControl, onSubmit, onBack }) => {
         <Button appearance="bordered" arrowPosition="left" onClick={onBack}>
           Назад
         </Button>
-        <Button type="submit">Зареєструватись</Button>
+        <Button type="submit" isLoading={isLoading}>
+          Зареєструватись
+        </Button>
       </div>
     </form>
   );

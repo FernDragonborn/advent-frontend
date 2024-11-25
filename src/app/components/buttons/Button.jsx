@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 
-import styles from '@/styles/components/buttons/Button.module.scss';
+import { Loader } from '@/components';
 import { ArrowLeftSvg, ArrowRightSvg } from '@/assets/images/svgs';
+import styles from '@/styles/components/buttons/Button.module.scss';
 
 const Button = ({
   className,
@@ -27,21 +28,21 @@ const Button = ({
         disabled && styles.disabled,
         className,
       )}
-      disabled={disabled}
-      aria-disabled={disabled}
-      tabIndex={disabled ? -1 : undefined}
+      disabled={disabled || isLoading}
+      aria-disabled={disabled || isLoading}
+      tabIndex={disabled || isLoading ? -1 : undefined}
       type={Component === 'button' ? 'button' : undefined}
       {...otherProps}>
       {arrowPosition === 'left' && (
         <ArrowLeftSvg className={styles.icon} width={16} height={16} />
       )}
-      {children}
+      <span>{children}</span>
       {arrowPosition === 'right' && (
         <ArrowRightSvg className={styles.icon} width={16} height={16} />
       )}
-      {/* {isLoading && (
+      {isLoading && (
         <Loader className={styles.loader} size={'small'} color="currentColor" />
-      )} */}
+      )}
     </Component>
   );
 };

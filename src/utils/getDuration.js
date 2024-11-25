@@ -1,7 +1,7 @@
 import { splitDuration } from '@/utils';
 
 export const getDuration = startDate => {
-  const { days, hours, minutes, seconds } = splitDuration(startDate);
+  const { days, hours, minutes, seconds } = splitDuration(startDate) || {};
 
   let formattedDuration = '';
 
@@ -11,5 +11,5 @@ export const getDuration = startDate => {
 
   formattedDuration.trim();
 
-  return formattedDuration || `${seconds}с`;
+  return formattedDuration || (seconds ? `${seconds}с` : '');
 };

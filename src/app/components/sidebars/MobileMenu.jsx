@@ -1,11 +1,32 @@
+'use client';
+
+import { useCallback, useState } from 'react';
 import Link from 'next/link';
+import { getCookie } from 'cookies-next';
 import clsx from 'clsx';
 
-import { Button, CountdownLabel, NavLink, Portal, Socials } from '@/components';
-import { CrossSvg, LogoSvg } from '@/svgs';
+import {
+  Button,
+  CountdownLabel,
+  NavLink,
+  Portal,
+  Socials,
+  UserScore,
+} from '@/components';
+import { CrossSvg, LogoSvg, UserSvg } from '@/svgs';
+import { COOKIES } from '@/constants';
 import styles from '@/styles/components/sidebars/MobileMenu.module.scss';
 
 const MobileMenu = ({ isOpen, onHide }) => {
+  const [shouldShowCountdownLabel, setShouldShowCountdownLabel] =
+    useState(true);
+  const isLoggedIn = !!getCookie(COOKIES.ACCESS_TOKEN);
+
+  const onCompleteCountDown = useCallback(
+    () => setShouldShowCountdownLabel(false),
+    [],
+  );
+
   return (
     <Portal containerId="modal-root">
       <aside className={clsx(styles.wrapper, isOpen && styles.isOpen)}>
@@ -27,28 +48,35 @@ const MobileMenu = ({ isOpen, onHide }) => {
           </ul>
         </nav>
         <span className={styles.separator} />
-        <CountdownLabel />
-        <span className={styles.separator} />
 
-        <div className={styles.actions}>
-          <Button appearance="orange" as={Link} href="/signup">
-            Реєстрація
-          </Button>
-          <Button appearance="bordered" as={Link} href="/login">
-            Увійти
-          </Button>
-        </div>
+        {shouldShowCountdownLabel && (
+          <>
+            <CountdownLabel onComplete={onCompleteCountDown} />
+            <span className={styles.separator} />{' '}
+          </>
+        )}
 
-        {/* <div className={clsx(styles.actions, styles.authedActions)}>
-          <UserScore score={23} />
-          <Button
-            appearance="bordered"
-            arrowPosition="none"
-            as={Link}
-            href="/settings">
-            Профіль <UserSvg width={16} height={16} />
-          </Button>
-        </div> */}
+        {isLoggedIn ? (
+          <div className={clsx(styles.actions, styles.authedActions)}>
+            <UserScore score={23} />
+            <Button
+              appearance="bordered"
+              arrowPosition="none"
+              as={Link}
+              href="/settings">
+              Профіль <UserSvg width={16} height={16} />
+            </Button>
+          </div>
+        ) : (
+          <div className={styles.actions}>
+            <Button appearance="orange" as={Link} href="/signup">
+              Реєстрація
+            </Button>
+            <Button appearance="bordered" as={Link} href="/login">
+              Увійти
+            </Button>
+          </div>
+        )}
 
         <Socials />
       </aside>

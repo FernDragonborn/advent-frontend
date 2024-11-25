@@ -8,8 +8,9 @@ import {
 } from './baseSchemas';
 
 export const userInfoSchema = yup.object({
-  name: usernameSchema,
-  address: addressSchema,
+  username: usernameSchema,
+  sex: yup.string(),
+  // .oneOf(['man, woman']),
   region: regionSchema,
-  class: classSchema,
+  grade: classSchema,
 });

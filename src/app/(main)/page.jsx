@@ -1,5 +1,8 @@
 'use client';
 
+import { getCookie } from 'cookies-next';
+import Link from 'next/link';
+
 import {
   Button,
   CalendarPromo,
@@ -9,10 +12,11 @@ import {
   Socials,
 } from '@/components';
 import { GiftColoredSvg, MailsSvg, SnowflakeSvg, ToysSvg } from '@/svgs';
+import { COOKIES } from '@/constants';
 import styles from '@/styles/pages/HomePage.module.scss';
 
 export default function Page() {
-  const isLoggedIn = true;
+  const isLoggedIn = !!getCookie(COOKIES.ACCESS_TOKEN);
 
   return (
     <main className={styles.wrapper}>
@@ -110,7 +114,8 @@ export default function Page() {
         <Button
           className={styles.centeredBtn}
           appearance="orange"
-          onClick={() => null}>
+          as={Link}
+          href="/calendar">
           Взяти участь
         </Button>
       </section>
