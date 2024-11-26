@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
 import { getCookie } from 'cookies-next';
 
@@ -17,7 +17,11 @@ import styles from '@/styles/components/layout/Header.module.scss';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isLoggedIn = !!getCookie(COOKIES.ACCESS_TOKEN);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsLoggedIn(!!getCookie(COOKIES.ACCESS_TOKEN));
+  }, []);
 
   return (
     <header className={styles.header}>

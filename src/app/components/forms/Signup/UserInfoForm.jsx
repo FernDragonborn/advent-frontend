@@ -5,6 +5,11 @@ import { GENDER } from '@/constants';
 import { BuildingSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
+const genders = [
+  { id: GENDER.MALE, title: 'Чоловік' },
+  { id: GENDER.FEMALE, title: 'Жінка' },
+];
+
 const UserInfoForm = ({ formControl, onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
@@ -37,10 +42,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
             <Select
               label="Стать"
               buttonLabel={'Оберіть стать'}
-              data={[
-                { id: GENDER.MALE, title: 'Чоловік' },
-                { id: GENDER.FEMALE, title: 'Жінка' },
-              ]}
+              data={genders}
               error={error}
               iconComponent={UserSvg}
               {...field}

@@ -5,20 +5,33 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { Button, PhoneInputField, TextInputField } from '@/components';
+import {
+  Button,
+  Loader,
+  PhoneInputField,
+  Select,
+  TextInputField,
+} from '@/components';
 import { profileSchema } from '@/schemas';
 import { useAuthMutation, useFetchProfile } from '@/hooks';
 import { api } from '@/services';
-import { BuildingSvg, HomeSvg, MailSvg, RulerPenSvg, UserSvg } from '@/svgs';
+import { formatPhone } from '@/utils';
+import { GENDER } from '@/constants';
+import { BuildingSvg, MailSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/ProfileForm.module.scss';
 
+const genders = [
+  { id: GENDER.MALE, title: 'Чоловік' },
+  { id: GENDER.FEMALE, title: 'Жінка' },
+];
+
 const ProfileForm = () => {
-  const { control, handleSubmit, reset } = useForm({
+  const { control, handleSubmit, reset, setError } = useForm({
     resolver: yupResolver(profileSchema),
     defaultValues: {
-      name: '',
-      address: '',
-      class: '',
+      username: '',
+      gender: '',
+      grade: '',
       email: '',
       phone: '',
       region: '',
@@ -31,107 +44,125 @@ const ProfileForm = () => {
   const profileMutation = useAuthMutation({
     mutationFn: api.auth.updateUser,
     onSuccess: () => queryClient.refetchQueries({ queryKey: ['profile'] }),
+    onError: ({ data }) =>
+      Object.entries(data).map(([key, val]) =>
+        setError(key, { message: val?.join('. ') }),
+      ),
   });
 
   useEffect(() => {
-    const { dto } = profileQuery.data || {};
-    if (!dto) {
+    if (!profileQuery.data) {
       return;
     }
-    // reset({ ...dto, phone: formatPhone(dto?.phoneNumber) });
+    reset({
+      ...profileQuery.data,
+      phone: formatPhone(profileQuery.data?.phone),
+      gender: genders.find(val => val.id === profileQuery.data.gender),
+    });
   }, [profileQuery?.data]);
 
+  const onUpdateProfile = data =>
+    profileMutation.mutate({ ...data, gender: data.gender?.id });
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit(console.log)}>
+    <form className={styles.form} onSubmit={handleSubmit(onUpdateProfile)}>
       <h2 className={styles.title}>Загальна інформація</h2>
 
-      <div className={styles.inputs}>
-        <Controller
-          name="name"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextInputField
-              label="ПІБ"
-              placeholder="Іваненко Іван Іванович"
-              iconComponent={UserSvg}
-              error={error}
-              {...field}
+      {profileQuery.isLoading ? (
+        <Loader className={styles.loader} size="large" />
+      ) : (
+        <>
+          <div className={styles.inputs}>
+            <Controller
+              name="username"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <TextInputField
+                  label="ПІБ"
+                  placeholder="Іваненко Іван Іванович"
+                  iconComponent={UserSvg}
+                  error={error}
+                  {...field}
+                />
+              )}
             />
-          )}
-        />
-        <Controller
-          name="address"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextInputField
-              label="Адреса"
-              placeholder="вул. Залізнична 23 м. Рівне"
-              iconComponent={HomeSvg}
-              error={error}
-              {...field}
+            <Controller
+              name="gender"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <Select
+                  label="Стать"
+                  buttonLabel={'Оберіть стать'}
+                  data={genders}
+                  error={error}
+                  iconComponent={UserSvg}
+                  {...field}
+                />
+              )}
             />
-          )}
-        />
-        <Controller
-          name="email"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextInputField
-              type="email"
-              label="Електронна пошта"
-              placeholder="user@gmail.com"
-              iconComponent={MailSvg}
-              error={error}
-              {...field}
+            <Controller
+              name="email"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <TextInputField
+                  type="email"
+                  label="Електронна пошта"
+                  placeholder="user@gmail.com"
+                  iconComponent={MailSvg}
+                  error={error}
+                  disabled
+                  {...field}
+                />
+              )}
             />
-          )}
-        />
-        <Controller
-          name="phone"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <PhoneInputField error={error} {...field} />
-          )}
-        />
-        <Controller
-          name="region"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextInputField
-              label="Область проживання"
-              placeholder="Рівненська"
-              iconComponent={BuildingSvg}
-              error={error}
-              {...field}
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <PhoneInputField error={error} {...field} />
+              )}
             />
-          )}
-        />
-        <Controller
-          name="class"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextInputField
-              label="Клас"
-              placeholder="1-12"
-              iconComponent={RulerPenSvg}
-              error={error}
-              {...field}
+            <Controller
+              name="region"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <TextInputField
+                  label="Область проживання"
+                  placeholder="Рівненська"
+                  iconComponent={BuildingSvg}
+                  error={error}
+                  {...field}
+                />
+              )}
             />
-          )}
-        />
-      </div>
+            <Controller
+              name="grade"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <TextInputField
+                  label="Клас"
+                  placeholder="1-12"
+                  iconComponent={RulerPenSvg}
+                  error={error}
+                  {...field}
+                />
+              )}
+            />
+          </div>
 
-      <div className={styles.actions}>
-        <Button
-          appearance="bordered"
-          arrowPosition="left"
-          onClick={() => reset()}>
-          Відмінити
-        </Button>
-        <Button type="submit" isLoading={profileMutation.isPending}>
-          Зберегти
-        </Button>
-      </div>
+          <div className={styles.actions}>
+            <Button
+              appearance="bordered"
+              arrowPosition="left"
+              onClick={() => reset()}>
+              Відмінити
+            </Button>
+            <Button type="submit" isLoading={profileMutation.isPending}>
+              Зберегти
+            </Button>
+          </div>
+        </>
+      )}
     </form>
   );
 };

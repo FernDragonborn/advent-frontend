@@ -14,28 +14,31 @@ const ChangePasswordForm = () => {
   const { control, handleSubmit, reset, setError } = useForm({
     resolver: yupResolver(changePasswordSchema),
     defaultValues: {
-      currentPassword: '',
-      newPassword: '',
-      passwordConfirmation: '',
+      old_password: '',
+      new_password: '',
+      password_confirmation: '',
     },
   });
 
   const passwordMutation = useAuthMutation({
-    mutationFn: api.user.updatePassword,
+    mutationFn: api.auth.changePassword,
     onSuccess: () => reset(),
     onError: ({ data }) => {
-      // const [field, message] = error?.split?.('&') || [];
-      // setError(field, { message });
+      Object.entries(data).forEach(([key, val]) =>
+        setError(key, { message: val?.join('. ') }),
+      );
     },
   });
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(console.log)}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(passwordMutation.mutate)}>
       <h2 className={styles.title}>Пароль</h2>
 
       <div className={styles.inputs}>
         <Controller
-          name="currentPassword"
+          name="old_password"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
@@ -49,7 +52,7 @@ const ChangePasswordForm = () => {
           )}
         />
         <Controller
-          name="newPassword"
+          name="new_password"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
@@ -63,7 +66,7 @@ const ChangePasswordForm = () => {
           )}
         />
         <Controller
-          name="passwordConfirmation"
+          name="password_confirmation"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextInputField

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
 import { getCookie } from 'cookies-next';
 import clsx from 'clsx';
@@ -20,7 +20,11 @@ import styles from '@/styles/components/sidebars/MobileMenu.module.scss';
 const MobileMenu = ({ isOpen, onHide }) => {
   const [shouldShowCountdownLabel, setShouldShowCountdownLabel] =
     useState(true);
-  const isLoggedIn = !!getCookie(COOKIES.ACCESS_TOKEN);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsLoggedIn(!!getCookie(COOKIES.ACCESS_TOKEN));
+  }, []);
 
   const onCompleteCountDown = useCallback(
     () => setShouldShowCountdownLabel(false),

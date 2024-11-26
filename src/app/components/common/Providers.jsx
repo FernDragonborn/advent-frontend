@@ -1,5 +1,6 @@
 'use client';
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { isServer, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -24,7 +25,12 @@ const Providers = ({ children }) => {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <GoogleOAuthProvider
+          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+          {children}
+        </GoogleOAuthProvider>
+      </QueryClientProvider>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

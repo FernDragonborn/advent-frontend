@@ -1,19 +1,25 @@
 import * as yup from 'yup';
 
 import {
-  addressSchema,
   classSchema,
   emailSchema,
   phoneSchema,
   regionSchema,
   usernameSchema,
 } from './baseSchemas';
+import { REQUIRED_MESSAGE } from '@/constants';
 
 export const profileSchema = yup.object({
-  name: usernameSchema,
+  username: usernameSchema,
   email: emailSchema,
   phone: phoneSchema,
-  address: addressSchema,
   region: regionSchema,
-  class: classSchema,
+  grade: classSchema,
+  gender: yup
+    .mixed()
+    .test({
+      message: REQUIRED_MESSAGE,
+      test: val => !!(val?.id && val?.title),
+    })
+    .required(REQUIRED_MESSAGE),
 });
