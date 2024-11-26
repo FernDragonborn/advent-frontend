@@ -1,16 +1,17 @@
 import * as yup from 'yup';
 
-import {
-  addressSchema,
-  classSchema,
-  regionSchema,
-  usernameSchema,
-} from './baseSchemas';
+import { classSchema, regionSchema, usernameSchema } from './baseSchemas';
+import { REQUIRED_MESSAGE } from '@/constants';
 
 export const userInfoSchema = yup.object({
   username: usernameSchema,
-  sex: yup.string(),
-  // .oneOf(['man, woman']),
   region: regionSchema,
   grade: classSchema,
+  sex: yup
+    .mixed()
+    .test({
+      message: REQUIRED_MESSAGE,
+      test: val => !!(val?.id && val?.title),
+    })
+    .required(REQUIRED_MESSAGE),
 });
