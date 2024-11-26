@@ -2,7 +2,7 @@ import jsonwebtoken from 'jsonwebtoken';
 
 export const decodeToken = token => {
   try {
-    return jsonwebtoken.decode(token, process.env.JWT_PRIVATE_KEY);
+    return jsonwebtoken.decode(token);
   } catch (error) {
     console.log(error);
     return null;

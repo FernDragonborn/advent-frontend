@@ -1,15 +1,19 @@
 'use client';
 
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Button, PhoneInputField, TextInputField } from '@/components';
 import { profileSchema } from '@/schemas';
+import { useAuthMutation, useFetchProfile } from '@/hooks';
+import { api } from '@/services';
 import { BuildingSvg, HomeSvg, MailSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/ProfileForm.module.scss';
 
 const ProfileForm = () => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, reset } = useForm({
     resolver: yupResolver(profileSchema),
     defaultValues: {
       name: '',
@@ -20,6 +24,22 @@ const ProfileForm = () => {
       region: '',
     },
   });
+
+  const queryClient = useQueryClient();
+
+  const profileQuery = useFetchProfile();
+  const profileMutation = useAuthMutation({
+    mutationFn: api.auth.updateUser,
+    onSuccess: () => queryClient.refetchQueries({ queryKey: ['profile'] }),
+  });
+
+  useEffect(() => {
+    const { dto } = profileQuery.data || {};
+    if (!dto) {
+      return;
+    }
+    // reset({ ...dto, phone: formatPhone(dto?.phoneNumber) });
+  }, [profileQuery?.data]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(console.log)}>
@@ -102,10 +122,15 @@ const ProfileForm = () => {
       </div>
 
       <div className={styles.actions}>
-        <Button appearance="bordered" arrowPosition="left" onClick={() => null}>
+        <Button
+          appearance="bordered"
+          arrowPosition="left"
+          onClick={() => reset()}>
           Відмінити
         </Button>
-        <Button type="submit">Зберегти</Button>
+        <Button type="submit" isLoading={profileMutation.isPending}>
+          Зберегти
+        </Button>
       </div>
     </form>
   );

@@ -1,6 +1,7 @@
 import { Controller } from 'react-hook-form';
 
 import { Button, Select, TextInputField } from '@/components';
+import { GENDER } from '@/constants';
 import { BuildingSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
@@ -30,15 +31,15 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           )}
         />
         <Controller
-          name="sex"
+          name="gender"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <Select
               label="Стать"
               buttonLabel={'Оберіть стать'}
               data={[
-                { id: 'man', title: 'Чоловік' },
-                { id: 'woman', title: 'Жінка' },
+                { id: GENDER.MALE, title: 'Чоловік' },
+                { id: GENDER.FEMALE, title: 'Жінка' },
               ]}
               error={error}
               iconComponent={UserSvg}

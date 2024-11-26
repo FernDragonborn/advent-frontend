@@ -58,7 +58,7 @@ const MobileMenu = ({ isOpen, onHide }) => {
 
         {isLoggedIn ? (
           <div className={clsx(styles.actions, styles.authedActions)}>
-            <UserScore score={23} />
+            <UserScore score={0} />
             <Button
               appearance="bordered"
               arrowPosition="none"

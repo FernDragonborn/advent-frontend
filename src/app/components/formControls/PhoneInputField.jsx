@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import styles from '@/styles/components/formControls/PhoneInputField.module.scss';
 import { SmartPhoneSvg } from '@/assets/images/svgs';
-import { PHONE_MASK } from '@/constants';
+import { PHONE_INPUT_MASK } from '@/constants';
 
 const PhoneInputField = ({
   label,
@@ -36,7 +36,7 @@ const PhoneInputField = ({
         name={name}
         placeholder={placeholder || '+38 (099) 999 9999'}
         type="tel"
-        mask={PHONE_MASK}
+        mask={PHONE_INPUT_MASK}
         guide={true}
         placeholderChar="-"
       />

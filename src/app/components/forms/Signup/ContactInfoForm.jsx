@@ -5,7 +5,7 @@ import { Button, PhoneInputField, TextInputField } from '@/components';
 import { MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const ContactInfoForm = ({ formControl, isLoading, onSubmit, onBack }) => {
+const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -52,9 +52,7 @@ const ContactInfoForm = ({ formControl, isLoading, onSubmit, onBack }) => {
         <Button appearance="bordered" arrowPosition="left" onClick={onBack}>
           Назад
         </Button>
-        <Button type="submit" isLoading={isLoading}>
-          Продовжити
-        </Button>
+        <Button type="submit">Продовжити</Button>
       </div>
     </form>
   );

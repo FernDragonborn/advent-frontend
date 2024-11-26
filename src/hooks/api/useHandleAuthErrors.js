@@ -9,8 +9,11 @@ import {
 export const useHandleAuthErrors = status => {
   const handleAuthError = useCallback(async () => {
     try {
-      const { accessToken, refreshToken } = await refreshTokenAction();
-      updateTokensInCookiesAction({ accessToken, refreshToken });
+      const { access, refresh } = await refreshTokenAction();
+      updateTokensInCookiesAction({
+        accessToken: access,
+        refreshToken: refresh,
+      });
     } catch (error) {
       logoutAction().then(() => {
         // toast('Помилка авторизації', { type: 'error' });

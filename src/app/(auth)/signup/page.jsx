@@ -22,7 +22,7 @@ import {
   userInfoSchema,
 } from '@/schemas';
 import styles from '@/styles/pages/SignupPage.module.scss';
-import { useAuthMutation } from '@/hooks';
+import { useAuthMutation, useAuthQuery } from '@/hooks';
 import { api } from '@/services';
 
 const SIGNUP_STEPS = {
@@ -38,7 +38,7 @@ export default function Page() {
 
   const userInfoForm = useForm({
     resolver: yupResolver(userInfoSchema),
-    defaultValues: { username: '', sex: '', region: '', grade: '' },
+    defaultValues: { username: '', gender: '', region: '', grade: '' },
   });
   const contactInfoForm = useForm({
     resolver: yupResolver(contactInfoSchema),
@@ -57,15 +57,59 @@ export default function Page() {
     defaultValues: { isAgreed: false },
   });
 
+  useAuthQuery({
+    queryFn: api.auth.getToken,
+    queryKey: ['token'],
+  });
+
   const registerMutation = useAuthMutation({
     mutationFn: api.auth.register,
+    onSuccess: () => setSignupStep(SIGNUP_STEPS.CODE),
+    onError: ({ data }) => {
+      const {
+        username,
+        gender,
+        region,
+        grade,
+        email,
+        phone,
+        password,
+        password2,
+      } = data || {};
+
+      setSignupStep(SIGNUP_STEPS.USER_INFO);
+
+      username &&
+        userInfoForm.setError('username', { message: username?.join('. ') });
+      gender &&
+        userInfoForm.setError('gender', { message: gender?.join('. ') });
+      region &&
+        userInfoForm.setError('region', { message: region?.join('. ') });
+      grade && userInfoForm.setError('grade', { message: grade?.join('. ') });
+
+      email &&
+        contactInfoForm.setError('email', { message: email?.join('. ') });
+      phone &&
+        contactInfoForm.setError('phone', { message: phone?.join('. ') });
+
+      password &&
+        passwordForm.setError('password', { message: password?.join('. ') });
+      password2 &&
+        passwordForm.setError('passwordConfirmation', {
+          message: password2?.join('. '),
+        });
+    },
   });
 
   const onRegister = data =>
     registerMutation.mutate({
+      ...userInfoForm.getValues(),
+      ...contactInfoForm.getValues(),
       ...data,
-      // full_name: 'string',
+      gender: userInfoForm.getValues().gender?.id,
       password2: data.password,
+      full_name: 'full_name',
+      address: 'address',
     });
 
   return (
@@ -123,7 +167,6 @@ export default function Page() {
         )}
         {signupStep === SIGNUP_STEPS.CONTACT_INFO && (
           <ContactInfoForm
-            // isLoading={registerMutation.isPending}
             formControl={contactInfoForm.control}
             onSubmit={contactInfoForm.handleSubmit(() =>
               setSignupStep(SIGNUP_STEPS.PASSWORD),
@@ -134,6 +177,7 @@ export default function Page() {
 
         {signupStep === SIGNUP_STEPS.PASSWORD && (
           <PasswordForm
+            isLoading={registerMutation.isPending}
             formControl={passwordForm.control}
             onSubmit={passwordForm.handleSubmit(onRegister)}
             onBack={() => setSignupStep(SIGNUP_STEPS.CONTACT_INFO)}

@@ -5,16 +5,27 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button, TextInputField } from '@/components';
 import { CirclePasswordSvg } from '@/svgs';
+import { changePasswordSchema } from '@/schemas';
+import { useAuthMutation } from '@/hooks';
+import { api } from '@/services';
 import styles from '@/styles/components/forms/ChangePasswordForm.module.scss';
-import { changePasswordSchema } from '@/schemas/changePasswordSchema';
 
 const ChangePasswordForm = () => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, reset, setError } = useForm({
     resolver: yupResolver(changePasswordSchema),
     defaultValues: {
       currentPassword: '',
       newPassword: '',
       passwordConfirmation: '',
+    },
+  });
+
+  const passwordMutation = useAuthMutation({
+    mutationFn: api.user.updatePassword,
+    onSuccess: () => reset(),
+    onError: ({ data }) => {
+      // const [field, message] = error?.split?.('&') || [];
+      // setError(field, { message });
     },
   });
 
@@ -67,7 +78,10 @@ const ChangePasswordForm = () => {
         />
       </div>
 
-      <Button className={styles.submitBtn} type="submit">
+      <Button
+        className={styles.submitBtn}
+        type="submit"
+        isLoading={passwordMutation.isPending}>
         Зберегти
       </Button>
     </form>

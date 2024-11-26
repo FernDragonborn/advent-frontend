@@ -7,7 +7,7 @@ export const userInfoSchema = yup.object({
   username: usernameSchema,
   region: regionSchema,
   grade: classSchema,
-  sex: yup
+  gender: yup
     .mixed()
     .test({
       message: REQUIRED_MESSAGE,

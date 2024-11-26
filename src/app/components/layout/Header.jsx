@@ -69,7 +69,7 @@ const Header = () => {
         )}
       </div>
 
-      {isLoggedIn && <UserScore className={styles.score} score={23} />}
+      {isLoggedIn && <UserScore className={styles.score} score={0} />}
 
       <MobileMenu
         isOpen={isMobileMenuOpen}

@@ -12,6 +12,8 @@ import {
   passwordManageSchema,
   resetPasswordEmailSchema,
 } from '@/schemas';
+import { useAuthMutation } from '@/hooks';
+import { api } from '@/services';
 import styles from '@/styles/pages/LoginPage.module.scss';
 
 const RESET_STEPS = {
@@ -38,6 +40,11 @@ export default function Page() {
     defaultValues: { password: '', passwordConfirmation: '' },
   });
 
+  const resetPasswordMutation = useAuthMutation({
+    mutationFn: api.auth.passwordReset,
+    onSuccess: () => setSignupStep(RESET_STEPS.CODE),
+  });
+
   return (
     <>
       <h1 className="visually-hidden">Скидання паролю</h1>
@@ -45,8 +52,8 @@ export default function Page() {
       {signupStep === RESET_STEPS.EMAIL && (
         <ResetPasswordEmailForm
           formControl={resetPasswordEmailForm.control}
-          onSubmit={resetPasswordEmailForm.handleSubmit(() =>
-            setSignupStep(RESET_STEPS.CODE),
+          onSubmit={resetPasswordEmailForm.handleSubmit(({ email }) =>
+            resetPasswordMutation.mutate({ email }),
           )}
           onBack={() => router.back()}
         />

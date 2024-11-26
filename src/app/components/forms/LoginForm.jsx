@@ -6,7 +6,7 @@ import { CirclePasswordSvg, MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 import clsx from 'clsx';
 
-const LoginForm = ({ formControl, onSubmit }) => {
+const LoginForm = ({ formControl, isLoading, onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -56,7 +56,9 @@ const LoginForm = ({ formControl, onSubmit }) => {
       </div>
 
       <div className={styles.actions}>
-        <Button type="submit">Продовжити</Button>
+        <Button type="submit" isLoading={isLoading}>
+          Продовжити
+        </Button>
       </div>
     </form>
   );

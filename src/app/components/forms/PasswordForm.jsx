@@ -4,7 +4,7 @@ import { Button, TextInputField } from '@/components';
 import { CirclePasswordSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const PasswordForm = ({ title, formControl, onSubmit, onBack }) => {
+const PasswordForm = ({ title, formControl, isLoading, onSubmit, onBack }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -49,7 +49,9 @@ const PasswordForm = ({ title, formControl, onSubmit, onBack }) => {
         <Button appearance="bordered" arrowPosition="left" onClick={onBack}>
           Назад
         </Button>
-        <Button type="submit">Продовжити</Button>
+        <Button type="submit" isLoading={isLoading}>
+          Продовжити
+        </Button>
       </div>
     </form>
   );
