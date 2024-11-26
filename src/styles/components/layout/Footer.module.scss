@@ -37,13 +37,18 @@
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  column-gap: 5.2rem;
+  flex-wrap: wrap;
+  gap: 1.65rem 0.9rem;
 
-  svg:first-child {
+  svg:nth-child(1) {
+    width: 20.5rem;
+    height: 5.3rem;
+  }
+  svg:nth-child(2) {
     width: 13rem;
     height: 6.6rem;
   }
-  svg:last-child {
+  svg:nth-child(3) {
     width: 16.2rem;
     height: 7.2rem;
   }

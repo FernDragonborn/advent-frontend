@@ -1,9 +1,9 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 
 import { Button, NavLink, Socials } from '@/components';
-import { LogoEcwSvg, LogoSvg } from '@/svgs';
+import { LogoEcwSvg, LogoMonSvg, LogoSvg } from '@/svgs';
 import styles from '@/styles/components/layout/Footer.module.scss';
-import clsx from 'clsx';
 
 const Footer = () => {
   return (
@@ -11,12 +11,14 @@ const Footer = () => {
       <div className={styles.container}>
         <div className={styles.generalInfo}>
           <div className={styles.logos}>
+            <LogoMonSvg width={205} height={53} />
             <LogoSvg width={130} height={66} />
             <LogoEcwSvg width={162} height={72} />
           </div>
           <p className={styles.text}>
-            Освітня ініціатива, що допомагає українським школам та вчителям
-            інтегрувати новітні підходи у навчальний процес для якісної освіти.
+            Проєкт реалізується громадською організацією «Навчай для України» в
+            рамках програми «MYRPUA» за фінансування Education Cannot Wait
+            (ECW).
           </p>
         </div>
 
@@ -55,8 +57,8 @@ const Footer = () => {
             Переходь до календаря та бери участь
           </span>
           <p className={clsx(styles.text, styles.light)}>
-            Святковий набір із щоденними завданнями, які потрібно виконувати,
-            щоб отримати можливість взяти участь у розіграші призів.
+            Занурюйтесь у різдвяну пригоду, випробовуйте свою кмітливість,
+            логіку та фантазію і ставайте учасниками розіграшу подарунків.
           </p>
 
           <Button

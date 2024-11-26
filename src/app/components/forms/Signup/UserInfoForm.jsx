@@ -10,8 +10,8 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
       <div>
         <h2 className={styles.title}>Реєстрація</h2>
         <p className={styles.text}>
-          Додай інформацію про себе щоб взаємодіяти з календарем та взяти участь
-          у розіграші
+          Додайте інформацію про себе щоб взаємодіяти з календарем та взяти
+          участь у розіграші
         </p>
       </div>
 
@@ -22,7 +22,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           render={({ field, fieldState: { error } }) => (
             <TextInputField
               label="ПІБ"
-              placeholder="Іваненко Іван Іванович"
+              placeholder="Прізвище, імʼя, по батькові"
               iconComponent={UserSvg}
               error={error}
               {...field}

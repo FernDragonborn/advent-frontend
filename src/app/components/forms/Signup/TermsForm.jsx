@@ -21,7 +21,7 @@ const TermsForm = ({ formControl, isLoading, onSubmit, onBack }) => {
         render={({ field, fieldState: { error } }) => (
           <Checkbox
             className={styles.centered}
-            text="Я прочитав/ла та погоджусь з"
+            text='Я, законний представник непонолітнього/неповнолітньої, що бере участь в "Різдвяному адвент-календарі" прочитав/прочитала та погоджуюсь з'
             error={error}
             {...field}
           />
@@ -37,7 +37,7 @@ const TermsForm = ({ formControl, isLoading, onSubmit, onBack }) => {
         </Link>{' '}
         та{' '}
         <Link className={styles.underlined} href="/terms" target="_blank">
-          Умовами розіграшу
+          Офіційними умовами участі
         </Link>
       </p>
 

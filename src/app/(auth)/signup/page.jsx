@@ -159,7 +159,7 @@ export default function Page() {
 
         <footer className={styles.footer}>
           <span className={styles.text}>
-            Уже зареєстрований?{' '}
+            Уже зареєструвались?{' '}
             <Link className={styles.link} href="/login">
               Увійти
             </Link>
