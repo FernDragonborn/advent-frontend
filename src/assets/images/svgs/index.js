@@ -33,3 +33,4 @@ export { default as LogoutFilledSvg } from './logout-filled.svg';
 export { default as ArrowDownSvg } from './arrow-down.svg';
 export { default as CheckSvg } from './check.svg';
 export { default as LogoMonSvg } from './logo-mon.svg';
+export { default as GoogleSvg } from './google.svg';

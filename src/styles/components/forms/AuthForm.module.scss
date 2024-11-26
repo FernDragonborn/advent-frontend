@@ -56,9 +56,19 @@
     flex-grow: 1;
   }
 
+  &.vertical {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
   @include desktop {
     & > * {
       flex-grow: 0;
+    }
+
+    &.vertical {
+      flex-direction: row;
+      row-gap: 1rem;
     }
   }
 }
@@ -73,4 +83,9 @@
 .topIndent {
   margin-top: 1.2rem;
   display: block;
+}
+
+.labelSeparator {
+  font: var(--font-text-2);
+  color: var(--color-text-secondary);
 }

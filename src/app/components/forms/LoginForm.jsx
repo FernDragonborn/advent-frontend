@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Controller } from 'react-hook-form';
+import clsx from 'clsx';
 
-import { Button, TextInputField } from '@/components';
+import { Button, GoogleButton, TextInputField } from '@/components';
 import { CirclePasswordSvg, MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
-import clsx from 'clsx';
 
 const LoginForm = ({ formControl, isLoading, onSubmit }) => {
   return (
@@ -55,10 +55,12 @@ const LoginForm = ({ formControl, isLoading, onSubmit }) => {
         </div>
       </div>
 
-      <div className={styles.actions}>
+      <div className={clsx(styles.actions, styles.vertical)}>
         <Button type="submit" isLoading={isLoading}>
           Продовжити
         </Button>
+        <span className={styles.labelSeparator}>Або</span>
+        <GoogleButton />
       </div>
     </form>
   );

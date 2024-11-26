@@ -16,6 +16,7 @@ export { default as EducationalProgramDescription } from './layout/EducationalPr
 export { default as Button } from './buttons/Button';
 export { default as SidebarButton } from './buttons/SidebarButton';
 export { default as BackButton } from './buttons/BackButton';
+export { default as GoogleButton } from './buttons/GoogleButton';
 
 export { default as TextInputField } from './formControls/TextInputField';
 export { default as PhoneInputField } from './formControls/PhoneInputField';

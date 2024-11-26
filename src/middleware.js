@@ -63,7 +63,6 @@ export async function middleware(request) {
   }
 
   // public routes handler
-
   if (publicRoutes.includes(url.pathname)) {
     return NextResponse.next();
   }
@@ -74,6 +73,6 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|images).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|images|files).*)',
   ],
 };

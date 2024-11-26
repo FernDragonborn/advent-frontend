@@ -76,7 +76,7 @@ const Footer = () => {
         України». Дизайн та розробка:{' '}
         <Link
           className={styles.link}
-          href=""
+          href="https://etcetera.org.ua/"
           target="_blank"
           rel="noopener noreferrer nofollow">
           ETC
