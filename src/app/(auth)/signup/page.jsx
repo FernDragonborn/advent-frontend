@@ -42,7 +42,7 @@ export default function Page() {
   });
   const contactInfoForm = useForm({
     resolver: yupResolver(contactInfoSchema),
-    defaultValues: { email: '', phone: '' },
+    defaultValues: { email: '', phone_number: '' },
   });
   const codeForm = useForm({
     resolver: yupResolver(codeSchema),
@@ -65,19 +65,21 @@ export default function Page() {
   const registerMutation = useAuthMutation({
     mutationFn: api.auth.register,
     onSuccess: () => setSignupStep(SIGNUP_STEPS.CODE),
-    onError: ({ data }) => {
+    onError: ({ status, data }) => {
       const {
         username,
         gender,
         region,
         grade,
         email,
-        phone,
+        phone_number,
         password,
         password2,
       } = data || {};
 
-      setSignupStep(SIGNUP_STEPS.USER_INFO);
+      if (status < 500) {
+        setSignupStep(SIGNUP_STEPS.USER_INFO);
+      }
 
       username &&
         userInfoForm.setError('username', { message: username?.join('. ') });
@@ -89,8 +91,10 @@ export default function Page() {
 
       email &&
         contactInfoForm.setError('email', { message: email?.join('. ') });
-      phone &&
-        contactInfoForm.setError('phone', { message: phone?.join('. ') });
+      phone_number &&
+        contactInfoForm.setError('phone_number', {
+          message: phone_number?.join('. '),
+        });
 
       password &&
         passwordForm.setError('password', { message: password?.join('. ') });

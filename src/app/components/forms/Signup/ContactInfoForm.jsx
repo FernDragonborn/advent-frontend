@@ -35,7 +35,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
         />
         <div>
           <Controller
-            name="phone"
+            name="phone_number"
             control={formControl}
             render={({ field, fieldState: { error } }) => (
               <PhoneInputField error={error} {...field} />

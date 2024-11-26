@@ -1,5 +1,3 @@
-'+38 (0##) ### ####';
-
 export const PHONE_MASK = '+38 (0##) ### ####';
 
 export const PHONE_INPUT_MASK = PHONE_MASK.split('').map(val =>

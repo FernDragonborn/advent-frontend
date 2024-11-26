@@ -12,7 +12,7 @@ import { REQUIRED_MESSAGE } from '@/constants';
 export const profileSchema = yup.object({
   username: usernameSchema,
   email: emailSchema,
-  phone: phoneSchema,
+  phone_number: phoneSchema,
   region: regionSchema,
   grade: classSchema,
   gender: yup

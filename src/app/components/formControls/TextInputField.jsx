@@ -27,7 +27,7 @@ const TextInputField = ({
         !!error && styles.hasError,
       )}>
       {label && (
-        <label className={styles.label} htmlFor={name}>
+        <label className={styles.label} htmlFor={disabled ? undefined : name}>
           {Icon && <Icon className={styles.icon} width={20} height={20} />}
           {label}
         </label>

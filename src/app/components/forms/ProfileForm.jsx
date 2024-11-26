@@ -33,7 +33,7 @@ const ProfileForm = () => {
       gender: '',
       grade: '',
       email: '',
-      phone: '',
+      phone_number: '',
       region: '',
     },
   });
@@ -56,7 +56,7 @@ const ProfileForm = () => {
     }
     reset({
       ...profileQuery.data,
-      phone: formatPhone(profileQuery.data?.phone),
+      phone_number: formatPhone(profileQuery.data?.phone_number),
       gender: genders.find(val => val.id === profileQuery.data.gender),
     });
   }, [profileQuery?.data]);
@@ -116,7 +116,7 @@ const ProfileForm = () => {
               )}
             />
             <Controller
-              name="phone"
+              name="phone_number"
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <PhoneInputField error={error} {...field} />
