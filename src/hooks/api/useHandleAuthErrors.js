@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import {
   logoutAction,
@@ -16,7 +17,7 @@ export const useHandleAuthErrors = status => {
       });
     } catch (error) {
       logoutAction().then(() => {
-        // toast('Помилка авторизації', { type: 'error' });
+        toast('Помилка авторизації', { type: 'error' });
       });
     }
   }, []);

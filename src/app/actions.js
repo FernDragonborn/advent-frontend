@@ -52,9 +52,9 @@ export const logoutAction = async () => {
 };
 
 export const refreshTokenAction = async () => {
-  const currentRefreshToken = await cookies().then(
-    res => res.get(COOKIES.REFRESH_TOKEN)?.value,
-  );
+  const currentRefreshToken = (await cookies()).get(
+    COOKIES.REFRESH_TOKEN,
+  )?.value;
 
   if (!currentRefreshToken) {
     throw new Error('Відсутній токен');

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
 import { LoginForm } from '@/components';
 import { loginSchema } from '@/schemas';
@@ -19,21 +20,24 @@ export default function Page() {
 
   const router = useRouter();
 
-  const loginMutation = useAuthMutation({
-    mutationFn: loginAction,
-    onSuccess: ({ status, data }) => {
-      if (status === 400 || status === 401) {
-        setError('email', { message: 'Невірний емейл або пароль' });
-        setError('password', { message: 'Невірний емейл або пароль' });
-      }
-      if (!data?.accessToken) {
-        // return toast('Помилка', { type: 'error' });
-      }
+  const loginMutation = useAuthMutation(
+    {
+      mutationFn: loginAction,
+      onSuccess: ({ status, data }) => {
+        if (status === 400 || status === 401) {
+          setError('email', { message: 'Невірний емейл або пароль' });
+          setError('password', { message: 'Невірний емейл або пароль' });
+        }
+        if (!data?.accessToken) {
+          return toast('Помилка', { type: 'error' });
+        }
 
-      // toast('Успіх', { type: 'success' });
-      router.replace('/');
+        toast('Успіх', { type: 'success' });
+        router.replace('/');
+      },
     },
-  });
+    false,
+  );
 
   const onLogin = data =>
     loginMutation.mutate({
