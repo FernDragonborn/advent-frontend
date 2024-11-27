@@ -4,7 +4,7 @@ import { classSchema, regionSchema, usernameSchema } from './baseSchemas';
 import { REQUIRED_MESSAGE } from '@/constants';
 
 export const userInfoSchema = yup.object({
-  username: usernameSchema,
+  name: usernameSchema,
   region: regionSchema,
   grade: classSchema,
   gender: yup

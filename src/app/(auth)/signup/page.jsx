@@ -38,7 +38,7 @@ export default function Page() {
 
   const userInfoForm = useForm({
     resolver: yupResolver(userInfoSchema),
-    defaultValues: { username: '', gender: '', region: '', grade: '' },
+    defaultValues: { name: '', gender: '', region: '', grade: '' },
   });
   const contactInfoForm = useForm({
     resolver: yupResolver(contactInfoSchema),
@@ -67,7 +67,7 @@ export default function Page() {
     onSuccess: () => setSignupStep(SIGNUP_STEPS.CODE),
     onError: ({ status, data }) => {
       const {
-        username,
+        name,
         gender,
         region,
         grade,
@@ -81,8 +81,7 @@ export default function Page() {
         setSignupStep(SIGNUP_STEPS.USER_INFO);
       }
 
-      username &&
-        userInfoForm.setError('username', { message: username?.join('. ') });
+      name && userInfoForm.setError('name', { message: name?.join('. ') });
       gender &&
         userInfoForm.setError('gender', { message: gender?.join('. ') });
       region &&
@@ -112,8 +111,6 @@ export default function Page() {
       ...data,
       gender: userInfoForm.getValues().gender?.id,
       password2: data.password,
-      full_name: 'full_name',
-      address: 'address',
     });
 
   return (

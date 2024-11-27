@@ -29,7 +29,7 @@ const ProfileForm = () => {
   const { control, handleSubmit, reset, setError } = useForm({
     resolver: yupResolver(profileSchema),
     defaultValues: {
-      username: '',
+      name: '',
       gender: '',
       grade: '',
       email: '',
@@ -74,7 +74,7 @@ const ProfileForm = () => {
         <>
           <div className={styles.inputs}>
             <Controller
-              name="username"
+              name="name"
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <TextInputField

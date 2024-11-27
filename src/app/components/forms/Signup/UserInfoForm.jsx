@@ -23,7 +23,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
 
       <div className={styles.inputs}>
         <Controller
-          name="username"
+          name="name"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
             <TextInputField
