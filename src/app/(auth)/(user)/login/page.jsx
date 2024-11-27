@@ -34,6 +34,10 @@ export default function Page() {
     {
       mutationFn: loginAction,
       onSuccess: ({ status, data }) => {
+        if (data?.is_activated === false) {
+          return toast('Помилка', { type: 'error' });
+        }
+
         if (status === 400 || status === 401) {
           setError('email', { message: 'Невірний емейл або пароль' });
           setError('password', { message: 'Невірний емейл або пароль' });

@@ -40,6 +40,7 @@ export const loginAction = async ({ email, password }) => {
 
     return { data: { accessToken: access }, success: true };
   } catch (error) {
+    console.log(error);
     return error;
   }
 };
