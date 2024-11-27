@@ -1,0 +1,25 @@
+'use client';
+
+import { useLayoutEffect, useState } from 'react';
+
+import { HeroSection } from '@/components';
+import styles from '@/styles/layouts/CalendarLayout.module.scss';
+
+export default function Layout({ children }) {
+  const [currentDay, setCurrentDay] = useState(0);
+
+  useLayoutEffect(() => {
+    setCurrentDay(new Date().getDate());
+  }, []);
+
+  return (
+    <main className={styles.wrapper}>
+      <HeroSection>
+        <div className={styles.container}>
+          <h1 className={styles.title}>День {currentDay}</h1>
+          {children}
+        </div>
+      </HeroSection>
+    </main>
+  );
+}

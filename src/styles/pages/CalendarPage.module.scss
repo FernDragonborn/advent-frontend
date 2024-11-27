@@ -1,102 +1,213 @@
-.wrapper {
-  flex: 1;
-}
-
-.hero {
-  padding: 6rem 1.5rem;
-
-  background:
-    url('/images/home/decoration-trees-bg.svg') no-repeat top 0.1rem right /
-      12.2rem 6.8rem,
-    url('/images/home/bubbles-bg.png') center,
-    var(--color-accent-blue);
-
-  border-bottom-left-radius: 2.4rem;
-  border-bottom-right-radius: 2.4rem;
-
-  @include desktop {
-    padding: 8rem 3.4rem 6.2rem;
-
-    background:
-      url('/images/calendar/garland-bg.svg') no-repeat top -0.5rem right/ 43.6rem
-        17.8rem,
-      url('/images/home/snowflake-large-bg.svg') no-repeat bottom 11.6rem right
-        40%/ 10.5rem 10.9rem,
-      url('/images/home/snowflake-small-bg.svg') no-repeat top 7.5rem right 32%/
-        6.3rem 6.4rem,
-      url('/images/calendar/bag-bg.svg') no-repeat bottom 2.7rem right 5.3rem/ 31.6rem
-        26.1rem,
-      url('/images/home/bubbles-bg.png') center top 54%,
-      var(--color-accent-blue);
-    border-radius: 2.4rem;
-  }
-
-  @include retina {
-    background:
-      url('/images/home/decoration-trees-bg.svg') no-repeat top 0.1rem right /
-        12.2rem 6.8rem,
-      url('/images/home/bubbles-bg@2x.png') center,
-      var(--color-accent-blue);
-
-    @include desktop {
-      background:
-        url('/images/calendar/garland-bg.svg') no-repeat top -0.5rem right/ 43.6rem
-          17.8rem,
-        url('/images/home/snowflake-large-bg.svg') no-repeat bottom 11.6rem
-          right 40%/ 10.5rem 10.9rem,
-        url('/images/home/snowflake-small-bg.svg') no-repeat top 7.5rem right
-          32%/ 6.3rem 6.4rem,
-        url('/images/calendar/bag-bg.svg') no-repeat bottom 2.7rem right 5.3rem/
-          31.6rem 26.1rem,
-        url('/images/home/bubbles-bg@2x.png') center top 54%,
-        var(--color-accent-blue);
-    }
-  }
-}
-
-.title {
-  margin-bottom: 4.5rem;
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.8rem;
-
-  font: var(--font-heading-1);
-  letter-spacing: -0.08rem;
-  color: var(--color-bg-primary);
-  text-transform: uppercase;
-
-  span {
-    display: flex;
-    column-gap: 1.2rem;
-  }
-
-  svg {
-    width: 3rem;
-    height: 2.6rem;
-  }
-
-  @include desktop {
-    span {
-      margin-left: 22.1rem;
-      align-items: center;
-      column-gap: 2.5rem;
-    }
-
-    svg {
-      width: 6.8rem;
-      height: 6rem;
-    }
-  }
-}
-
-.accent {
-  color: var(--color-accent-blue);
-}
-
-.countdown {
+.days {
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  width: 340px;
 
   @include desktop {
-    margin-left: 10.7rem;
+    width: 1156px;
+    gap: 10px;
+  }
+}
+
+.day {
+  height: 64px;
+  flex: 1;
+
+  a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    transition: var(--transition-primary);
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    a {
+      pointer-events: none;
+    }
+  }
+
+  &:nth-child(1) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(2) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(3) {
+    flex-basis: calc(90 / 340 * 100%);
+  }
+  &:nth-child(4) {
+    flex-basis: calc(50 / 340 * 100%);
+  }
+  &:nth-child(5) {
+    flex-basis: calc(50 / 340 * 100%);
+  }
+
+  &:nth-child(6) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(7) {
+    flex-basis: calc(70 / 340 * 100%);
+  }
+  &:nth-child(8) {
+    flex-basis: calc(50 / 340 * 100%);
+  }
+  &:nth-child(9) {
+    flex-basis: calc(80 / 340 * 100%);
+  }
+  &:nth-child(10) {
+    flex-basis: calc(60 / 340 * 100%);
+  }
+
+  &:nth-child(11) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(12) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(13) {
+    flex-basis: calc(136 / 340 * 100%);
+  }
+  &:nth-child(14) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+
+  &:nth-child(15) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(16) {
+    flex-basis: calc(91 / 340 * 100%);
+  }
+  &:nth-child(17) {
+    flex-basis: calc(50 / 340 * 100%);
+  }
+  &:nth-child(18) {
+    flex-basis: calc(50 / 340 * 100%);
+  }
+  &:nth-child(19) {
+    flex-basis: calc(64 / 340 * 100%);
+  }
+
+  &:nth-child(20) {
+    flex-basis: calc(70 / 340 * 100%);
+  }
+  &:nth-child(21) {
+    flex-basis: calc(50 / 340 * 100%);
+  }
+  &:nth-child(22) {
+    flex-basis: calc(80 / 340 * 100%);
+  }
+  &:nth-child(23) {
+    flex-basis: calc(121 / 340 * 100%);
+  }
+
+  &:nth-child(24) {
+    flex-grow: 0;
+    flex-basis: calc(64 / 340 * 100%);
+  }
+  &:nth-child(25) {
+    flex-grow: 0;
+    flex-basis: calc(137 / 340 * 100%);
+  }
+
+  @include desktop {
+    height: 155px;
+
+    &:nth-child(1) {
+      flex-basis: calc(155 / 1156 * 100%);
+    }
+    &:nth-child(2) {
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(3) {
+      flex-basis: calc(219 / 1156 * 100%);
+    }
+    &:nth-child(4) {
+      flex-basis: calc(120 / 1156 * 100%);
+    }
+    &:nth-child(5) {
+      flex-basis: calc(120 / 1156 * 100%);
+    }
+    &:nth-child(6) {
+      flex-basis: calc(155 / 1156 * 100%);
+    }
+    &:nth-child(7) {
+      flex-basis: calc(170 / 1156 * 100%);
+    }
+
+    &:nth-child(8) {
+      flex-basis: calc(120 / 1156 * 100%);
+    }
+    &:nth-child(9) {
+      flex-basis: calc(192 / 1156 * 100%);
+    }
+    &:nth-child(10) {
+      flex-basis: calc(143 / 1156 * 100%);
+    }
+    &:nth-child(11) {
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(12) {
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(13) {
+      flex-basis: calc(330 / 1156 * 100%);
+    }
+
+    &:nth-child(14) {
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(15) {
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(16) {
+      flex-basis: calc(219 / 1156 * 100%);
+    }
+    &:nth-child(17) {
+      flex-basis: calc(120 / 1156 * 100%);
+    }
+    &:nth-child(18) {
+      flex-basis: calc(120 / 1156 * 100%);
+    }
+    &:nth-child(19) {
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(20) {
+      flex-basis: calc(169 / 1156 * 100%);
+    }
+
+    &:nth-child(21) {
+      flex-basis: calc(120 / 1156 * 100%);
+    }
+    &:nth-child(22) {
+      flex-basis: calc(192 / 1156 * 100%);
+    }
+    &:nth-child(23) {
+      flex-basis: calc(291 / 1156 * 100%);
+    }
+    &:nth-child(24) {
+      flex-grow: 1;
+      flex-basis: calc(154 / 1156 * 100%);
+    }
+    &:nth-child(25) {
+      flex-grow: 1;
+      flex-basis: calc(329 / 1156 * 100%);
+    }
   }
 }

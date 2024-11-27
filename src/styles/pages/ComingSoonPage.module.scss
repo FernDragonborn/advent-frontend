@@ -1,0 +1,103 @@
+.wrapper {
+  flex: 1;
+}
+
+.container {
+  position: relative;
+
+  flex: 1;
+  padding: 6rem 1.5rem;
+  display: block;
+
+  background:
+    url('/images/home/decoration-trees-bg.svg') no-repeat top 0.1rem right /
+      12.2rem 6.8rem,
+    url('/images/home/bubbles-bg.png') center,
+    var(--color-accent-blue);
+
+  @include desktop {
+    padding: 8rem 3.4rem 6.2rem;
+
+    background:
+      url('/images/calendar/garland-bg.svg') no-repeat top -0.5rem right/
+        43.6rem 17.8rem,
+      url('/images/home/snowflake-large-bg.svg') no-repeat bottom 11.6rem right
+        40%/ 10.5rem 10.9rem,
+      url('/images/home/snowflake-small-bg.svg') no-repeat top 7.5rem right 32%/
+        6.3rem 6.4rem,
+      url('/images/calendar/bag-bg.svg') no-repeat bottom 2.7rem right 5.3rem/
+        31.6rem 26.1rem,
+      url('/images/home/bubbles-bg.png') center top 54%,
+      var(--color-accent-blue);
+    border-radius: 2.4rem;
+  }
+
+  @include retina {
+    background:
+      url('/images/home/decoration-trees-bg.svg') no-repeat top 0.1rem right /
+        12.2rem 6.8rem,
+      url('/images/home/bubbles-bg@2x.png') center,
+      var(--color-accent-blue);
+
+    @include desktop {
+      background:
+        url('/images/calendar/garland-bg.svg') no-repeat top -0.5rem right/
+          43.6rem 17.8rem,
+        url('/images/home/snowflake-large-bg.svg') no-repeat bottom 11.6rem
+          right 40%/ 10.5rem 10.9rem,
+        url('/images/home/snowflake-small-bg.svg') no-repeat top 7.5rem right
+          32%/ 6.3rem 6.4rem,
+        url('/images/calendar/bag-bg.svg') no-repeat bottom 2.7rem right 5.3rem/
+          31.6rem 26.1rem,
+        url('/images/home/bubbles-bg@2x.png') center top 54%,
+        var(--color-accent-blue);
+    }
+  }
+}
+
+.title {
+  margin-bottom: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+
+  font: var(--font-heading-1);
+  letter-spacing: -0.08rem;
+  color: var(--color-bg-primary);
+  text-transform: uppercase;
+
+  span {
+    display: flex;
+    column-gap: 1.2rem;
+  }
+
+  svg {
+    width: 3rem;
+    height: 2.6rem;
+  }
+
+  @include desktop {
+    span {
+      margin-left: 22.1rem;
+      align-items: center;
+      column-gap: 2.5rem;
+    }
+
+    svg {
+      width: 6.8rem;
+      height: 6rem;
+    }
+  }
+}
+
+.accent {
+  color: var(--color-accent-blue);
+}
+
+.countdown {
+  margin: 0 auto;
+
+  @include desktop {
+    margin-left: 10.7rem;
+  }
+}

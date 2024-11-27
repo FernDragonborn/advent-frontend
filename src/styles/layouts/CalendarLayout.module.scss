@@ -1,0 +1,58 @@
+.wrapper {
+  flex: 1;
+}
+
+.container {
+  position: relative;
+
+  flex: 1;
+  padding: 1.6rem 1.5rem 3.4rem;
+  display: block;
+
+  background:
+    url('/images/hero/decoration-trees-bg-flipped.svg') no-repeat top -0.1rem
+      left -1rem/ 9.4rem 4.4rem,
+    url('/images/hero/decoration-trees-bg.svg') no-repeat top right -0.7rem/
+      9.4rem 4.4rem;
+
+  @include desktop {
+    padding: 3rem 12.4rem 6.4rem;
+
+    background:
+      url('/images/hero/decoration-toys-bg.svg') no-repeat top -3.8rem left
+        3.5rem/ 13.9rem 13.9rem,
+      url('/images/hero/decoration-trees-bg.svg') no-repeat top -2.4rem
+        right -0.8rem / 22rem 12rem,
+      url('/images/hero/snowflake-small-bg.svg') no-repeat top 40% left 4.6rem/
+        6.4rem 6.4rem,
+      url('/images/hero/snowflake-small-bg.svg') no-repeat top 82% left 3.5rem/
+        6.4rem 6.4rem,
+      url('/images/hero/snowflake-small-bg.svg') no-repeat top 30.2% right
+        4.6rem/ 6.4rem 6.4rem,
+      url('/images/hero/snowflake-small-bg.svg') no-repeat top 30% right 2.4rem/
+        6.4rem 6.4rem,
+      url('/images/hero/snowflake-small-bg.svg') no-repeat top 74.2% right
+        4.6rem/ 6.4rem 6.4rem,
+      url('/images/hero/snowflake-small-bg.svg') no-repeat top 74% right 2.4rem/
+        6.4rem 6.4rem;
+  }
+}
+
+.title {
+  margin-bottom: 0.8rem;
+  justify-content: center;
+
+  font: var(--font-heading-2);
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  text-align: center;
+
+  @include desktop {
+    .title {
+      margin-bottom: 2rem;
+
+      font-size: 4.5rem;
+      line-height: 5.8rem;
+    }
+  }
+}

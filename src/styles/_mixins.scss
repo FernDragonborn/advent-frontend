@@ -46,11 +46,11 @@
     width: $width;
   }
   &::-webkit-scrollbar-track {
-    background-color: var(--color-disabled);
+    background-color: var(--color-accent-orange-light);
     border-radius: 4rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--border-color-primary);
+    background-color: var(--color-text-card);
     border-radius: 4rem;
   }
   &::-webkit-scrollbar-corner {

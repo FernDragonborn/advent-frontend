@@ -5,9 +5,8 @@ import clsx from 'clsx';
 
 import { getDuration } from '@/utils';
 import { CheerfulStarSvg } from '@/assets/images/svgs';
+import { EVENT_START_DATE } from '@/constants';
 import styles from '@/styles/components/common/CountdownLabel.module.scss';
-
-const startDate = '2024-12-01 00:00';
 
 const CountdownLabel = ({ className, onComplete }) => {
   const [formattedDuration, setFormattedDuration] = useState('');
@@ -15,7 +14,7 @@ const CountdownLabel = ({ className, onComplete }) => {
 
   useEffect(() => {
     const updateDuration = () => {
-      const newDuration = getDuration(startDate);
+      const newDuration = getDuration(EVENT_START_DATE);
       setFormattedDuration(newDuration);
       newDuration ? setNewTimeout() : onComplete?.();
     };
