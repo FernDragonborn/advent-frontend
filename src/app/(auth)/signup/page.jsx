@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
@@ -57,6 +58,8 @@ export default function Page() {
     defaultValues: { isAgreed: false },
   });
 
+  const router = useRouter();
+
   const registerMutation = useAuthMutation({
     mutationFn: api.auth.register,
     onSuccess: () => setSignupStep(SIGNUP_STEPS.CODE),
@@ -100,6 +103,12 @@ export default function Page() {
   });
   const verifyEmailMutation = useAuthMutation({
     mutationFn: api.auth.verifyEmail,
+    onSuccess: () => router.replace('/login'),
+    onError: ({ status }) =>
+      status === 400 &&
+      codeForm.setError('code', {
+        message: 'Недійсний або прострочений код підтвердження',
+      }),
   });
 
   const onRegister = () =>
@@ -181,7 +190,6 @@ export default function Page() {
 
         {signupStep === SIGNUP_STEPS.PASSWORD && (
           <PasswordForm
-            isLoading={registerMutation.isPending}
             formControl={passwordForm.control}
             onSubmit={() => setSignupStep(SIGNUP_STEPS.TERMS)}
             onBack={() => setSignupStep(SIGNUP_STEPS.CONTACT_INFO)}
@@ -191,6 +199,7 @@ export default function Page() {
         {signupStep === SIGNUP_STEPS.TERMS && (
           <TermsForm
             formControl={termsForm.control}
+            isLoading={registerMutation.isPending}
             onSubmit={termsForm.handleSubmit(onRegister)}
             onBack={() => setSignupStep(SIGNUP_STEPS.PASSWORD)}
           />
@@ -199,6 +208,8 @@ export default function Page() {
         {signupStep === SIGNUP_STEPS.CODE && (
           <CodeForm
             formControl={codeForm.control}
+            userEmail={contactInfoForm.getValues().email}
+            isLoading={verifyEmailMutation.isPending}
             onSubmit={codeForm.handleSubmit(onVerifyEmail)}
             onBack={() => setSignupStep(SIGNUP_STEPS.TERMS)}
           />

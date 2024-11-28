@@ -61,6 +61,7 @@ export default function Page() {
       {signupStep === RESET_STEPS.CODE && (
         <CodeForm
           formControl={codeForm.control}
+          userEmail={resetPasswordEmailForm.getValues().email}
           onSubmit={codeForm.handleSubmit(() =>
             setSignupStep(RESET_STEPS.PASSWORD),
           )}

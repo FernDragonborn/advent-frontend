@@ -66,6 +66,12 @@ export default function Page() {
   );
   const verifyEmailMutation = useAuthMutation({
     mutationFn: api.auth.verifyEmail,
+    onSuccess: () => setLoginStep(LOGIN_STEPS.LOGIN),
+    onError: ({ status }) =>
+      status === 400 &&
+      codeForm.setError('code', {
+        message: 'Недійсний або прострочений код підтвердження',
+      }),
   });
 
   const onLogin = data =>
@@ -96,6 +102,7 @@ export default function Page() {
       {loginStep === LOGIN_STEPS.VERIFY_EMAIL && (
         <CodeForm
           formControl={codeForm.control}
+          userEmail={loginForm.getValues().email}
           isLoading={verifyEmailMutation.isPending}
           onSubmit={codeForm.handleSubmit(onVerifyEmail)}
           onBack={() => setLoginStep(LOGIN_STEPS.LOGIN)}
