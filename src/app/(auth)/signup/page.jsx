@@ -34,7 +34,7 @@ const SIGNUP_STEPS = {
 };
 
 export default function Page() {
-  const [signupStep, setSignupStep] = useState(SIGNUP_STEPS.CODE);
+  const [signupStep, setSignupStep] = useState(SIGNUP_STEPS.USER_INFO);
 
   const userInfoForm = useForm({
     resolver: yupResolver(userInfoSchema),
