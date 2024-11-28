@@ -59,8 +59,8 @@ const LoginForm = ({ formControl, isLoading, onSubmit, onGoogleLogin }) => {
         <Button type="submit" isLoading={isLoading}>
           Продовжити
         </Button>
-        <span className={styles.labelSeparator}>Або</span>
-        <GoogleButton onClick={onGoogleLogin} />
+        {/* <span className={styles.labelSeparator}>Або</span>
+        <GoogleButton onClick={onGoogleLogin} /> */}
       </div>
     </form>
   );
