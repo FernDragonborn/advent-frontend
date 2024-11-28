@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useState } from 'react';
+import { Suspense, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -18,7 +18,7 @@ const RESET_STEPS = {
   PASSWORD: 'password',
 };
 
-export default function Page() {
+function Page() {
   const [resetStep, setResetStep] = useState(RESET_STEPS.EMAIL);
 
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Page() {
   const token = searchParams.get('token');
 
   useLayoutEffect(() => {
-    setResetStep(RESET_STEPS.PASSWORD);
+    !!(uidb64 && token) && setResetStep(RESET_STEPS.PASSWORD);
   }, [uidb64, token]);
 
   const resetPasswordEmailForm = useForm({
@@ -114,5 +114,13 @@ export default function Page() {
         </span>
       </footer>
     </>
+  );
+}
+
+export default function PageWrapper() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <Page />
+    </Suspense>
   );
 }
