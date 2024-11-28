@@ -29,11 +29,11 @@
     height: $height;
   }
   &::-webkit-scrollbar-track {
-    background-color: var(--color-disabled);
+    background-color: var(--color-border-primary);
     border-radius: 4rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--border-color-primary);
+    background-color: var(--color-accent-blue);
     border-radius: 4rem;
   }
   &::-webkit-scrollbar-corner {
@@ -46,11 +46,11 @@
     width: $width;
   }
   &::-webkit-scrollbar-track {
-    background-color: var(--color-accent-orange-light);
+    background-color: var(--color-border-primary);
     border-radius: 4rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--color-text-card);
+    background-color: var(--color-accent-blue);
     border-radius: 4rem;
   }
   &::-webkit-scrollbar-corner {

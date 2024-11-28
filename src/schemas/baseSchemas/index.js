@@ -5,3 +5,4 @@ export * from './usernameSchema';
 export * from './classSchema';
 export * from './addressSchema';
 export * from './regionSchema';
+export * from './selectItemSchema';

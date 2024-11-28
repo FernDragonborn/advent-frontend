@@ -22,7 +22,7 @@ import {
   userInfoSchema,
 } from '@/schemas';
 import styles from '@/styles/pages/SignupPage.module.scss';
-import { useAuthMutation, useAuthQuery } from '@/hooks';
+import { useAuthMutation } from '@/hooks';
 import { api } from '@/services';
 
 const SIGNUP_STEPS = {
@@ -44,22 +44,17 @@ export default function Page() {
     resolver: yupResolver(contactInfoSchema),
     defaultValues: { email: '', phone_number: '' },
   });
-  const codeForm = useForm({
-    resolver: yupResolver(codeSchema),
-    defaultValues: { code: '' },
-  });
   const passwordForm = useForm({
     resolver: yupResolver(passwordManageSchema),
     defaultValues: { password: '', passwordConfirmation: '' },
   });
+  const codeForm = useForm({
+    resolver: yupResolver(codeSchema),
+    defaultValues: { code: '' },
+  });
   const termsForm = useForm({
     resolver: yupResolver(termsSchema),
     defaultValues: { isAgreed: false },
-  });
-
-  useAuthQuery({
-    queryFn: api.auth.getToken,
-    queryKey: ['token'],
   });
 
   const registerMutation = useAuthMutation({
@@ -103,14 +98,22 @@ export default function Page() {
         });
     },
   });
+  const verifyEmailMutation = useAuthMutation({
+    mutationFn: api.auth.verifyEmail,
+  });
 
-  const onRegister = data =>
+  const onRegister = () =>
     registerMutation.mutate({
       ...userInfoForm.getValues(),
       ...contactInfoForm.getValues(),
-      ...data,
+      ...passwordForm.getValues(),
       gender: userInfoForm.getValues().gender?.id,
-      password2: data.password,
+      grade: userInfoForm.getValues().grade?.id,
+    });
+  const onVerifyEmail = data =>
+    verifyEmailMutation.mutate({
+      ...data,
+      email: contactInfoForm.getValues().email,
     });
 
   return (
@@ -180,25 +183,24 @@ export default function Page() {
           <PasswordForm
             isLoading={registerMutation.isPending}
             formControl={passwordForm.control}
-            onSubmit={passwordForm.handleSubmit(onRegister)}
+            onSubmit={() => setSignupStep(SIGNUP_STEPS.TERMS)}
             onBack={() => setSignupStep(SIGNUP_STEPS.CONTACT_INFO)}
+          />
+        )}
+
+        {signupStep === SIGNUP_STEPS.TERMS && (
+          <TermsForm
+            formControl={termsForm.control}
+            onSubmit={termsForm.handleSubmit(onRegister)}
+            onBack={() => setSignupStep(SIGNUP_STEPS.PASSWORD)}
           />
         )}
 
         {signupStep === SIGNUP_STEPS.CODE && (
           <CodeForm
             formControl={codeForm.control}
-            onSubmit={codeForm.handleSubmit(() =>
-              setSignupStep(SIGNUP_STEPS.PASSWORD),
-            )}
-            onBack={() => setSignupStep(SIGNUP_STEPS.CONTACT_INFO)}
-          />
-        )}
-        {signupStep === SIGNUP_STEPS.TERMS && (
-          <TermsForm
-            formControl={termsForm.control}
-            onSubmit={termsForm.handleSubmit(console.log)}
-            onBack={() => setSignupStep(SIGNUP_STEPS.PASSWORD)}
+            onSubmit={codeForm.handleSubmit(onVerifyEmail)}
+            onBack={() => setSignupStep(SIGNUP_STEPS.TERMS)}
           />
         )}
 

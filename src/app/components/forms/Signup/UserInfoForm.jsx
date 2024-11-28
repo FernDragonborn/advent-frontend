@@ -1,14 +1,9 @@
 import { Controller } from 'react-hook-form';
 
 import { Button, Select, TextInputField } from '@/components';
-import { GENDER } from '@/constants';
+import { GENDERS, GRADES } from '@/constants';
 import { BuildingSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
-
-const genders = [
-  { id: GENDER.MALE, title: 'Чоловік' },
-  { id: GENDER.FEMALE, title: 'Жінка' },
-];
 
 const UserInfoForm = ({ formControl, onSubmit }) => {
   return (
@@ -42,7 +37,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
             <Select
               label="Стать"
               buttonLabel={'Оберіть стать'}
-              data={genders}
+              data={GENDERS}
               error={error}
               iconComponent={UserSvg}
               {...field}
@@ -66,10 +61,10 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           name="grade"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
-            <TextInputField
-              type="number"
+            <Select
               label="Клас"
-              placeholder="1-12"
+              buttonLabel={'Оберіть клас'}
+              data={GRADES}
               iconComponent={RulerPenSvg}
               error={error}
               {...field}

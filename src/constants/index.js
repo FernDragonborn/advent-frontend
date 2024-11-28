@@ -7,3 +7,5 @@ export * from './gender';
 export * from './dayStatus';
 export * from './eventStartDate';
 export * from './eventEndDate';
+export * from './genders';
+export * from './grades';

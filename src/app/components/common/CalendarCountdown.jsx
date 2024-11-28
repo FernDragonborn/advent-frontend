@@ -1,29 +1,29 @@
 'use client';
 
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { splitDuration } from '@/utils';
+import { EVENT_START_DATE } from '@/constants';
 import styles from '@/styles/components/common/CalendarCountdown.module.scss';
 
 const CalendarCountdown = ({ className }) => {
-  const [timeUnits, setTimeUnits] = useState(() =>
-    splitDuration('2024-12-01 00:00'),
-  );
+  const [timeUnits, setTimeUnits] = useState({});
   const timerRef = useRef();
 
-  useEffect(() => {
-    const fn = () => {
+  useLayoutEffect(() => {
+    const startCountdown = () => {
       clearTimeout(timerRef.current);
 
       timerRef.current = setTimeout(() => {
-        const newDuration = splitDuration('2024-12-01 00:00');
+        const newDuration = splitDuration(EVENT_START_DATE);
         setTimeUnits(newDuration);
-        fn();
+        startCountdown();
       }, 1000);
     };
 
-    timerRef.current = setTimeout(() => fn(), 1000);
+    startCountdown();
+    setTimeUnits(splitDuration(EVENT_START_DATE));
 
     return () => clearTimeout(timerRef.current);
   }, []);

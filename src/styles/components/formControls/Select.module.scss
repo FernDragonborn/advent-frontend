@@ -98,12 +98,15 @@
 }
 
 .dropdownList {
+  @include vertical-scrollbar;
+
   position: absolute;
   top: calc(100% + 0.8rem);
   left: 0;
   z-index: 10;
 
   width: 100%;
+  max-height: 12rem;
 
   background-color: var(--color-bg-primary);
   border: 0.1rem solid var(--color-border-primary);
@@ -112,7 +115,7 @@
   opacity: 0;
   transform: translateY(-2rem);
   pointer-events: none;
-  overflow: hidden;
+  overflow: auto;
   transition:
     opacity var(--transition-primary),
     transform var(--transition-primary);
