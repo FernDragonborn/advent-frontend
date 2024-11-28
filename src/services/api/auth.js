@@ -15,7 +15,8 @@ const apiAuth = {
   passwordReset: payload => apiClient.post('auth/password-reset/', payload),
   passwordResetComplete: payload =>
     apiClient.post('auth/password-reset-complete/', payload),
-  passwordResetConfirm: () => apiClient.get('auth/password-reset-confirm/'),
+  passwordResetConfirm: params =>
+    apiClient.get('auth/password-reset-confirm/', { params }),
 
   getUser: () => apiClient.get('auth/user/'),
   addUser: payload => apiClient.put('auth/user/', payload),

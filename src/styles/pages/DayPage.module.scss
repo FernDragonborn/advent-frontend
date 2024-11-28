@@ -1,66 +1,8 @@
-.wrapper {
-  margin: 0 -1.5rem;
-}
-
-.card {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  margin: 0 auto;
-  padding: 3.2rem 1.4rem 3.2rem 2.4rem;
-  width: 363px;
-  height: 531px;
-
-  background: url('/images/tasks/task-bg-mobile.png') no-repeat center / 363px
-    531px;
-  background-size: cover;
-
-  @include desktop {
-    padding: 6.9rem 7.2rem 6.9rem;
-    flex-direction: row-reverse;
-    align-items: center;
-    column-gap: 4rem;
-    width: 1092px;
-    height: 616px;
-
-    background: url('/images/tasks/task-bg-desktop.png') no-repeat center /
-      1092px 616px;
-  }
-}
-
-.container {
-  @include vertical-scrollbar;
-  padding-right: 1rem;
-  flex: 1;
-  height: 100%;
-
-  overflow: auto;
-}
-
-.narrativeImg {
-  margin: 0 auto 2.6rem;
-  width: 126px;
-  height: 133px;
-
-  object-fit: contain;
-
-  @include desktop {
-    width: 290px;
-    height: 295px;
-  }
-}
-
-.text {
-  font-size: 1.2rem;
-  line-height: 1.7rem;
-
-  color: var(--color-text-card);
-  text-indent: 1rem;
-}
-
 .submitBtn {
   margin: 0.8rem auto 0;
   display: flex;
+
+  @include desktop {
+    margin-top: 2rem;
+  }
 }
