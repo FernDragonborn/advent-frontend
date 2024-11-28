@@ -24,7 +24,7 @@
   transition: opacity var(--transition-primary);
 }
 
-input:checked + .box {
+.checked .box {
   background: var(--color-accent-blue);
   border-color: var(--color-accent-blue);
 

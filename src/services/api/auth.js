@@ -9,6 +9,7 @@ const apiAuth = {
       },
     }),
   refreshToken: payload => apiClient.post('auth/token/refresh/', payload),
+  verifyEmail: payload => apiClient.post('auth/verify-email/', payload),
 
   changePassword: payload => apiClient.put('auth/change-password/', payload),
   passwordReset: payload => apiClient.post('auth/password-reset/', payload),

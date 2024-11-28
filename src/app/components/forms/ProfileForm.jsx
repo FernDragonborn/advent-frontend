@@ -16,14 +16,9 @@ import { profileSchema } from '@/schemas';
 import { useAuthMutation, useFetchProfile } from '@/hooks';
 import { api } from '@/services';
 import { formatPhone } from '@/utils';
-import { GENDER } from '@/constants';
+import { GENDERS, GRADES } from '@/constants';
 import { BuildingSvg, MailSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/ProfileForm.module.scss';
-
-const genders = [
-  { id: GENDER.MALE, title: 'Чоловік' },
-  { id: GENDER.FEMALE, title: 'Жінка' },
-];
 
 const ProfileForm = () => {
   const { control, handleSubmit, reset, setError } = useForm({
@@ -57,12 +52,17 @@ const ProfileForm = () => {
     reset({
       ...profileQuery.data,
       phone_number: formatPhone(profileQuery.data?.phone_number),
-      gender: genders.find(val => val.id === profileQuery.data.gender),
+      gender: GENDERS.find(val => val.id === profileQuery.data.gender),
+      grade: GRADES.find(val => val.id === profileQuery.data.grade),
     });
   }, [profileQuery?.data]);
 
   const onUpdateProfile = data =>
-    profileMutation.mutate({ ...data, gender: data.gender?.id });
+    profileMutation.mutate({
+      ...data,
+      gender: data.gender?.id,
+      grade: data.grade?.id,
+    });
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onUpdateProfile)}>
@@ -93,7 +93,7 @@ const ProfileForm = () => {
                 <Select
                   label="Стать"
                   buttonLabel={'Оберіть стать'}
-                  data={genders}
+                  data={GENDERS}
                   error={error}
                   iconComponent={UserSvg}
                   {...field}
@@ -139,9 +139,10 @@ const ProfileForm = () => {
               name="grade"
               control={control}
               render={({ field, fieldState: { error } }) => (
-                <TextInputField
+                <Select
                   label="Клас"
-                  placeholder="1-12"
+                  buttonLabel={'Оберіть клас'}
+                  data={GRADES}
                   iconComponent={RulerPenSvg}
                   error={error}
                   {...field}
