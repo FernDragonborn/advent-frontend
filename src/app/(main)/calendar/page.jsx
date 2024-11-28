@@ -1,23 +1,52 @@
-import { CalendarCountdown, HeroSection } from '@/components';
-import { SnowflakeSvg } from '@/svgs';
-import styles from '@/styles/pages/ComingSoonPage.module.scss';
+'use client';
+
+import { useLayoutEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import moment from 'moment';
+import clsx from 'clsx';
+
+import { DAY_STATUS, EVENT_END_DATE, EVENT_START_DATE } from '@/constants';
+import styles from '@/styles/pages/CalendarPage.module.scss';
 
 export default function Page() {
-  return (
-    <main className={styles.wrapper}>
-      <HeroSection>
-        <div className={styles.container}>
-          <h1 className={styles.title}>
-            До відкриття{' '}
-            <span>
-              <SnowflakeSvg width={30} height={26} />
-              адвент-календаря
-            </span>
-          </h1>
+  const [currentMoment, setCurrentMoment] = useState(moment());
 
-          <CalendarCountdown className={styles.countdown} />
-        </div>
-      </HeroSection>
-    </main>
+  useLayoutEffect(() => {
+    setCurrentMoment(moment());
+  }, []);
+
+  return (
+    <>
+      <ul className={styles.days}>
+        {Array.from(Array(25).keys()).map((val, index) => {
+          const disabled = false;
+          // currentMoment.isBefore(moment(EVENT_START_DATE).utc(true)) ||
+          //   currentMoment.isAfter(moment(EVENT_END_DATE).utc(true));
+          const status = currentMoment.isBefore(
+            moment(EVENT_START_DATE).utc(true),
+          )
+            ? DAY_STATUS.UPCOMING
+            : DAY_STATUS.ACTIVE;
+          const dayNumber = index + 1;
+
+          return (
+            <li
+              key={val}
+              className={clsx(styles.day, disabled && styles.disabled)}>
+              <Link href={disabled ? '' : `/calendar/days/${index}`}>
+                <Image
+                  src={`/images/days/${status}/day-${dayNumber}-${status}.png`}
+                  width={155}
+                  height={155}
+                  alt={'День ' + dayNumber}
+                  quality={100}
+                />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
