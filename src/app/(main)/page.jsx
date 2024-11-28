@@ -49,7 +49,7 @@ export default function Page() {
                   </p>
                   <p>
                     <span className={styles.accent}>
-                      Реєстрація доступна до 01.12.2024 (23:59)
+                      Реєстрація доступна до 06.12.2024 (23:59)
                     </span>
                   </p>
                 </>
@@ -62,7 +62,7 @@ export default function Page() {
                   </p>
                   <p>
                     <span className={styles.accent}>
-                      Реєстрація доступна до 01.12.2024 (23:59)
+                      Реєстрація доступна до 06.12.2024 (23:59)
                     </span>
                   </p>
                 </>
@@ -75,7 +75,7 @@ export default function Page() {
               title={
                 isLoggedIn
                   ? 'Виконуй завдання у календарі'
-                  : 'Старт пригоди – 1 грудня'
+                  : 'Старт пригоди – 6 грудня'
               }>
               {isLoggedIn ? (
                 <p>
@@ -104,7 +104,7 @@ export default function Page() {
               iconComponent={GiftColoredSvg}
               title={'Забирай справедливу  винагороду'}
               text={
-                '26 грудня, серед учасників та учасниць, які своєчасно завершили історію, ми розіграємо подарунки до свят!'
+                'У січні серед учасників та учасниць, які своєчасно завершили історію, ми розіграємо подарунки до свят!'
               }>
               <Socials />
             </EventDescriptionCard>
