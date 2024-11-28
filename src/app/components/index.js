@@ -42,5 +42,6 @@ export { default as MobileMenu } from './sidebars/MobileMenu';
 export { default as SettingsSidebar } from './sidebars/SettingsSidebar';
 
 export { default as EventDescriptionCard } from './cards/EventDescriptionCard';
+export { default as TaskNarrativeCard } from './cards/TaskNarrativeCard';
 
 export { default as ConfirmPopup } from './modals/ConfirmPopup';
