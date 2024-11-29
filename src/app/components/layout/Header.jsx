@@ -45,6 +45,9 @@ const Header = () => {
             <li>
               <NavLink href="/calendar">Календар</NavLink>
             </li>
+            <li>
+              <NavLink href="/terms">Умови участі</NavLink>
+            </li>
           </ul>
         </nav>
 

@@ -22,9 +22,9 @@ import {
   termsSchema,
   userInfoSchema,
 } from '@/schemas';
-import styles from '@/styles/pages/SignupPage.module.scss';
 import { useAuthMutation } from '@/hooks';
 import { api } from '@/services';
+import styles from '@/styles/pages/SignupPage.module.scss';
 
 const SIGNUP_STEPS = {
   USER_INFO: 'user-info',
@@ -118,6 +118,7 @@ export default function Page() {
       ...passwordForm.getValues(),
       gender: userInfoForm.getValues().gender?.id,
       grade: userInfoForm.getValues().grade?.id,
+      region: userInfoForm.getValues().region?.id,
     });
   const onVerifyEmail = data =>
     verifyEmailMutation.mutate({
