@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
-import { GoogleLogin } from '@react-oauth/google';
 
 import { Button, CodeForm, LoginForm } from '@/components';
 import { codeSchema, loginSchema } from '@/schemas';
@@ -93,7 +92,7 @@ export default function Page() {
     <>
       <h1 className="visually-hidden">Вхід</h1>
 
-      <Button
+      {/* <Button
         onClick={() =>
           loginGoogleMutation.mutate({
             ...Object.fromEntries(searchParams),
@@ -101,7 +100,7 @@ export default function Page() {
           })
         }>
         login google
-      </Button>
+      </Button> */}
 
       {loginStep === LOGIN_STEPS.LOGIN && (
         <LoginForm

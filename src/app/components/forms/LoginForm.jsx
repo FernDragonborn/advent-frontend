@@ -60,8 +60,8 @@ const LoginForm = ({ formControl, isLoading, loginGoogleHref, onSubmit }) => {
         <Button type="submit" isLoading={isLoading}>
           Продовжити
         </Button>
-        <span className={styles.labelSeparator}>Або</span>
-        <GoogleButton href={loginGoogleHref} />
+        {/* <span className={styles.labelSeparator}>Або</span>
+        <GoogleButton href={loginGoogleHref} /> */}
       </div>
     </form>
   );
