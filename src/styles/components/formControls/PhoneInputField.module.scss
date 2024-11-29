@@ -36,29 +36,53 @@
 }
 
 .inputWrapper {
-  position: relative;
-}
-
-.input {
   padding: 0 1.4rem;
+  display: flex;
+  align-items: center;
   height: 4.3rem;
   width: 100%;
-
-  font: var(--font-text-2);
-  color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
   border: 0.1rem solid var(--color-border-primary);
   border-radius: 1.2rem;
 
   transition: var(--transition-primary);
 
+  &:focus-within {
+    color: var(--color-text-primary);
+    border-color: var(--color-accent-blue);
+  }
+}
+
+.countryCode {
+  flex-shrink: 0;
+
+  font: var(--font-text-2);
+  color: var(--color-text-primary);
+}
+
+.input {
+  flex: 1;
+  padding: 0;
+
+  height: 100%;
+  font: var(--font-text-2);
+  color: var(--color-text-primary);
+
+  border: none;
+  transition: var(--transition-primary);
+
   &::placeholder {
     color: var(--color-text-tertiary);
   }
 
-  &:focus:not(:read-only) {
-    color: var(--color-text-primary);
-    border-color: var(--color-accent-blue);
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: 0 0 0px 1000px white inset !important; /* Overwrite the background */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent flicker */
   }
 
   &.hasIcon {
