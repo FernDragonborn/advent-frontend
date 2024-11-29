@@ -112,6 +112,11 @@
   color: var(--color-error);
 }
 
+.hint {
+  font: var(--font-text-3);
+  color: var(--color-text-secondary);
+}
+
 .textarea {
   @extend .input;
 

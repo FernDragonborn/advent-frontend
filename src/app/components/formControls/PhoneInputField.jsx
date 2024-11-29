@@ -13,6 +13,7 @@ const PhoneInputField = ({
   error,
   disabled,
   placeholder,
+  hint,
   ref,
   ...props
 }) => {
@@ -46,6 +47,8 @@ const PhoneInputField = ({
           {error.message}
         </p>
       )}
+
+      {hint && <p className={styles.hint}>{hint}</p>}
     </div>
   );
 };

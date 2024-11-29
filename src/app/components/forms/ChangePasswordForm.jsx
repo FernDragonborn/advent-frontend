@@ -45,6 +45,7 @@ const ChangePasswordForm = () => {
               type="password"
               label="Старий Пароль"
               placeholder="Введіть пароль"
+              hint="Пароль має містити щонайменше 8 символів"
               iconComponent={CirclePasswordSvg}
               error={error}
               {...field}

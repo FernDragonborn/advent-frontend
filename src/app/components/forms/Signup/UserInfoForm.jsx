@@ -11,7 +11,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
       <div>
         <h2 className={styles.title}>Реєстрація</h2>
         <p className={styles.text}>
-          Додайте інформацію про себе щоб взаємодіяти з календарем та взяти
+          Додайте інформацію про себе, щоб взаємодіяти з календарем та взяти
           участь у розіграші
         </p>
       </div>

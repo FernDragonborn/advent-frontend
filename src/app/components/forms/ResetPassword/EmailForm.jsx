@@ -9,7 +9,7 @@ const UserInfoForm = ({ formControl, isLoading, onSubmit, onBack }) => {
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
         <h2 className={styles.title}>Твоя пошта</h2>
-        <p className={styles.text}>Додай пошту, для відновлення паролю</p>
+        <p className={styles.text}>Додай пошту для відновлення паролю</p>
       </div>
 
       <Controller
