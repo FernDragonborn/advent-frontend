@@ -8,6 +8,8 @@ const apiAuth = {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     }),
+  getGoogleAuthUrl: () => apiClient.get('auth/google-auth-url/'),
+  loginGoogle: payload => apiClient.post('auth/google-auth/', payload),
   refreshToken: payload => apiClient.post('auth/token/refresh/', payload),
   verifyEmail: payload => apiClient.post('auth/verify-email/', payload),
 

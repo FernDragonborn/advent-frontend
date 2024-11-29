@@ -3,17 +3,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
-import { CodeForm, LoginForm } from '@/components';
+import { Button, CodeForm, LoginForm } from '@/components';
 import { codeSchema, loginSchema } from '@/schemas';
-import { useAuthMutation } from '@/hooks';
+import { useAuthMutation, useAuthQuery } from '@/hooks';
 import { loginAction } from '@/actions';
-import styles from '@/styles/pages/LoginPage.module.scss';
 import { api } from '@/services';
+import styles from '@/styles/pages/LoginPage.module.scss';
 
 const LOGIN_STEPS = { LOGIN: 'login', VERIFY_EMAIL: 'verify-email' };
 
@@ -29,14 +29,16 @@ export default function Page() {
   });
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const onGoogleLogin = useGoogleLogin({
-    onSuccess: credentialResponse => {
-      console.log(credentialResponse);
-    },
-    onError: () => {
-      console.log('Login Failed');
-    },
+  const loginGoogleQuery = useAuthQuery({
+    queryFn: api.auth.getGoogleAuthUrl,
+    queryKey: ['login-google'],
+    staleTime: 0,
+  });
+
+  const loginGoogleMutation = useAuthMutation({
+    mutationFn: api.auth.loginGoogle,
   });
 
   const loginMutation = useAuthMutation(
@@ -91,12 +93,22 @@ export default function Page() {
     <>
       <h1 className="visually-hidden">Вхід</h1>
 
+      <Button
+        onClick={() =>
+          loginGoogleMutation.mutate({
+            ...Object.fromEntries(searchParams),
+            access_token: searchParams.get('code'),
+          })
+        }>
+        login google
+      </Button>
+
       {loginStep === LOGIN_STEPS.LOGIN && (
         <LoginForm
           isLoading={loginMutation.isPending}
           formControl={loginForm.control}
+          loginGoogleHref={loginGoogleQuery.data?.authorization_url}
           onSubmit={loginForm.handleSubmit(onLogin)}
-          onGoogleLogin={onGoogleLogin}
         />
       )}
       {loginStep === LOGIN_STEPS.VERIFY_EMAIL && (

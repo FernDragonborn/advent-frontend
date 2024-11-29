@@ -6,7 +6,7 @@ import { Button, GoogleButton, TextInputField } from '@/components';
 import { CirclePasswordSvg, MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const LoginForm = ({ formControl, isLoading, onSubmit, onGoogleLogin }) => {
+const LoginForm = ({ formControl, isLoading, loginGoogleHref, onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -60,8 +60,8 @@ const LoginForm = ({ formControl, isLoading, onSubmit, onGoogleLogin }) => {
         <Button type="submit" isLoading={isLoading}>
           Продовжити
         </Button>
-        {/* <span className={styles.labelSeparator}>Або</span>
-        <GoogleButton onClick={onGoogleLogin} /> */}
+        <span className={styles.labelSeparator}>Або</span>
+        <GoogleButton href={loginGoogleHref} />
       </div>
     </form>
   );

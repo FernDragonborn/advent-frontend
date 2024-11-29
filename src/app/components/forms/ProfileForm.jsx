@@ -15,7 +15,6 @@ import {
 import { profileSchema } from '@/schemas';
 import { useAuthMutation, useFetchProfile } from '@/hooks';
 import { api } from '@/services';
-import { formatPhone } from '@/utils';
 import { GENDERS, GRADES, REGIONS } from '@/constants';
 import { BuildingSvg, MailSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/ProfileForm.module.scss';
@@ -51,7 +50,7 @@ const ProfileForm = () => {
     }
     reset({
       ...profileQuery.data,
-      phone_number: formatPhone(profileQuery.data?.phone_number),
+      phone_number: profileQuery.data?.phone_number,
       gender: GENDERS.find(val => val.id === profileQuery.data.gender),
       grade: GRADES.find(val => val.id === profileQuery.data.grade),
       region: REGIONS.find(val => val.id === profileQuery.data.region),
