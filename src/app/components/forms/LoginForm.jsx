@@ -6,13 +6,13 @@ import { Button, GoogleButton, TextInputField } from '@/components';
 import { CirclePasswordSvg, MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const LoginForm = ({ formControl, isLoading, onSubmit, onGoogleLogin }) => {
+const LoginForm = ({ formControl, isLoading, loginGoogleHref, onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
         <h2 className={styles.title}>Вхід</h2>
         <p className={styles.text}>
-          Увійди щоб взаємодіяти з календарем та взяти участь у розіграші
+          Увійди, щоб взаємодіяти з календарем та взяти участь у розіграші
         </p>
       </div>
 
@@ -40,6 +40,7 @@ const LoginForm = ({ formControl, isLoading, onSubmit, onGoogleLogin }) => {
                 type="password"
                 label="Пароль"
                 placeholder="Введіть пароль"
+                hint="Пароль має містити щонайменше 8 символів"
                 iconComponent={CirclePasswordSvg}
                 error={error}
                 {...field}
@@ -60,7 +61,7 @@ const LoginForm = ({ formControl, isLoading, onSubmit, onGoogleLogin }) => {
           Продовжити
         </Button>
         {/* <span className={styles.labelSeparator}>Або</span>
-        <GoogleButton onClick={onGoogleLogin} /> */}
+        <GoogleButton href={loginGoogleHref} /> */}
       </div>
     </form>
   );

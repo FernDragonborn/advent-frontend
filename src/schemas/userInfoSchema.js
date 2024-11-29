@@ -1,10 +1,10 @@
 import * as yup from 'yup';
 
-import { regionSchema, selectItemSchema, usernameSchema } from './baseSchemas';
+import { selectItemSchema, usernameSchema } from './baseSchemas';
 
 export const userInfoSchema = yup.object({
   name: usernameSchema,
-  region: regionSchema,
+  region: selectItemSchema,
   grade: selectItemSchema,
   gender: selectItemSchema,
 });

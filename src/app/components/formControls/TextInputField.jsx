@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
+import { EyeSlashSvg, EyeSvg } from '@/svgs';
 import styles from '@/styles/components/formControls/TextInputField.module.scss';
-import { EyeSlashSvg, EyeSvg } from '@/assets/images/svgs';
 
 const TextInputField = ({
   name,
@@ -14,6 +14,7 @@ const TextInputField = ({
   type,
   disabled,
   placeholder,
+  hint,
   iconComponent: Icon,
   ...props
 }) => {
@@ -72,6 +73,8 @@ const TextInputField = ({
           {error.message}
         </p>
       )}
+
+      {hint && <p className={styles.hint}>{hint}</p>}
     </div>
   );
 };

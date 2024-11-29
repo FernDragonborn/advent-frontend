@@ -23,6 +23,7 @@ const PasswordForm = ({ title, formControl, isLoading, onSubmit, onBack }) => {
               type="password"
               label="Пароль"
               placeholder="Введіть пароль"
+              hint="Пароль має містити щонайменше 8 символів"
               iconComponent={CirclePasswordSvg}
               error={error}
               {...field}

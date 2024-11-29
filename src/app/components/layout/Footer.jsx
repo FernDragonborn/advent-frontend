@@ -84,7 +84,7 @@ const Footer = () => {
         та{' '}
         <Link
           className={styles.link}
-          href=""
+          href="https://dribbble.com/DoAllTeam"
           target="_blank"
           rel="noopener noreferrer nofollow">
           DoAll Team

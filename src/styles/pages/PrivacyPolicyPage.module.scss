@@ -8,8 +8,8 @@
   justify-content: center;
   align-items: center;
 
-  background: url('/images/hero/decoration-toys-bg.svg') no-repeat top left 2rem /
-    10.5rem 8.4rem;
+  background: url('/images/hero/decoration-toys-bg.svg') no-repeat top left
+    2rem / 10.5rem 8.4rem;
 
   h1 {
     width: min-content;
@@ -51,29 +51,41 @@
   }
 
   ol {
-    list-style: decimal;
-    list-style-position: inside;
-
-    padding-left: 1.6rem;
-  }
-
-  .parenthesisedList {
-    counter-reset: list-counter;
-    list-style: none;
-
-    li {
-      counter-increment: list-counter; /* Increment the counter for each <li> */
-      &::before {
-        content: counter(list-counter) ') '; /* Display the counter with ')' */
-      }
-    }
-  }
-
-  ol,
-  .parenthesisedList {
     display: flex;
     flex-direction: column;
     row-gap: 1.6rem;
+
+    counter-reset: item;
+
+    & > li {
+      font-weight: 700;
+    }
+
+    ul,
+    ol {
+      padding-top: 1.2rem;
+      padding-left: 1.6rem;
+      row-gap: 1.2rem;
+      li {
+        font-weight: 400;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      li::before {
+        content: '- ';
+      }
+    }
+
+    ol {
+      counter-reset: item;
+    }
+
+    & > li::before {
+      content: counters(item, '.') '. ';
+      counter-increment: item;
+    }
   }
 
   ol,

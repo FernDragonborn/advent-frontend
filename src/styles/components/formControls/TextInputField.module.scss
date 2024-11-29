@@ -58,6 +58,16 @@
     margin: 0;
   }
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: 0 0 0px 1000px white inset !important; /* Overwrite the background */
+    transition: background-color 5000s ease-in-out 0s; /* Prevent flicker */
+  }
+
   /* Firefox */
   &[type='number'] {
     -moz-appearance: textfield;
@@ -110,6 +120,11 @@
 .error {
   font: var(--font-text-4);
   color: var(--color-error);
+}
+
+.hint {
+  font: var(--font-text-3);
+  color: var(--color-text-secondary);
 }
 
 .textarea {

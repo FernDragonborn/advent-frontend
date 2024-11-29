@@ -75,6 +75,10 @@ a:has(.logo) {
   flex-direction: column;
   align-items: center;
   row-gap: 2rem;
+
+  a {
+    text-transform: uppercase;
+  }
 }
 
 .separator {

@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form';
 
 import { Button, Select, TextInputField } from '@/components';
-import { GENDERS, GRADES } from '@/constants';
+import { GENDERS, GRADES, REGIONS } from '@/constants';
 import { BuildingSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
@@ -11,7 +11,7 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
       <div>
         <h2 className={styles.title}>Реєстрація</h2>
         <p className={styles.text}>
-          Додайте інформацію про себе щоб взаємодіяти з календарем та взяти
+          Додайте інформацію про себе, щоб взаємодіяти з календарем та взяти
           участь у розіграші
         </p>
       </div>
@@ -48,11 +48,12 @@ const UserInfoForm = ({ formControl, onSubmit }) => {
           name="region"
           control={formControl}
           render={({ field, fieldState: { error } }) => (
-            <TextInputField
+            <Select
               label="Область проживання"
-              placeholder="Напр.: Київська, Хмельницька, Харківська тощо"
-              iconComponent={BuildingSvg}
+              buttonLabel={'Оберіть область'}
+              data={REGIONS}
               error={error}
+              iconComponent={BuildingSvg}
               {...field}
             />
           )}

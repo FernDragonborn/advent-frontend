@@ -9,3 +9,4 @@ export * from './eventStartDate';
 export * from './eventEndDate';
 export * from './genders';
 export * from './grades';
+export * from './regions';

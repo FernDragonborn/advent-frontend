@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -18,7 +18,7 @@ const RESET_STEPS = {
   PASSWORD: 'password',
 };
 
-function Page() {
+export default function Page() {
   const [resetStep, setResetStep] = useState(RESET_STEPS.EMAIL);
 
   const router = useRouter();
@@ -114,13 +114,5 @@ function Page() {
         </span>
       </footer>
     </>
-  );
-}
-
-export default function PageWrapper() {
-  return (
-    <Suspense fallback={<Loader />}>
-      <Page />
-    </Suspense>
   );
 }

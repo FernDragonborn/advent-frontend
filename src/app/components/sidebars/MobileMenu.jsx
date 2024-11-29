@@ -49,6 +49,9 @@ const MobileMenu = ({ isOpen, onHide }) => {
             <li>
               <NavLink href="/calendar">КАЛЕНДАР</NavLink>
             </li>
+            <li>
+              <NavLink href="/terms">Умови участі</NavLink>
+            </li>
           </ul>
         </nav>
         <span className={styles.separator} />

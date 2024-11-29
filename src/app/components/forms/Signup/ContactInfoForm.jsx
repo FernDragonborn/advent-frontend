@@ -11,7 +11,7 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
       <div>
         <h2 className={styles.title}>Твоя пошта</h2>
         <p className={styles.text}>
-          Додай пошту яку ти часто відкриваєш, щоб не пропустити сповіщення.
+          Додай пошту, яку ти часто відкриваєш, щоб не пропустити сповіщення.
         </p>
         <p className={styles.text}>
           Якщо не маєш власної, це може бути пошта батьків.
@@ -33,19 +33,17 @@ const ContactInfoForm = ({ formControl, onSubmit, onBack }) => {
             />
           )}
         />
-        <div>
-          <Controller
-            name="phone_number"
-            control={formControl}
-            render={({ field, fieldState: { error } }) => (
-              <PhoneInputField error={error} {...field} />
-            )}
-          />
-          <p className={clsx(styles.text, styles.details)}>
-            Він потрібен для того, щоб за необхідності зв&apos;язатись з тобою в
-            разі виграшу
-          </p>
-        </div>
+        <Controller
+          name="phone_number"
+          control={formControl}
+          render={({ field, fieldState: { error } }) => (
+            <PhoneInputField
+              error={error}
+              hint="Він потрібен для того, щоб за необхідності зв'язатись з тобою в разі виграшу"
+              {...field}
+            />
+          )}
+        />
       </div>
 
       <div className={styles.actions}>
