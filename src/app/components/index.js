@@ -6,6 +6,7 @@ export { default as UserScore } from './common/UserScore';
 export { default as Socials } from './common/Socials';
 export { default as CalendarCountdown } from './common/CalendarCountdown';
 export { default as Loader } from './common/Loader';
+export { default as Recaptcha } from './common/Recaptcha';
 
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';

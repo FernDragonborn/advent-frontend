@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
 import { Loader, PasswordForm, ResetPasswordEmailForm } from '@/components';
 import { passwordManageSchema, resetPasswordEmailSchema } from '@/schemas';
 import { useAuthMutation, useAuthQuery } from '@/hooks';
 import { api } from '@/services';
 import styles from '@/styles/pages/LoginPage.module.scss';
-import { toast } from 'react-toastify';
 
 const RESET_STEPS = {
   EMAIL: 'email',

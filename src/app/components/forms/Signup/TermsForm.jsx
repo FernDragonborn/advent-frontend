@@ -1,10 +1,16 @@
+'use client';
+
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { Controller } from 'react-hook-form';
 
-import { Button, Checkbox } from '@/components';
+import { Button, Checkbox, Recaptcha } from '@/components';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
 const TermsForm = ({ formControl, isLoading, onSubmit, onBack }) => {
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+  const recaptchaRef = useRef(null);
+
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -41,11 +47,16 @@ const TermsForm = ({ formControl, isLoading, onSubmit, onBack }) => {
         </Link>
       </p>
 
+      <Recaptcha ref={recaptchaRef} setIsVerified={setIsRecaptchaVerified} />
+
       <div className={styles.actions}>
         <Button appearance="bordered" arrowPosition="left" onClick={onBack}>
           Назад
         </Button>
-        <Button type="submit" isLoading={isLoading}>
+        <Button
+          type="submit"
+          isLoading={isLoading}
+          disabled={!isRecaptchaVerified}>
           Зареєструватись
         </Button>
       </div>
