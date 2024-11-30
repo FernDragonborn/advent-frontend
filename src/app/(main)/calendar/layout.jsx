@@ -12,9 +12,11 @@ export default function Layout({ children }) {
     <main className={styles.wrapper}>
       <HeroSection>
         <div className={styles.container}>
-          {/* <CalendarBackButton /> */}
+          <div className={styles.block}>
+            <CalendarBackButton className={styles.backBtn} />
+            <h1 className={styles.title}>День {dayId}</h1>
+          </div>
 
-          <h1 className={styles.title}>День {dayId}</h1>
           {children}
         </div>
       </HeroSection>
