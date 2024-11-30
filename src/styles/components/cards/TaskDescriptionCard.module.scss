@@ -1,9 +1,6 @@
 .card {
   position: relative;
 
-  display: flex;
-  flex-direction: column;
-
   margin: 0 auto;
   width: 345px;
   height: 506px;
@@ -12,8 +9,6 @@
   background-size: contain;
 
   @include desktop {
-    flex-direction: row-reverse;
-    column-gap: 4rem;
     width: 1100px;
     height: 620px;
 
@@ -23,29 +18,29 @@
 }
 
 .images {
-  @include horizontal-scrollbar;
-
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 100px;
+  bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 0;
 
-  display: flex;
-  // overflow: auto;
+  overflow: hidden;
 }
 
 .taskImg {
-  height: 100%;
-  width: 345px !important;
+  // height: 100%;
 
-  object-fit: contain;
+  // object-fit: contain;
+
+  // &:global {
+  //   animation: fadeIn var(--transition-primary);
+  // }
 }
 
 .container {
   position: absolute;
-  bottom: 32px;
+  bottom: 20px;
   left: 0;
   right: 0;
   z-index: 1;
@@ -59,24 +54,31 @@
   }
 }
 
-.pagination {
-  margin-bottom: 1.2rem;
+.footer {
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 10px;
+
+  @include desktop {
+    margin: 0 auto 12px;
+    justify-content: center;
+    width: min-content;
+    column-gap: 34px;
+  }
 }
 
-.paginationBtn {
-  margin: -1.8rem;
-  padding: 1.8rem;
+.navigationBtn {
+  margin: -18px;
+  padding: 18px;
   display: inline-flex;
 
   span {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 22px;
+    height: 22px;
 
     border-radius: 50%;
     background-color: var(--color-accent-blue);
@@ -84,8 +86,8 @@
   }
 
   svg {
-    width: 2rem;
-    height: 2rem;
+    width: 20px;
+    height: 20px;
   }
 
   &:first-child {
@@ -98,16 +100,27 @@
       background-color: var(--color-accent-blue-active);
     }
   }
+
+  @include desktop {
+    span {
+      width: 28px;
+      height: 28px;
+    }
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
 }
 
-.paginationDots {
+.pagination {
   @include horizontal-scrollbar;
 
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 0.4rem;
+  column-gap: 4px;
   overflow: auto;
 
   &::-webkit-scrollbar-track {
@@ -117,16 +130,26 @@
     background-color: var(--color-scroll-thumb-card);
   }
 
-  span {
-    flex-shrink: 0;
-    width: 1.8rem;
-    height: 1.8rem;
-
-    border-radius: 50%;
-    background-color: var(--color-pagination-dot-cart);
-
-    &.isActive {
-      background-color: var(--color-pagination-active-dot-cart);
-    }
+  @include desktop {
+    flex: -1;
   }
+}
+
+.paginationBullet {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  background-color: var(--color-pagination-dot-cart);
+
+  transition: var(--transition-primary);
+
+  @include desktop {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+span.paginationBulletActive {
+  background-color: var(--color-pagination-active-dot-cart);
 }

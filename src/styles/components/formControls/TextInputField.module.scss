@@ -127,11 +127,29 @@
   color: var(--color-text-secondary);
 }
 
+.textareaWrapper {
+  display: flex;
+
+  border: 0.1rem solid var(--color-border-primary);
+  border-radius: 1.2rem;
+
+  overflow: hidden;
+  transition: var(--transition-primary);
+
+  &:focus-within {
+    color: var(--color-text-primary);
+    border-color: var(--color-accent-blue);
+  }
+}
+
 .textarea {
   @extend .input;
+  @include vertical-scrollbar;
 
   padding: 1.2rem 1.6rem;
   height: 10rem;
-
+  border-radius: 0;
+  border: none;
   resize: none;
+  outline: none;
 }

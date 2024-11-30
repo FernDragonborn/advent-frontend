@@ -4,7 +4,7 @@
   row-gap: 2rem;
 
   &:global {
-    animation: formFadeIn var(--transition-primary);
+    animation: fadeIn var(--transition-primary);
   }
 }
 

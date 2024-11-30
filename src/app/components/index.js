@@ -46,5 +46,6 @@ export { default as SettingsSidebar } from './sidebars/SettingsSidebar';
 export { default as EventDescriptionCard } from './cards/EventDescriptionCard';
 export { default as TaskNarrativeCard } from './cards/TaskNarrativeCard';
 export { default as TaskDescriptionCard } from './cards/TaskDescriptionCard';
+export { default as TaskResultCard } from './cards/TaskResultCard';
 
 export { default as ConfirmPopup } from './modals/ConfirmPopup';
