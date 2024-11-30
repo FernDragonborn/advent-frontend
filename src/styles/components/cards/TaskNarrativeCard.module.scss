@@ -13,7 +13,7 @@
   background-size: contain;
 
   @include desktop {
-    padding: 8rem 7.2rem;
+    padding: 8rem 4rem 8rem 9rem;
     flex-direction: row-reverse;
     column-gap: 4rem;
     width: 1100px;
@@ -37,6 +37,14 @@
   }
   &::-webkit-scrollbar-thumb {
     background-color: var(--color-scroll-thumb-card);
+  }
+
+  @include desktop {
+    padding-right: 0rem;
+    padding-left: 2.6rem;
+
+    direction: rtl;
+    text-align: left;
   }
 }
 

@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 
-import { Button, TaskNarrativeCard } from '@/components';
+import { Button, TaskDescriptionCard } from '@/components';
 import styles from '@/styles/pages/DayPage.module.scss';
 
 export default function Page() {
@@ -10,7 +10,8 @@ export default function Page() {
 
   return (
     <div className={styles.wrapper}>
-      <TaskNarrativeCard imgSrc={'/images/artifacts/artifact-default.png'} />
+      {/* <TaskNarrativeCard imgSrc={'/images/artifacts/artifact-default.png'} /> */}
+      <TaskDescriptionCard imgSrc={'/images/tasks/task-mobile.png'} />
 
       <Button
         className={styles.submitBtn}
