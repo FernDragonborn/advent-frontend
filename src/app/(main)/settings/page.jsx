@@ -26,19 +26,19 @@ const SECTIONS = {
 
 export default function Page() {
   const [currentSection, setCurrentSection] = useState(SECTIONS.SIDEBAR);
-  const isMobile = useIsMobileVersion();
+  const { isMobileVersion } = useIsMobileVersion();
 
   return (
     <main className={styles.wrapper}>
       <div className={styles.row}>
         <BackButton
           label={
-            currentSection !== SECTIONS.SIDEBAR && isMobile
+            currentSection !== SECTIONS.SIDEBAR && isMobileVersion
               ? 'Налаштування'
               : 'На головну'
           }
           onClick={
-            currentSection !== SECTIONS.SIDEBAR && isMobile
+            currentSection !== SECTIONS.SIDEBAR && isMobileVersion
               ? () => setCurrentSection(SECTIONS.SIDEBAR)
               : undefined
           }
@@ -46,18 +46,18 @@ export default function Page() {
         <h1 className={styles.title}>Налаштування</h1>
       </div>
       <div className={styles.container}>
-        {isMobile && currentSection !== SECTIONS.SIDEBAR ? null : (
+        {isMobileVersion && currentSection !== SECTIONS.SIDEBAR ? null : (
           <SettingsSidebar>
             <SidebarButton
               iconComponent={
                 currentSection === SECTIONS.PROFILE_FORM ||
-                (!isMobile && currentSection === SECTIONS.SIDEBAR)
+                (!isMobileVersion && currentSection === SECTIONS.SIDEBAR)
                   ? TaskSquareFilledSvg
                   : TaskSquareSvg
               }
               isActive={
                 currentSection === SECTIONS.PROFILE_FORM ||
-                (!isMobile && currentSection === SECTIONS.SIDEBAR && (
+                (!isMobileVersion && currentSection === SECTIONS.SIDEBAR && (
                   <ProfileForm />
                 ))
               }
@@ -77,7 +77,7 @@ export default function Page() {
           </SettingsSidebar>
         )}
         {(currentSection === SECTIONS.PROFILE_FORM ||
-          (!isMobile && currentSection === SECTIONS.SIDEBAR)) && (
+          (!isMobileVersion && currentSection === SECTIONS.SIDEBAR)) && (
           <ProfileForm />
         )}
         {currentSection === SECTIONS.PASSWORD_FORM && <ChangePasswordForm />}

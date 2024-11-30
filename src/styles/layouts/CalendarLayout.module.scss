@@ -38,7 +38,7 @@
   }
 }
 
-.title {
+h1.title:not(._) {
   margin-bottom: 0.8rem;
   justify-content: center;
 
@@ -48,11 +48,9 @@
   text-align: center;
 
   @include desktop {
-    .title {
-      margin-bottom: 2rem;
+    margin-bottom: 2rem;
 
-      font-size: 4.5rem;
-      line-height: 5.8rem;
-    }
+    font-size: 4.8rem;
+    line-height: 6.2rem;
   }
 }
