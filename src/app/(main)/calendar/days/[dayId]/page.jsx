@@ -21,15 +21,15 @@ export default function Page() {
 
   return (
     <div className={styles.wrapper}>
-      {/* <TaskNarrativeCard imgSrc={'/images/artifacts/artifact-default.png'} /> */}
-      <TaskDescriptionCard
+      <TaskNarrativeCard imgSrc={'/images/artifacts/artifact-default.png'} />
+      {/* <TaskDescriptionCard
         taskType={TASK_TYPE.MULTI_ANSWERS}
         imagesSrc={[
           '/images/tasks/task-desktop.png',
           '/images/tasks/task-mobile.png',
           '/images/auth/child.jpg',
         ]}
-      />
+      /> */}
       {/* <TaskResultCard /> */}
 
       <Button
