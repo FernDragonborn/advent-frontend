@@ -2,10 +2,9 @@
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { isServer, QueryClientProvider } from '@tanstack/react-query';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 import { makeQueryClient } from '@/utils';
+import { StyledToastContainer } from '@/app/components';
 
 let browserQueryClient;
 
@@ -31,22 +30,7 @@ const Providers = ({ children }) => {
           {children}
         </GoogleOAuthProvider>
       </QueryClientProvider>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        toastStyle={{
-          color: 'var(--color-text-primary)',
-          fontFamily: 'var(--font-grotesque), sans-serif',
-        }}
-      />
+      <StyledToastContainer />
     </>
   );
 };

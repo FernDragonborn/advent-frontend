@@ -8,6 +8,7 @@ export { default as CalendarCountdown } from './common/CalendarCountdown';
 export { default as Loader } from './common/Loader';
 export { default as Recaptcha } from './common/Recaptcha';
 export { default as FacebookPixel } from './common/FacebookPixel';
+export { default as StyledToastContainer } from './common/StyledToastContainer';
 
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';

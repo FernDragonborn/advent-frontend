@@ -9,6 +9,8 @@ import {
   TaskResultCard,
 } from '@/components';
 import styles from '@/styles/pages/DayPage.module.scss';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const TASK_TYPE = {
   DEFAULT: 'default',
@@ -18,6 +20,12 @@ const TASK_TYPE = {
 
 export default function Page() {
   const { dayId } = useParams();
+
+  // useEffect(() => {
+  //   toast('Ой, не зовсім те, але ти на правильному шляху! Спробуй ще раз!', {
+  //     type: 'error',
+  //   });
+  // }, []);
 
   return (
     <div className={styles.wrapper}>
