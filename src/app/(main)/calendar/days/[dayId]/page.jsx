@@ -1,16 +1,16 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 import {
   Button,
+  CalendarBackButton,
   TaskDescriptionCard,
   TaskNarrativeCard,
   TaskResultCard,
 } from '@/components';
 import styles from '@/styles/pages/DayPage.module.scss';
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
 
 const TASK_TYPE = {
   DEFAULT: 'default',
@@ -28,9 +28,15 @@ export default function Page() {
   // }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <TaskNarrativeCard imgSrc={'/images/artifacts/artifact-default.png'} />
-      {/* <TaskDescriptionCard
+    <>
+      <div className={styles.block}>
+        <CalendarBackButton className={styles.backBtn} />
+        <h1 className={styles.title}>День {dayId}</h1>
+      </div>
+
+      <div className={styles.wrapper}>
+        {/* <TaskNarrativeCard imgSrc={'/images/artifacts/artifact-default.png'} /> */}
+        {/* <TaskDescriptionCard
         taskType={TASK_TYPE.MULTI_ANSWERS}
         imagesSrc={[
           '/images/tasks/task-desktop.png',
@@ -38,14 +44,15 @@ export default function Page() {
           '/images/auth/child.jpg',
         ]}
       /> */}
-      {/* <TaskResultCard /> */}
+        <TaskResultCard />
 
-      <Button
-        className={styles.submitBtn}
-        appearance="orange"
-        onClick={() => null}>
-        Продовжити
-      </Button>
-    </div>
+        <Button
+          className={styles.submitBtn}
+          appearance="orange"
+          onClick={() => null}>
+          Продовжити
+        </Button>
+      </div>
+    </>
   );
 }

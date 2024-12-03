@@ -1,24 +1,11 @@
-'use client';
-
-import { useParams } from 'next/navigation';
-
-import { CalendarBackButton, HeroSection } from '@/components';
+import { HeroSection } from '@/components';
 import styles from '@/styles/layouts/CalendarLayout.module.scss';
 
 export default function Layout({ children }) {
-  const { dayId } = useParams();
-
   return (
     <main className={styles.wrapper}>
       <HeroSection>
-        <div className={styles.container}>
-          <div className={styles.block}>
-            <CalendarBackButton className={styles.backBtn} />
-            <h1 className={styles.title}>День {dayId}</h1>
-          </div>
-
-          {children}
-        </div>
+        <div className={styles.container}>{children}</div>
       </HeroSection>
     </main>
   );

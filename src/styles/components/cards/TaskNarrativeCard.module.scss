@@ -14,7 +14,7 @@
 
   &:global {
     animation: fadeIn var(--transition-primary);
-    animation-duration: 1500ms;
+    animation-duration: 1000ms;
   }
 
   @include desktop {

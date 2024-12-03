@@ -11,10 +11,11 @@
 
   background: url('/images/tasks/task-completed-bg-mobile.png') no-repeat center;
   background-size: contain;
+  overflow: hidden;
 
   &:global {
     animation: fadeIn var(--transition-primary);
-    animation-duration: 1500ms;
+    animation-duration: 1000ms;
   }
 
   @include desktop {
@@ -37,6 +38,7 @@
   height: 175px;
 
   object-fit: contain;
+  animation: enterPortal 750ms ease-out 750ms 1 both;
 
   @include desktop {
     margin-bottom: 0;
@@ -81,5 +83,27 @@
     font-size: 20px;
     line-height: 28px;
     text-indent: 24px;
+  }
+}
+
+@keyframes enterPortal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes enterText {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
   }
 }

@@ -10,30 +10,37 @@ import { DAY_STATUS, EVENT_END_DATE, EVENT_START_DATE } from '@/constants';
 import styles from '@/styles/pages/CalendarPage.module.scss';
 
 export default function Page() {
-  const [currentMoment, setCurrentMoment] = useState(moment());
+  const [currentDay, setCurrentDay] = useState(0);
+  const [currentMoment, setCurrentMoment] = useState(null);
 
   useLayoutEffect(() => {
-    setCurrentMoment(moment());
+    const newMoment = moment();
+
+    setCurrentMoment(newMoment);
+    setCurrentDay(newMoment.get('date'));
   }, []);
 
   return (
     <>
+      <h1 className={styles.title}>День {currentDay}</h1>
       <ul className={styles.days}>
         {Array.from(Array(25).keys()).map((val, index) => {
           const disabled = false;
-          // currentMoment.isBefore(moment(EVENT_START_DATE).utc(true)) ||
-          //   currentMoment.isAfter(moment(EVENT_END_DATE).utc(true));
-          const status = currentMoment.isBefore(
-            moment(EVENT_START_DATE).utc(true),
-          )
-            ? DAY_STATUS.UPCOMING
-            : DAY_STATUS.ACTIVE;
+          const status =
+            currentMoment?.isBefore?.(moment(EVENT_START_DATE).utc(true)) &&
+            index !== 1
+              ? DAY_STATUS.UPCOMING
+              : DAY_STATUS.ACTIVE;
           const dayNumber = index + 1;
 
           return (
             <li
               key={val}
-              className={clsx(styles.day, disabled && styles.disabled)}>
+              className={clsx(
+                styles.day,
+                status === DAY_STATUS.ACTIVE && styles.active,
+                disabled && styles.disabled,
+              )}>
               <Link href={disabled ? '' : `/calendar/days/${index}`}>
                 <Image
                   src={`/images/days/${status}/day-${dayNumber}-${status}.png`}
