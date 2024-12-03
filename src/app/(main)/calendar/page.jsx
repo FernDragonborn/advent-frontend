@@ -26,11 +26,11 @@ export default function Page() {
       <ul className={styles.days}>
         {Array.from(Array(25).keys()).map((val, index) => {
           const disabled = false;
-          const status =
-            currentMoment?.isBefore?.(moment(EVENT_START_DATE).utc(true)) &&
-            index !== 1
-              ? DAY_STATUS.UPCOMING
-              : DAY_STATUS.ACTIVE;
+          const status = currentMoment?.isBefore?.(
+            moment(EVENT_START_DATE).utc(true),
+          )
+            ? DAY_STATUS.UPCOMING
+            : DAY_STATUS.ACTIVE;
           const dayNumber = index + 1;
 
           return (

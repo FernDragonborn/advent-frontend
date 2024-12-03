@@ -9,6 +9,7 @@ export { default as Loader } from './common/Loader';
 export { default as Recaptcha } from './common/Recaptcha';
 export { default as FacebookPixel } from './common/FacebookPixel';
 export { default as StyledToastContainer } from './common/StyledToastContainer';
+export { default as VideoPlayer } from './common/VideoPlayer';
 
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';

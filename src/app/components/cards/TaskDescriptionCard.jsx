@@ -13,7 +13,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/effect-fade';
 import 'swiper/css/controller';
 
-import { Loader, TextInputField } from '@/components';
+import { Loader, TextInputField, VideoPlayer } from '@/components';
 import { useIsMobileVersion } from '@/hooks';
 import { ArrowRightSvg } from '@/svgs';
 import styles from '@/styles/components/cards/TaskDescriptionCard.module.scss';
@@ -34,6 +34,11 @@ const TaskDescriptionCard = ({ taskType, imagesSrc }) => {
 
   return (
     <div className={styles.card}>
+      <VideoPlayer
+        className={styles.video}
+        src={'https://www.youtube.com/embed/obWPbMo-QTE?si=w4I__ENJV9Pc685O'}
+      />
+
       {isVersionChecked ? (
         <>
           <div className={styles.images}>
