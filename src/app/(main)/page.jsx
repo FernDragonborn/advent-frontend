@@ -1,5 +1,6 @@
 'use client';
 
+import { useLayoutEffect, useState } from 'react';
 import { getCookie } from 'cookies-next';
 import Link from 'next/link';
 
@@ -16,7 +17,11 @@ import { COOKIES } from '@/constants';
 import styles from '@/styles/pages/HomePage.module.scss';
 
 export default function Page() {
-  const isLoggedIn = !!getCookie(COOKIES.ACCESS_TOKEN);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsLoggedIn(!!getCookie(COOKIES.ACCESS_TOKEN));
+  }, []);
 
   return (
     <main className={styles.wrapper}>

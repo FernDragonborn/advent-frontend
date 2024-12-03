@@ -35,3 +35,4 @@ export { default as CheckSvg } from './check.svg';
 export { default as LogoMonSvg } from './logo-mon.svg';
 export { default as GoogleSvg } from './google.svg';
 export { default as LinkedInSvg } from './linkedIn.svg';
+export { default as GamingLeftArrow } from './gaming-left-arrow.svg';

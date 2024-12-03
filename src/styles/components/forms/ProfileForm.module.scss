@@ -8,7 +8,7 @@
   background-color: var(--color-accent-orange-light);
 
   &:global {
-    animation: formFadeIn var(--transition-primary);
+    animation: fadeIn var(--transition-primary);
   }
 
   @include desktop {

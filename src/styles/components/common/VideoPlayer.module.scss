@@ -1,0 +1,12 @@
+.wrapper {
+  width: 100%;
+  height: 166px;
+
+  @include desktop {
+    width: 424px;
+    height: 256px;
+
+    border: 24px solid #fffae1;
+    border-radius: 8px;
+  }
+}

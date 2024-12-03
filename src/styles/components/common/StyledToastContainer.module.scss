@@ -1,0 +1,20 @@
+.wrapper {
+  left: auto;
+  right: 16px;
+  bottom: 16px;
+
+  padding: 0;
+  max-width: 400px;
+  width: calc(100% - 32px);
+
+  transform: translate(0);
+}
+
+.toast {
+  margin-bottom: 0;
+
+  color: var(--color-text-primary);
+  font-family: var(--font-grotesque), sans-serif;
+
+  border-radius: 8px;
+}

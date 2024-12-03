@@ -1,0 +1,172 @@
+.card {
+  position: relative;
+
+  margin: 0 auto;
+  width: 345px;
+  height: 506px;
+
+  background: url('/images/tasks/task-bg-mobile.png') no-repeat center;
+  background-size: contain;
+
+  &:global {
+    animation: fadeIn var(--transition-primary);
+    animation-duration: 1000ms;
+  }
+
+  @include desktop {
+    width: 887px;
+    height: 500px;
+
+    background: url('/images/tasks/task-bg-desktop.png') no-repeat center;
+    background-size: contain;
+  }
+}
+
+.images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+
+  overflow: hidden;
+}
+
+.taskImg {
+  height: 100%;
+  object-fit: contain;
+
+  &:global {
+    animation: fadeIn var(--transition-primary);
+  }
+}
+
+.container {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  padding: 0 30px;
+
+  @include desktop {
+    bottom: 40px;
+
+    padding: 0 96px;
+  }
+}
+
+.footer {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
+  @include desktop {
+    margin: 0 auto 12px;
+    justify-content: center;
+    width: min-content;
+    column-gap: 34px;
+  }
+}
+
+.inputs {
+  display: flex;
+  align-items: center;
+  column-gap: 76px;
+
+  & > * {
+    flex-grow: 1;
+  }
+}
+
+.navigationBtn {
+  margin: -18px;
+  padding: 18px;
+  display: inline-flex;
+
+  span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+    background-color: var(--color-accent-blue);
+    transition: var(--transition-primary);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:first-child {
+    transform: scaleX(-1);
+  }
+
+  &:hover,
+  &:focus {
+    span {
+      background-color: var(--color-accent-blue-active);
+    }
+  }
+
+  @include desktop {
+    span {
+      width: 28px;
+      height: 28px;
+    }
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+.pagination {
+  @include horizontal-scrollbar;
+
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4px;
+  overflow: auto;
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-scroll-track-card);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll-thumb-card);
+  }
+
+  @include desktop {
+    flex: -1;
+  }
+}
+
+.paginationBullet {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  background-color: var(--color-pagination-dot-cart);
+
+  transition: var(--transition-primary);
+
+  @include desktop {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+span.paginationBulletActive {
+  background-color: var(--color-pagination-active-dot-cart);
+}
+
+.video {
+}

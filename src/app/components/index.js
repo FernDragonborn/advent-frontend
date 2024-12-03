@@ -6,6 +6,10 @@ export { default as UserScore } from './common/UserScore';
 export { default as Socials } from './common/Socials';
 export { default as CalendarCountdown } from './common/CalendarCountdown';
 export { default as Loader } from './common/Loader';
+export { default as Recaptcha } from './common/Recaptcha';
+export { default as FacebookPixel } from './common/FacebookPixel';
+export { default as StyledToastContainer } from './common/StyledToastContainer';
+export { default as VideoPlayer } from './common/VideoPlayer';
 
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';
@@ -17,6 +21,7 @@ export { default as Button } from './buttons/Button';
 export { default as SidebarButton } from './buttons/SidebarButton';
 export { default as BackButton } from './buttons/BackButton';
 export { default as GoogleButton } from './buttons/GoogleButton';
+export { default as CalendarBackButton } from './buttons/CalendarBackButton';
 
 export { default as TextInputField } from './formControls/TextInputField';
 export { default as PhoneInputField } from './formControls/PhoneInputField';
@@ -43,5 +48,7 @@ export { default as SettingsSidebar } from './sidebars/SettingsSidebar';
 
 export { default as EventDescriptionCard } from './cards/EventDescriptionCard';
 export { default as TaskNarrativeCard } from './cards/TaskNarrativeCard';
+export { default as TaskDescriptionCard } from './cards/TaskDescriptionCard';
+export { default as TaskResultCard } from './cards/TaskResultCard';
 
 export { default as ConfirmPopup } from './modals/ConfirmPopup';

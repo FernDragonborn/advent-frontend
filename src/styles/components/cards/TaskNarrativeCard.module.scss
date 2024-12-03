@@ -5,19 +5,24 @@
   flex-direction: column;
 
   margin: 0 auto;
-  padding: 3.2rem 1.4rem 3.2rem 2.4rem;
+  padding: 32px 14px 32px 24px;
   width: 345px;
   height: 506px;
 
   background: url('/images/tasks/task-bg-mobile.png') no-repeat center;
   background-size: contain;
 
+  &:global {
+    animation: fadeIn var(--transition-primary);
+    animation-duration: 1000ms;
+  }
+
   @include desktop {
-    padding: 8rem 7.2rem;
+    padding: 80px 40px 60px 40px;
     flex-direction: row-reverse;
-    column-gap: 4rem;
-    width: 1100px;
-    height: 720px;
+    column-gap: 40px;
+    width: 887px;
+    height: 500px;
 
     background: url('/images/tasks/task-bg-desktop.png') no-repeat center;
     background-size: contain;
@@ -26,7 +31,7 @@
 
 .container {
   @include vertical-scrollbar;
-  padding-right: 1rem;
+  padding-right: 10px;
   flex: 1;
   height: 100%;
 
@@ -38,31 +43,43 @@
   &::-webkit-scrollbar-thumb {
     background-color: var(--color-scroll-thumb-card);
   }
+
+  @include desktop {
+    padding-right: 0;
+    padding-left: 26px;
+
+    direction: rtl;
+    text-align: left;
+  }
 }
 
 .narrativeImg {
-  margin: 0 auto 2.6rem;
+  margin: 0 auto 26px;
   width: 126px;
   height: 133px;
 
   object-fit: contain;
 
   @include desktop {
-    margin-top: 10rem;
-    width: 290px;
-    height: 295px;
+    margin-top: 60px;
+    width: 234px;
+    height: 238px;
   }
 }
 
 .text {
-  font-size: 1.2rem;
-  line-height: 1.7rem;
+  font-size: 12px;
+  line-height: 17px;
 
   color: var(--color-text-card);
-  text-indent: 1rem;
+  text-indent: 10px;
 
   @include desktop {
-    font-size: 2.2rem;
-    line-height: 3.08rem;
+    font-size: 22px;
+    line-height: 30.8px;
+    text-indent: 24px;
+
+    direction: ltr;
+    text-align: left;
   }
 }

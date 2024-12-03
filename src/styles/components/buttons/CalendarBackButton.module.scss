@@ -1,0 +1,22 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 3.6rem;
+    height: 2.9rem;
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+
+  @include desktop {
+    svg {
+      width: 5.8rem;
+      height: 4.8rem;
+    }
+  }
+}

@@ -16,9 +16,9 @@ const Footer = () => {
             <LogoEcwSvg width={162} height={72} />
           </div>
           <p className={styles.text}>
-            Проєкт реалізується громадською організацією «Навчай для України» в
-            рамках програми «MYRPUA» за фінансування Education Cannot Wait
-            (ECW).
+            Проєкт реалізується ГО «Навчай для України» в рамках програми
+            «MYRPUA» за підтримки Міністерства освіти і науки України та
+            фінансування Education Cannot Wait (ECW).
           </p>
         </div>
 

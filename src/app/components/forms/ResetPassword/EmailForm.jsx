@@ -1,10 +1,21 @@
+'use client';
+
+import { useRef, useState } from 'react';
 import { Controller } from 'react-hook-form';
 
-import { Button, TextInputField } from '@/components';
+import { Button, Recaptcha, TextInputField } from '@/components';
 import { MailSvg } from '@/svgs';
 import styles from '@/styles/components/forms/AuthForm.module.scss';
 
-const UserInfoForm = ({ formControl, isLoading, onSubmit, onBack }) => {
+const ResetPasswordEmailForm = ({
+  formControl,
+  isLoading,
+  onSubmit,
+  onBack,
+}) => {
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+  const recaptchaRef = useRef(null);
+
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div>
@@ -27,11 +38,16 @@ const UserInfoForm = ({ formControl, isLoading, onSubmit, onBack }) => {
         )}
       />
 
+      <Recaptcha ref={recaptchaRef} setIsVerified={setIsRecaptchaVerified} />
+
       <div className={styles.actions}>
         <Button appearance="bordered" arrowPosition="left" onClick={onBack}>
           Назад
         </Button>
-        <Button type="submit" isLoading={isLoading}>
+        <Button
+          type="submit"
+          isLoading={isLoading}
+          disabled={!isRecaptchaVerified}>
           Продовжити
         </Button>
       </div>
@@ -39,4 +55,4 @@ const UserInfoForm = ({ formControl, isLoading, onSubmit, onBack }) => {
   );
 };
 
-export default UserInfoForm;
+export default ResetPasswordEmailForm;

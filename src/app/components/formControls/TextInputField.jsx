@@ -34,14 +34,16 @@ const TextInputField = ({
         </label>
       )}
       {multiline ? (
-        <textarea
-          {...props}
-          className={styles.textarea}
-          aria-invalid={error ? 'true' : 'false'}
-          id={name}
-          name={name}
-          placeholder={placeholder}
-        />
+        <div className={styles.textareaWrapper}>
+          <textarea
+            {...props}
+            className={styles.textarea}
+            aria-invalid={error ? 'true' : 'false'}
+            id={name}
+            name={name}
+            placeholder={placeholder}
+          />
+        </div>
       ) : (
         <div className={styles.inputWrapper}>
           <input

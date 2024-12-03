@@ -24,7 +24,7 @@
   }
 }
 
-@mixin horizontal-scrollbar($height: 0.5rem) {
+@mixin horizontal-scrollbar($height: 0.6rem) {
   &::-webkit-scrollbar {
     height: $height;
   }
@@ -41,7 +41,7 @@
   }
 }
 
-@mixin vertical-scrollbar($width: 0.5rem) {
+@mixin vertical-scrollbar($width: 0.6rem) {
   &::-webkit-scrollbar {
     width: $width;
   }

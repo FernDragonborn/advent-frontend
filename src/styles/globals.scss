@@ -58,7 +58,16 @@ a {
   overflow-y: hidden;
 }
 
-@keyframes formFadeIn {
+.absolute-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
   0% {
     opacity: 0.25;
   }
