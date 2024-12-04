@@ -1,6 +1,7 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useLayoutEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import {
@@ -20,12 +21,19 @@ const TASK_TYPE = {
 
 export default function Page() {
   const { dayId } = useParams();
+  const router = useRouter();
 
   // useEffect(() => {
   //   toast('Ой, не зовсім те, але ти на правильному шляху! Спробуй ще раз!', {
   //     type: 'error',
   //   });
   // }, []);
+
+  useLayoutEffect(() => {
+    if (dayId < 6 || dayId > 30) {
+      router.replace('/calendar');
+    }
+  }, [dayId]);
 
   return (
     <>
