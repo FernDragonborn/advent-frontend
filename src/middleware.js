@@ -30,7 +30,10 @@ export async function middleware(request) {
   }
 
   // protected routes handler
-  if (protectedRoutes.includes(url.pathname)) {
+  if (
+    protectedRoutes.includes(url.pathname) ||
+    protectedRoutes.some(route => url.pathname?.startsWith(route))
+  ) {
     if (isTokenValid(currentAccessToken)) {
       return NextResponse.next();
     }
