@@ -10,7 +10,7 @@ const Recaptcha = ({ setIsVerified }, ref) => {
   const handleCaptchaSubmission = async token => {
     try {
       if (token) {
-        await axios.post('/api/recaptcha', { token });
+        await axios.post('/frontend-api/recaptcha', { token });
         setIsVerified(true);
       }
     } catch (e) {
