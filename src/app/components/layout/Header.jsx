@@ -88,7 +88,7 @@ const Header = () => {
       {isLoggedIn && (
         <UserScore
           className={styles.score}
-          score={profileQuery.data?.score || 0}
+          score={profileQuery.data?.total_task_points || 0}
         />
       )}
 

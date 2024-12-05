@@ -68,7 +68,7 @@ const MobileMenu = ({ isOpen, onHide }) => {
 
         {isLoggedIn ? (
           <div className={clsx(styles.actions, styles.authedActions)}>
-            <UserScore score={profileQuery.data?.score || 0} />
+            <UserScore score={profileQuery.data?.total_task_points || 0} />
             <Button
               appearance="bordered"
               arrowPosition="none"

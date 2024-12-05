@@ -1,13 +1,5 @@
 import { decodeToken } from '@/utils';
 
-// {
-//   token_type: 'access' | 'refresh',
-//   exp: 1732651281,
-//   iat: 1732650381,
-//   jti: 'string',
-//   user_id: number
-// }
-
 export const isTokenValid = token => {
   try {
     const decodedToken = decodeToken(token);
