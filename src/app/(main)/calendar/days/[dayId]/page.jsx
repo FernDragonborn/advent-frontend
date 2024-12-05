@@ -68,6 +68,9 @@ export default function Page() {
         queryClient.invalidateQueries({
           queryKey: QUERY_KEYS.auth.allTasks,
         });
+        queryClient.invalidateQueries({
+          queryKey: QUERY_KEYS.auth.profile,
+        });
       },
       onError: () => toast('Щось пішло не так :(', { type: 'error' }),
     },
