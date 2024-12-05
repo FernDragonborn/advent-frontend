@@ -49,8 +49,6 @@ export default function Page() {
   const { control, handleSubmit, setError } = useForm();
   const queryClient = useQueryClient();
 
-  const dayNumber = due_date ? moment(due_date).date() : '';
-
   const profileQuery = useFetchProfile();
   const taskQuery = useAuthQuery({
     queryKey: QUERY_KEYS.auth.getTaskById(dayId),
@@ -96,6 +94,8 @@ export default function Page() {
     () => !!taskResponsesQuery.data?.find?.(({ task }) => task === id),
     [taskResponsesQuery.data, id],
   );
+
+  const dayNumber = due_date ? moment(due_date).date() : '';
 
   // redirect
   useLayoutEffect(() => {
@@ -256,12 +256,11 @@ export default function Page() {
       </div>
 
       <div>
+        {taskStep === TASK_STEP.INTRO && (
+          <TaskNarrativeCard imgSrc={intro_image} data={introductoryWord} />
+        )}
         {taskStep === TASK_STEP.NARRATIVE && (
-          <TaskNarrativeCard
-            imgSrc={intro_image}
-            data={introductoryWord}
-            text={intro_text}
-          />
+          <TaskNarrativeCard imgSrc={intro_image} text={intro_text} />
         )}
         {taskStep === TASK_STEP.DESCRIPTION && (
           <TaskDescriptionCard
