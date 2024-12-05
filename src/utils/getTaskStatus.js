@@ -6,7 +6,7 @@ import { getCurrentUkraineTime } from '@/utils';
 export const getTaskStatus = (dueDate, isTaskCompleted) => {
   const localDate = momentTz.tz(dueDate, 'YYYY-MM-DD', 'Europe/Kyiv');
   // const currentLocalDate = getCurrentUkraineTime();
-  const currentLocalDate = momentTz('2024-12-10T00:00:00Z');
+  const currentLocalDate = momentTz('2024-12-08T00:00:00Z');
 
   if (isTaskCompleted) {
     return DAY_STATUS.COMPLETED;

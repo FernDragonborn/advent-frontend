@@ -70,12 +70,7 @@ const TaskDescriptionCard = ({
                   {type === CONTENT_TYPE.VIDEO ? (
                     <div className={styles.videoWrapper}>
                       <p className={styles.text}>Переглянь відео.</p>
-                      <VideoPlayer
-                        className={styles.video}
-                        src={
-                          'https://www.youtube.com/embed/obWPbMo-QTE?si=w4I__ENJV9Pc685O'
-                        }
-                      />
+                      <VideoPlayer className={styles.video} src={src} />
                     </div>
                   ) : (
                     <Image

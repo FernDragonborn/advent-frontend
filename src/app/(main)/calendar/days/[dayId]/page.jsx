@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
@@ -40,6 +40,8 @@ const CONTENT_TYPE = {
 
 export default function Page() {
   const [taskStep, setTaskStep] = useState(TASK_STEP.NARRATIVE);
+
+  const shouldInvalidateTasksResponsesRef = useRef(false);
   const { dayId } = useParams();
   const router = useRouter();
   const { isMobileVersion, isVersionChecked } = useIsMobileVersion();
@@ -62,9 +64,7 @@ export default function Page() {
       mutationFn: api.auth.addTaskResponses,
       onSuccess: () => {
         setTaskStep(TASK_STEP.FINAL);
-        queryClient.invalidateQueries({
-          queryKey: QUERY_KEYS.auth.tasksResponses,
-        });
+        shouldInvalidateTasksResponsesRef.current = true;
         queryClient.invalidateQueries({
           queryKey: QUERY_KEYS.auth.allTasks,
         });
@@ -90,6 +90,14 @@ export default function Page() {
     () => !!taskResponsesQuery.data?.find?.(({ task }) => task === id),
     [taskResponsesQuery.data, id],
   );
+
+  useEffect(() => {
+    return () =>
+      shouldInvalidateTasksResponsesRef.current &&
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.auth.tasksResponses,
+      });
+  }, []);
 
   // redirect
   useLayoutEffect(() => {
@@ -180,6 +188,7 @@ export default function Page() {
       task_image_1_mob,
       task_image_2_mob,
       task_image_3_mob,
+      video_link,
     } = taskQuery.data || {};
     const images = [];
 
@@ -194,6 +203,7 @@ export default function Page() {
     }
 
     const data = [];
+    video_link && data.push({ type: CONTENT_TYPE.VIDEO, src: video_link });
     images.forEach(imgSrc =>
       data.push({ type: CONTENT_TYPE.IMAGE, src: imgSrc }),
     );
