@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
+import { Controller as FormController } from 'react-hook-form';
 import { Controller, EffectFade, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -15,45 +16,35 @@ import 'swiper/css/controller';
 import { TextInputField, VideoPlayer } from '@/components';
 import { ArrowRightSvg } from '@/svgs';
 import styles from '@/styles/components/cards/TaskDescriptionCard.module.scss';
+import clsx from 'clsx';
 
-const TASK_TYPE = {
-  DEFAULT: 'default',
-  OPEN_QUESTION: 'open-question',
-  MULTI_ANSWERS: 'multi-answers',
+const CONTENT_TYPE = {
+  IMAGE: 'image',
+  VIDEO: 'video',
 };
 
 const TaskDescriptionCard = ({
-  taskType,
-  imagesSrc,
+  data,
   answersNumber,
   isMobileVersion,
+  formControl,
 }) => {
+  const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
   const [controlledSwiper, setControlledSwiper] = useState(undefined);
   const swiperRef = useRef(null);
 
   const onPressPrevBtn = () => swiperRef.current?.slidePrev?.();
   const onPressNextBtn = () => swiperRef.current?.slideNext?.();
 
+  const answersIndexes = Array.from(Array(answersNumber).keys());
+  const firstItem = data?.[0];
+
   return (
     <div className={styles.card}>
-      {/* <VideoPlayer
-        className={styles.video}
-        src={'https://www.youtube.com/embed/obWPbMo-QTE?si=w4I__ENJV9Pc685O'}
-      /> */}
-
       <div className={styles.images}>
-        {imagesSrc?.length < 2 ? (
-          <Image
-            className={styles.taskImg}
-            src={imagesSrc?.[0]}
-            width={1100}
-            height={620}
-            alt="Завдання"
-          />
-        ) : (
+        {data?.length > 1 ? (
           <Swiper
             ref={swiperRef}
-            loop
             spaceBetween={0}
             slidesPerView={1}
             modules={[Controller, EffectFade, Pagination]}
@@ -67,43 +58,78 @@ const TaskDescriptionCard = ({
             }}
             effect="fade"
             fadeEffect={{ crossFade: true }} // Optional for smooth cross-fading
+            onActiveIndexChange={swiper =>
+              setSwiperActiveIndex(swiper.activeIndex)
+            }
             onBeforeInit={swiper => {
               swiperRef.current = swiper;
             }}>
-            {imagesSrc?.map?.(src => {
+            {data?.map?.(({ type, src }) => {
               return (
                 <SwiperSlide key={src}>
-                  <Image
-                    key={src}
-                    className={styles.taskImg}
-                    src={src}
-                    width={1100}
-                    height={620}
-                    alt="Завдання"
-                  />
+                  {type === CONTENT_TYPE.VIDEO ? (
+                    <div className={styles.videoWrapper}>
+                      <p className={styles.text}>Переглянь відео.</p>
+                      <VideoPlayer
+                        className={styles.video}
+                        src={
+                          'https://www.youtube.com/embed/obWPbMo-QTE?si=w4I__ENJV9Pc685O'
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <Image
+                      key={src}
+                      className={styles.taskImg}
+                      src={src}
+                      width={1100}
+                      height={620}
+                      alt="Завдання"
+                    />
+                  )}
                 </SwiperSlide>
               );
             })}
           </Swiper>
+        ) : firstItem?.type === CONTENT_TYPE.VIDEO ? (
+          <VideoPlayer
+            className={styles.video}
+            src={
+              firstItem?.src ||
+              'https://www.youtube.com/embed/obWPbMo-QTE?si=w4I__ENJV9Pc685O'
+            }
+          />
+        ) : (
+          <Image
+            className={styles.taskImg}
+            src={firstItem?.src}
+            width={1100}
+            height={620}
+            alt="Завдання"
+          />
         )}
       </div>
 
       <div className={styles.container}>
-        {imagesSrc?.length > 1 && isMobileVersion && (
+        {data?.length > 1 && (
           <div className={styles.footer}>
             <button
-              className={styles.navigationBtn}
+              className={clsx(
+                styles.navigationBtn,
+                swiperActiveIndex === 0 && styles.disabled,
+              )}
               type="button"
               onClick={onPressPrevBtn}>
               <span>
                 <ArrowRightSvg width={20} height={20} />
               </span>
             </button>
-
             <div className={styles.pagination} />
-
             <button
-              className={styles.navigationBtn}
+              className={clsx(
+                styles.navigationBtn,
+                swiperActiveIndex === data?.length - 1 && styles.disabled,
+              )}
               type="button"
               onClick={onPressNextBtn}>
               <span>
@@ -113,14 +139,21 @@ const TaskDescriptionCard = ({
           </div>
         )}
 
-        {imagesSrc?.length < 2 ? (
-          <TextInputField
-            placeholder="Введіть відповідь"
-            multiline={!imagesSrc?.length}
+        {answersNumber < 2 ? (
+          <FormController
+            name="answer_1"
+            control={formControl}
+            render={({ field, fieldState: { error } }) => (
+              <TextInputField
+                placeholder="Введіть відповідь"
+                multiline={!answersNumber}
+                error={error}
+                {...field}
+              />
+            )}
           />
         ) : isMobileVersion ? (
           <Swiper
-            loop
             enabled={false}
             spaceBetween={0}
             slidesPerView={1}
@@ -130,19 +163,43 @@ const TaskDescriptionCard = ({
             effect="fade"
             fadeEffect={{ crossFade: true }}
             onSwiper={setControlledSwiper}>
-            {imagesSrc?.map?.((src, index) => {
+            {answersIndexes.map(val => {
               return (
-                <SwiperSlide key={index}>
-                  <TextInputField placeholder="Введіть відповідь" />
+                <SwiperSlide key={val}>
+                  <FormController
+                    name={`answer_${val + 1}`}
+                    control={formControl}
+                    render={({ field, fieldState: { error } }) => (
+                      <TextInputField
+                        placeholder="Введіть відповідь"
+                        error={error}
+                        {...field}
+                      />
+                    )}
+                  />
                 </SwiperSlide>
               );
             })}
           </Swiper>
         ) : (
           <div className={styles.inputs}>
-            <TextInputField placeholder="Введіть відповідь" />
-            <TextInputField placeholder="Введіть відповідь" />
-            <TextInputField placeholder="Введіть відповідь" />
+            {answersIndexes.map(val => {
+              return (
+                <SwiperSlide key={val}>
+                  <FormController
+                    name={`answer_${val + 1}`}
+                    control={formControl}
+                    render={({ field, fieldState: { error } }) => (
+                      <TextInputField
+                        placeholder="Введіть відповідь"
+                        error={error}
+                        {...field}
+                      />
+                    )}
+                  />
+                </SwiperSlide>
+              );
+            })}
           </div>
         )}
       </div>

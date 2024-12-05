@@ -59,6 +59,7 @@
   height: 133px;
 
   object-fit: contain;
+  animation: enterPortal 750ms ease-out 750ms 1 both;
 
   @include desktop {
     margin-top: 60px;
@@ -81,5 +82,16 @@
 
     direction: ltr;
     text-align: left;
+  }
+}
+
+@keyframes enterPortal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
 
@@ -13,17 +14,17 @@ import {
   TaskNarrativeCard,
   TaskResultCard,
 } from '@/components';
-import { useAuthMutation, useAuthQuery, useIsMobileVersion } from '@/hooks';
+import {
+  useAuthMutation,
+  useAuthQuery,
+  useFetchProfile,
+  useIsMobileVersion,
+} from '@/hooks';
 import { api } from '@/services';
-import { getCurrentUkraineTime, getTaskStatus } from '@/utils';
+import { getCurrentUkraineTime, getTaskStatus, isAnswerCorrect } from '@/utils';
 import { DAY_STATUS } from '@/constants';
 import styles from '@/styles/pages/DayPage.module.scss';
-
-const TASK_TYPE = {
-  DEFAULT: 'default',
-  OPEN_QUESTION: 'open-question',
-  MULTI_ANSWERS: 'multi-answers',
-};
+import moment from 'moment';
 
 const TASK_STEP = {
   NARRATIVE: 'narrative',
@@ -31,12 +32,19 @@ const TASK_STEP = {
   FINAL: 'final',
 };
 
+const CONTENT_TYPE = {
+  IMAGE: 'image',
+  VIDEO: 'video',
+};
+
 export default function Page() {
-  const [taskStep, setTaskStep] = useState(TASK_STEP.DESCRIPTION);
+  const [taskStep, setTaskStep] = useState(TASK_STEP.NARRATIVE);
   const { dayId } = useParams();
   const router = useRouter();
   const { isMobileVersion, isVersionChecked } = useIsMobileVersion();
+  const { control, handleSubmit, setError } = useForm();
 
+  const profileQuery = useFetchProfile();
   const taskQuery = useAuthQuery({
     queryKey: ['task', dayId],
     queryFn: () => api.auth.getTaskById(dayId),
@@ -47,22 +55,18 @@ export default function Page() {
     queryFn: () => api.auth.getTaskResponses(),
   });
 
-  const taskResponsesMutation = useAuthMutation({
-    mutationFn: () => api.auth.addTaskResponses(dayId),
-  });
-
-  // {
-  //   "task": 0,
-  //   "user": 0,
-  //   "is_correct": true,
-  //   "recorded_answer": "string"
-  // }
+  const taskResponsesMutation = useAuthMutation(
+    {
+      mutationFn: api.auth.addTaskResponses,
+      onSuccess: () => setTaskStep(TASK_STEP.FINAL),
+      onError: () => toast('Щось пішло не так :(', { type: 'error' }),
+    },
+    false,
+  );
 
   const {
     id,
-    group,
     due_date,
-    unlocks_artifact,
     intro_text,
     pk,
     outro_text,
@@ -89,7 +93,58 @@ export default function Page() {
 
   const onSubmit = () => {
     if (taskStep === TASK_STEP.DESCRIPTION) {
-      setTaskStep(TASK_STEP.FINAL);
+      const defaultParams = {
+        task: id,
+        user: profileQuery.data?.id,
+        is_correct: true,
+      };
+
+      if (!answersNumber) {
+        return handleSubmit(({ answer_1 }) => {
+          if (answer_1) {
+            taskResponsesMutation.mutate({
+              ...defaultParams,
+              recorded_answer: answer_1,
+            });
+          } else {
+            toast('Поле не може бути порожнім', { type: 'error' });
+            setError('answer_1');
+          }
+        })();
+      }
+
+      const { correct_answer_1, correct_answer_2, correct_answer_3 } =
+        taskQuery.data || {};
+
+      handleSubmit(data => {
+        let hasError = false;
+        const { answer_1, answer_2, answer_3 } = data || {};
+
+        if (isAnswerCorrect(correct_answer_1, answer_1)) {
+          hasError = true;
+          setError('answer_1');
+        }
+        if (isAnswerCorrect(correct_answer_2, answer_2)) {
+          hasError = true;
+          setError('answer_2');
+        }
+        if (isAnswerCorrect(correct_answer_3, answer_3)) {
+          hasError = true;
+          setError('answer_3');
+        }
+
+        if (hasError) {
+          toast(fail_text, { type: 'error' });
+        } else {
+          toast('Вірно!', { type: 'success' });
+          taskResponsesMutation.mutate({
+            ...defaultParams,
+            recorded_answer: [answer_1, answer_2, answer_3]
+              .filter(val => val)
+              .join(';'),
+          });
+        }
+      })();
     } else if (taskStep === TASK_STEP.FINAL) {
       router.replace('/calendar');
     } else {
@@ -128,7 +183,12 @@ export default function Page() {
       task_image_3 && images.push(task_image_3);
     }
 
-    return images;
+    const data = [];
+    images.forEach(imgSrc =>
+      data.push({ type: CONTENT_TYPE.IMAGE, src: imgSrc }),
+    );
+
+    return data;
   }, [taskQuery.data, isMobileVersion]);
 
   const answersNumber = useMemo(() => {
@@ -140,6 +200,8 @@ export default function Page() {
     if (correct_answer_3 !== '-') number += 1;
     return number;
   }, [taskQuery.data]);
+
+  const dayNumber = due_date ? moment(due_date).date() : '';
 
   return (
     <div className={styles.wrapper}>
@@ -153,7 +215,7 @@ export default function Page() {
 
       <div className={styles.block}>
         <CalendarBackButton className={styles.backBtn} onClick={onBack} />
-        <h1 className={styles.title}>День {dayId}</h1>
+        <h1 className={styles.title}>День {dayNumber}</h1>
       </div>
 
       <div>
@@ -162,10 +224,10 @@ export default function Page() {
         )}
         {taskStep === TASK_STEP.DESCRIPTION && (
           <TaskDescriptionCard
-            taskType={TASK_TYPE.MULTI_ANSWERS}
-            imagesSrc={taskImages}
+            data={taskImages}
             answersNumber={answersNumber}
             isMobileVersion={isMobileVersion}
+            formControl={control}
           />
         )}
         {taskStep === TASK_STEP.FINAL && (
@@ -178,6 +240,7 @@ export default function Page() {
         <Button
           className={styles.submitBtn}
           appearance="orange"
+          isLoading={taskResponsesMutation.isPending}
           onClick={onSubmit}>
           {taskStep === TASK_STEP.DESCRIPTION ? 'Надіслати' : 'Продовжити'}
         </Button>
