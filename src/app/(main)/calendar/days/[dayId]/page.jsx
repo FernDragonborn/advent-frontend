@@ -23,11 +23,12 @@ import {
 } from '@/hooks';
 import { api } from '@/services';
 import { getCurrentUkraineTime, getTaskStatus, isAnswerCorrect } from '@/utils';
-import { DAY_STATUS, QUERY_KEYS } from '@/constants';
+import { DAY_STATUS, introductoryWord, QUERY_KEYS } from '@/constants';
 import styles from '@/styles/pages/DayPage.module.scss';
 import moment from 'moment';
 
 const TASK_STEP = {
+  INTRO: 'intro',
   NARRATIVE: 'narrative',
   DESCRIPTION: 'description',
   FINAL: 'final',
@@ -47,6 +48,8 @@ export default function Page() {
   const { isMobileVersion, isVersionChecked } = useIsMobileVersion();
   const { control, handleSubmit, setError } = useForm();
   const queryClient = useQueryClient();
+
+  const dayNumber = due_date ? moment(due_date).date() : '';
 
   const profileQuery = useFetchProfile();
   const taskQuery = useAuthQuery({
@@ -94,14 +97,6 @@ export default function Page() {
     [taskResponsesQuery.data, id],
   );
 
-  useEffect(() => {
-    return () =>
-      shouldInvalidateTasksResponsesRef.current &&
-      queryClient.invalidateQueries({
-        queryKey: QUERY_KEYS.auth.tasksResponses,
-      });
-  }, []);
-
   // redirect
   useLayoutEffect(() => {
     if (
@@ -111,6 +106,20 @@ export default function Page() {
       router.replace('/calendar');
     }
   }, [due_date, isDayCompleted]);
+
+  useLayoutEffect(() => {
+    if (dayNumber === 6) {
+      setTaskStep(TASK_STEP.INTRO);
+    }
+  }, [dayNumber]);
+
+  useEffect(() => {
+    return () =>
+      shouldInvalidateTasksResponsesRef.current &&
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.auth.tasksResponses,
+      });
+  }, []);
 
   const onSubmit = () => {
     if (taskStep === TASK_STEP.DESCRIPTION) {
@@ -168,14 +177,21 @@ export default function Page() {
       })();
     } else if (taskStep === TASK_STEP.FINAL) {
       router.replace('/calendar');
+    } else if (taskStep === TASK_STEP.INTRO) {
+      setTaskStep(TASK_STEP.NARRATIVE);
     } else {
       setTaskStep(TASK_STEP.DESCRIPTION);
     }
   };
 
   const onBack = () => {
-    if (taskStep === TASK_STEP.NARRATIVE) {
+    if (
+      (taskStep === TASK_STEP.NARRATIVE && dayNumber !== 6) ||
+      taskStep === TASK_STEP.INTRO
+    ) {
       router.replace('/calendar');
+    } else if (taskStep === TASK_STEP.NARRATIVE) {
+      setTaskStep(TASK_STEP.INTRO);
     } else if (taskStep === TASK_STEP.DESCRIPTION) {
       setTaskStep(TASK_STEP.NARRATIVE);
     } else {
@@ -224,8 +240,6 @@ export default function Page() {
     return number;
   }, [taskQuery.data]);
 
-  const dayNumber = due_date ? moment(due_date).date() : '';
-
   return (
     <div className={styles.wrapper}>
       {(taskQuery.isLoading || !isVersionChecked) && (
@@ -243,7 +257,11 @@ export default function Page() {
 
       <div>
         {taskStep === TASK_STEP.NARRATIVE && (
-          <TaskNarrativeCard imgSrc={intro_image} text={intro_text} />
+          <TaskNarrativeCard
+            imgSrc={intro_image}
+            data={introductoryWord}
+            text={intro_text}
+          />
         )}
         {taskStep === TASK_STEP.DESCRIPTION && (
           <TaskDescriptionCard

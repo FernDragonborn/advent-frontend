@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import styles from '@/styles/components/cards/TaskNarrativeCard.module.scss';
 
-const TaskNarrativeCard = ({ imgSrc, text }) => {
+const TaskNarrativeCard = ({ imgSrc, data, text }) => {
   return (
     <div className={styles.card}>
       <Image
@@ -14,7 +14,12 @@ const TaskNarrativeCard = ({ imgSrc, text }) => {
       />
 
       <div className={styles.container}>
-        {text?.split('\r\n')?.map?.(val => (
+        {text?.split?.('\r\n')?.map?.(val => (
+          <p key={val} className={styles.text}>
+            {val}
+          </p>
+        ))}
+        {data?.map?.(val => (
           <p key={val} className={styles.text}>
             {val}
           </p>
