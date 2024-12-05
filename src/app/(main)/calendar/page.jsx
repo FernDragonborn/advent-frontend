@@ -6,7 +6,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import { Loader } from '@/components';
-import { DAY_STATUS } from '@/constants';
+import { DAY_STATUS, QUERY_KEYS } from '@/constants';
 import { getCurrentUkraineTime, getTaskStatus } from '@/utils';
 import { useAuthQuery } from '@/hooks';
 import { api } from '@/services';
@@ -16,11 +16,11 @@ export default function Page() {
   const [currentDay, setCurrentDay] = useState(0);
 
   const tasksQuery = useAuthQuery({
-    queryKey: ['all-tasks'],
+    queryKey: QUERY_KEYS.auth.allTasks,
     queryFn: api.auth.getAllTasks,
   });
   const taskResponsesQuery = useAuthQuery({
-    queryKey: ['task-responses'],
+    queryKey: QUERY_KEYS.auth.tasksResponses,
     queryFn: () => api.auth.getTaskResponses(),
   });
 

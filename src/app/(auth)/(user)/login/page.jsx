@@ -13,6 +13,7 @@ import { useAuthMutation, useAuthQuery } from '@/hooks';
 import { loginAction } from '@/actions';
 import { api } from '@/services';
 import styles from '@/styles/pages/LoginPage.module.scss';
+import { QUERY_KEYS } from '@/constants';
 
 const LOGIN_STEPS = { LOGIN: 'login', VERIFY_EMAIL: 'verify-email' };
 
@@ -32,7 +33,7 @@ export default function Page() {
 
   const loginGoogleQuery = useAuthQuery({
     queryFn: api.auth.getGoogleAuthUrl,
-    queryKey: ['login-google'],
+    queryKey: QUERY_KEYS.auth.loginGoogle,
     staleTime: 0,
   });
 

@@ -15,7 +15,7 @@ import {
 import { profileSchema } from '@/schemas';
 import { useAuthMutation, useFetchProfile } from '@/hooks';
 import { api } from '@/services';
-import { GENDERS, GRADES, REGIONS } from '@/constants';
+import { GENDERS, GRADES, QUERY_KEYS, REGIONS } from '@/constants';
 import { BuildingSvg, MailSvg, RulerPenSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/forms/ProfileForm.module.scss';
 
@@ -37,7 +37,8 @@ const ProfileForm = () => {
   const profileQuery = useFetchProfile();
   const profileMutation = useAuthMutation({
     mutationFn: api.auth.updateUser,
-    onSuccess: () => queryClient.refetchQueries({ queryKey: ['profile'] }),
+    onSuccess: () =>
+      queryClient.refetchQueries({ queryKey: QUERY_KEYS.auth.profile }),
     onError: ({ data }) =>
       Object.entries(data).map(([key, val]) =>
         setError(key, { message: val?.join('. ') }),

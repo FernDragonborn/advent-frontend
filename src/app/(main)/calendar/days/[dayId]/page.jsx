@@ -3,6 +3,7 @@
 import { useLayoutEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
 
@@ -22,7 +23,7 @@ import {
 } from '@/hooks';
 import { api } from '@/services';
 import { getCurrentUkraineTime, getTaskStatus, isAnswerCorrect } from '@/utils';
-import { DAY_STATUS } from '@/constants';
+import { DAY_STATUS, QUERY_KEYS } from '@/constants';
 import styles from '@/styles/pages/DayPage.module.scss';
 import moment from 'moment';
 
@@ -43,22 +44,31 @@ export default function Page() {
   const router = useRouter();
   const { isMobileVersion, isVersionChecked } = useIsMobileVersion();
   const { control, handleSubmit, setError } = useForm();
+  const queryClient = useQueryClient();
 
   const profileQuery = useFetchProfile();
   const taskQuery = useAuthQuery({
-    queryKey: ['task', dayId],
+    queryKey: QUERY_KEYS.auth.getTaskById(dayId),
     queryFn: () => api.auth.getTaskById(dayId),
   });
 
   const taskResponsesQuery = useAuthQuery({
-    queryKey: ['task-responses'],
+    queryKey: QUERY_KEYS.auth.tasksResponses,
     queryFn: () => api.auth.getTaskResponses(),
   });
 
   const taskResponsesMutation = useAuthMutation(
     {
       mutationFn: api.auth.addTaskResponses,
-      onSuccess: () => setTaskStep(TASK_STEP.FINAL),
+      onSuccess: () => {
+        setTaskStep(TASK_STEP.FINAL);
+        queryClient.invalidateQueries({
+          queryKey: QUERY_KEYS.auth.tasksResponses,
+        });
+        queryClient.invalidateQueries({
+          queryKey: QUERY_KEYS.auth.allTasks,
+        });
+      },
       onError: () => toast('Щось пішло не так :(', { type: 'error' }),
     },
     false,
