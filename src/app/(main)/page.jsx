@@ -54,7 +54,7 @@ export default function Page() {
                   </p>
                   <p>
                     <span className={styles.accent}>
-                      Реєстрація доступна до 06.12.2024 (23:59)
+                      Реєстрація доступна до 10.12.2024 (23:59)
                     </span>
                   </p>
                 </>
@@ -67,7 +67,7 @@ export default function Page() {
                   </p>
                   <p>
                     <span className={styles.accent}>
-                      Реєстрація доступна до 06.12.2024 (23:59)
+                      Реєстрація доступна до 10.12.2024 (23:59)
                     </span>
                   </p>
                 </>
