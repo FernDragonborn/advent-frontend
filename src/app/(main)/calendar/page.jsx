@@ -9,10 +9,17 @@ import clsx from 'clsx';
 import { DAY_STATUS, EVENT_END_DATE, EVENT_START_DATE } from '@/constants';
 import { getCurrentUkraineTime } from '@/utils';
 import styles from '@/styles/pages/CalendarPage.module.scss';
+import { useAuthQuery } from '@/hooks';
+import { api } from '@/services';
 
 export default function Page() {
   const [currentDay, setCurrentDay] = useState(0);
   const [currentMoment, setCurrentMoment] = useState(null);
+
+  const tasksQuery = useAuthQuery({
+    queryKey: ['all-tasks'],
+    queryFn: api.auth.getAllTasks,
+  });
 
   useLayoutEffect(() => {
     const newMoment = getCurrentUkraineTime();

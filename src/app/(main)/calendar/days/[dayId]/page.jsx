@@ -11,7 +11,9 @@ import {
   TaskNarrativeCard,
   TaskResultCard,
 } from '@/components';
+import { useAuthMutation, useAuthQuery } from '@/hooks';
 import styles from '@/styles/pages/DayPage.module.scss';
+import { api } from '@/services';
 
 const TASK_TYPE = {
   DEFAULT: 'default',
@@ -28,6 +30,26 @@ export default function Page() {
   //     type: 'error',
   //   });
   // }, []);
+
+  const taskQuery = useAuthQuery({
+    queryKey: ['task', dayId],
+    queryFn: () => api.auth.getTaskById(dayId),
+  });
+
+  const taskResponsesQuery = useAuthQuery({
+    queryKey: ['task-responses', dayId],
+    queryFn: () => api.auth.getTaskResponses(dayId),
+  });
+
+  const taskResponsesMutation = useAuthMutation({
+    mutationFn: () => api.auth.addTaskResponses(dayId),
+  });
+  // {
+  //   "task": 0,
+  //   "user": 0,
+  //   "is_correct": true,
+  //   "recorded_answer": "string"
+  // }
 
   useLayoutEffect(() => {
     if (dayId < 6 || dayId > 30) {

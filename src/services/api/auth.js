@@ -23,6 +23,11 @@ const apiAuth = {
   getUser: () => apiClient.get('auth/user/'),
   addUser: payload => apiClient.put('auth/user/', payload),
   updateUser: payload => apiClient.patch('auth/user/', payload),
+
+  getAllTasks: () => apiClient.get('auth/tasks/'),
+  getTaskById: taskId => apiClient.get(`auth/tasks/${taskId}`),
+  getTaskResponses: () => apiClient.get(`auth/task-responses/`),
+  addTaskResponses: payload => apiClient.post(`auth/task-responses/`, payload),
 };
 
 export default apiAuth;
