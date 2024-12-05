@@ -147,9 +147,13 @@
   @include vertical-scrollbar;
 
   padding: 1.2rem 1.6rem;
-  height: 10rem;
+  height: 8rem;
   border-radius: 0;
   border: none;
   resize: none;
   outline: none;
+
+  @include desktop {
+    height: 10rem;
+  }
 }

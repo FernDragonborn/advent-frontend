@@ -1,69 +1,77 @@
 'use client';
 
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import moment from 'moment';
 import clsx from 'clsx';
 
-import { DAY_STATUS, EVENT_END_DATE, EVENT_START_DATE } from '@/constants';
-import { getCurrentUkraineTime } from '@/utils';
-import styles from '@/styles/pages/CalendarPage.module.scss';
+import { Loader } from '@/components';
+import { DAY_STATUS } from '@/constants';
+import { getCurrentUkraineTime, getTaskStatus } from '@/utils';
 import { useAuthQuery } from '@/hooks';
 import { api } from '@/services';
+import styles from '@/styles/pages/CalendarPage.module.scss';
 
 export default function Page() {
   const [currentDay, setCurrentDay] = useState(0);
-  const [currentMoment, setCurrentMoment] = useState(null);
 
   const tasksQuery = useAuthQuery({
     queryKey: ['all-tasks'],
     queryFn: api.auth.getAllTasks,
   });
+  const taskResponsesQuery = useAuthQuery({
+    queryKey: ['task-responses'],
+    queryFn: () => api.auth.getTaskResponses(),
+  });
+
+  const tasks = useMemo(() => {
+    const allTasks = Array.from(Array(25).keys()).map(val => ({
+      taskNumber: val + 6,
+    }));
+    tasksQuery.data?.forEach?.(
+      (task, index) => (allTasks[index] = { ...allTasks[index], ...task }),
+    );
+    return allTasks;
+  }, [tasksQuery.data]);
+
+  const isTaskCompleted = taskId =>
+    !!taskResponsesQuery.data?.find?.(({ task }) => task === taskId);
 
   useLayoutEffect(() => {
     const newMoment = getCurrentUkraineTime();
 
-    setCurrentMoment(newMoment);
     setCurrentDay(newMoment.get('date'));
   }, []);
 
-  const getDayStatus = (status, dayNumber) => {
-    if (currentMoment?.isBefore?.(moment(EVENT_START_DATE).utc(true))) {
-      return DAY_STATUS.UPCOMING;
-    }
-    if (currentMoment?.isAfter?.(moment(EVENT_END_DATE).utc(true))) {
-      return DAY_STATUS.UPCOMING;
-    }
-  };
-
   return (
-    <>
+    <div className={styles.wrapper}>
+      {tasksQuery.isLoading && (
+        <Loader
+          className={clsx(styles.loader, 'absolute-fill')}
+          size="large"
+          color="var(--color-bg-primary)"
+        />
+      )}
       <h1 className={styles.title}>День {currentDay}</h1>
       <ul className={styles.days}>
-        {Array.from(Array(25).keys()).map(val => {
-          const disabled = false;
-          const dayNumber = val + 6;
-          const status = currentMoment?.isBefore?.(
-            moment(EVENT_START_DATE).utc(true),
-          )
-            ? DAY_STATUS.UPCOMING
-            : DAY_STATUS.ACTIVE;
+        {tasks.map(({ id, taskNumber, due_date }) => {
+          const status = getTaskStatus(due_date, isTaskCompleted(id));
+          const isActive = status === DAY_STATUS.ACTIVE;
 
           return (
             <li
-              key={val}
+              key={taskNumber}
               className={clsx(
                 styles.day,
                 status === DAY_STATUS.ACTIVE && styles.active,
-                disabled && styles.disabled,
+                !isActive && styles.disabled,
               )}>
-              <Link href={disabled ? '' : `/calendar/days/${dayNumber}`}>
+              <Link href={!isActive || !id ? '' : `/calendar/days/${id}`}>
                 <Image
-                  src={`/images/days/${status}/day-${dayNumber - 5}-${status}.png`}
+                  src={`/images/days/${status}/day-${taskNumber - 5}-${status}.png`}
                   width={155}
                   height={155}
-                  alt={'День ' + dayNumber}
+                  alt={'День ' + taskNumber}
                   quality={100}
                 />
               </Link>
@@ -71,6 +79,6 @@ export default function Page() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }

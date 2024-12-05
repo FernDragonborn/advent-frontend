@@ -1,4 +1,12 @@
-.submitBtn {
+.wrapper {
+  position: relative;
+}
+
+.loader ~ * {
+  opacity: 0;
+}
+
+button.submitBtn {
   margin: 0.8rem auto 0;
   display: flex;
 
