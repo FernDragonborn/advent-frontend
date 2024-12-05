@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
 import {
   UserInfoForm,
@@ -60,47 +61,53 @@ export default function Page() {
 
   const router = useRouter();
 
-  const registerMutation = useAuthMutation({
-    mutationFn: api.auth.register,
-    onSuccess: () => setSignupStep(SIGNUP_STEPS.CODE),
-    onError: ({ status, data }) => {
-      const {
-        name,
-        gender,
-        region,
-        grade,
-        email,
-        phone_number,
-        password,
-        password2,
-      } = data || {};
+  const registerMutation = useAuthMutation(
+    {
+      mutationFn: api.auth.register,
+      onSuccess: () => setSignupStep(SIGNUP_STEPS.CODE),
+      onError: ({ status, data }) => {
+        const {
+          name,
+          gender,
+          region,
+          grade,
+          email,
+          phone_number,
+          password,
+          password2,
+        } = data || {};
 
-      if (status < 500) {
-        setSignupStep(SIGNUP_STEPS.USER_INFO);
-      }
+        if (status < 500) {
+          setSignupStep(SIGNUP_STEPS.USER_INFO);
+          toast('Перевірте етапи реєстрації на помилки', { type: 'error' });
+        } else {
+          toast('Помилка сервера', { type: 'error' });
+        }
 
-      name && userInfoForm.setError('name', { message: name?.join('. ') });
-      gender &&
-        userInfoForm.setError('gender', { message: gender?.join('. ') });
-      region &&
-        userInfoForm.setError('region', { message: region?.join('. ') });
-      grade && userInfoForm.setError('grade', { message: grade?.join('. ') });
+        name && userInfoForm.setError('name', { message: name?.join('. ') });
+        gender &&
+          userInfoForm.setError('gender', { message: gender?.join('. ') });
+        region &&
+          userInfoForm.setError('region', { message: region?.join('. ') });
+        grade && userInfoForm.setError('grade', { message: grade?.join('. ') });
 
-      email &&
-        contactInfoForm.setError('email', { message: email?.join('. ') });
-      phone_number &&
-        contactInfoForm.setError('phone_number', {
-          message: phone_number?.join('. '),
-        });
+        email &&
+          contactInfoForm.setError('email', { message: email?.join('. ') });
+        phone_number &&
+          contactInfoForm.setError('phone_number', {
+            message: phone_number?.join('. '),
+          });
 
-      password &&
-        passwordForm.setError('password', { message: password?.join('. ') });
-      password2 &&
-        passwordForm.setError('passwordConfirmation', {
-          message: password2?.join('. '),
-        });
+        password &&
+          passwordForm.setError('password', { message: password?.join('. ') });
+        password2 &&
+          passwordForm.setError('passwordConfirmation', {
+            message: password2?.join('. '),
+          });
+      },
     },
-  });
+    false,
+  );
   const verifyEmailMutation = useAuthMutation({
     mutationFn: api.auth.verifyEmail,
     onSuccess: () => router.replace('/login'),

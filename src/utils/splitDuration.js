@@ -1,7 +1,8 @@
 import moment from 'moment';
+import { getCurrentUkraineTime } from '@/utils/getCurrentUkraineTime';
 
 export const splitDuration = startDate => {
-  const currentDateMoment = moment();
+  const currentDateMoment = getCurrentUkraineTime();
   const startDateMoment = moment(startDate, 'YYYY-MM-DD HH:mm');
 
   if (currentDateMoment.isAfter(startDate)) {

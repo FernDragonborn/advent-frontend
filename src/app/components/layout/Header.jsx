@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { getCookie } from 'cookies-next';
 
 import {
@@ -13,14 +14,15 @@ import {
 } from '@/components';
 import { LogoSvg, UserSvg, WidgetSvg } from '@/svgs';
 import { COOKIES } from '@/constants';
+import { useFetchProfile } from '@/hooks';
 import styles from '@/styles/components/layout/Header.module.scss';
-import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const pathname = usePathname();
+  const profileQuery = useFetchProfile();
 
   useLayoutEffect(() => {
     setIsLoggedIn(!!getCookie(COOKIES.ACCESS_TOKEN));
@@ -83,7 +85,12 @@ const Header = () => {
         )}
       </div>
 
-      {isLoggedIn && <UserScore className={styles.score} score={0} />}
+      {isLoggedIn && (
+        <UserScore
+          className={styles.score}
+          score={profileQuery.data?.total_task_points || 0}
+        />
+      )}
 
       <MobileMenu
         isOpen={isMobileMenuOpen}

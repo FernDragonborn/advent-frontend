@@ -13,14 +13,17 @@ import {
   Socials,
   UserScore,
 } from '@/components';
-import { CrossSvg, LogoSvg, UserSvg } from '@/svgs';
+import { useFetchProfile } from '@/hooks';
 import { COOKIES } from '@/constants';
+import { CrossSvg, LogoSvg, UserSvg } from '@/svgs';
 import styles from '@/styles/components/sidebars/MobileMenu.module.scss';
 
 const MobileMenu = ({ isOpen, onHide }) => {
   const [shouldShowCountdownLabel, setShouldShowCountdownLabel] =
     useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const profileQuery = useFetchProfile();
 
   useLayoutEffect(() => {
     setIsLoggedIn(!!getCookie(COOKIES.ACCESS_TOKEN));
@@ -65,7 +68,7 @@ const MobileMenu = ({ isOpen, onHide }) => {
 
         {isLoggedIn ? (
           <div className={clsx(styles.actions, styles.authedActions)}>
-            <UserScore score={0} />
+            <UserScore score={profileQuery.data?.total_task_points || 0} />
             <Button
               appearance="bordered"
               arrowPosition="none"

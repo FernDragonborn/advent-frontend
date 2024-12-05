@@ -10,3 +10,4 @@ export * from './eventEndDate';
 export * from './genders';
 export * from './grades';
 export * from './regions';
+export * from './introductoryWord';
