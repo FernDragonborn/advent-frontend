@@ -13,7 +13,7 @@ import { api } from '@/services';
 import styles from '@/styles/pages/CalendarPage.module.scss';
 
 export default function Page() {
-  const [currentDay, setCurrentDay] = useState(0);
+  const [currentTime, setCurrentTime] = useState(null);
 
   const tasksQuery = useAuthQuery({
     queryKey: QUERY_KEYS.auth.allTasks,
@@ -38,9 +38,7 @@ export default function Page() {
     !!taskResponsesQuery.data?.find?.(({ task }) => task === taskId);
 
   useLayoutEffect(() => {
-    const newMoment = getCurrentUkraineTime();
-
-    setCurrentDay(newMoment.get('date'));
+    setCurrentTime(getCurrentUkraineTime());
   }, []);
 
   return (
@@ -52,9 +50,7 @@ export default function Page() {
           color="var(--color-bg-primary)"
         />
       )}
-      <h1 className={styles.title}>
-        {getCurrentUkraineTime().format('D MMMM')}
-      </h1>
+      <h1 className={styles.title}>{currentTime?.format?.('D MMMM')}</h1>
       <ul className={styles.days}>
         {tasks.map(({ id, taskNumber, due_date }) => {
           const status = getTaskStatus(due_date, isTaskCompleted(id));
