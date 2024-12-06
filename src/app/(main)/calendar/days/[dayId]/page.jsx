@@ -23,7 +23,7 @@ import {
   useFetchProfile,
   useIsMobileVersion,
 } from '@/hooks';
-import { api } from '@/services';
+import { api, taskTries } from '@/services';
 import { getTaskStatus, isAnswerCorrect } from '@/utils';
 import { DAY_STATUS, introductoryWord, QUERY_KEYS } from '@/constants';
 import styles from '@/styles/pages/DayPage.module.scss';
@@ -124,6 +124,14 @@ export default function Page() {
 
   const onSubmit = () => {
     if (taskStep === TASK_STEP.DESCRIPTION) {
+      if (!taskTries.isTaskAccessible(dayId)) {
+        return toast(
+          `Зачекай, щоб ввести наступну відповідь ${taskTries.getTaskLockRemainingTime(dayId)}`,
+          { type: 'error' },
+        );
+      }
+      taskTries.record(dayId);
+
       const defaultParams = {
         task: id,
         user: profileQuery.data?.id,

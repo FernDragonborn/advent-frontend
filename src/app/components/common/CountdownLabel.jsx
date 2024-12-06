@@ -17,7 +17,7 @@ const CountdownLabel = ({ className, onComplete }) => {
   useEffect(() => {
     const updateDuration = () => {
       setIsEventStarted(moment().isAfter(moment(EVENT_START_DATE)));
-      const newDuration = getDuration(EVENT_START_DATE);
+      const newDuration = getDuration(EVENT_START_DATE, 'YYYY-MM-DD HH:mm');
       setFormattedDuration(newDuration);
       newDuration ? setNewTimeout() : onComplete?.();
     };
