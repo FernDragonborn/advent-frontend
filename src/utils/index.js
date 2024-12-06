@@ -10,3 +10,4 @@ export * from './formatPhone';
 export * from './getCurrentUkraineTime';
 export * from './getTaskStatus';
 export * from './isAnswerCorrect';
+export * from './getRemainingTime';

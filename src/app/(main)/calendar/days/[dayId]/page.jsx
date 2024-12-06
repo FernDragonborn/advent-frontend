@@ -126,7 +126,7 @@ export default function Page() {
     if (taskStep === TASK_STEP.DESCRIPTION) {
       if (!taskTries.isTaskAccessible(dayId)) {
         return toast(
-          'Ви можете надсилати відповідь не частіше ніж раз на 1 хвилину',
+          `Зачекай, щоб ввести наступну відповідь ${taskTries.getTaskLockRemainingTime(dayId)}`,
           { type: 'error' },
         );
       }

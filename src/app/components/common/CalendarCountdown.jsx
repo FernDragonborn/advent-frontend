@@ -16,14 +16,14 @@ const CalendarCountdown = ({ className }) => {
       clearTimeout(timerRef.current);
 
       timerRef.current = setTimeout(() => {
-        const newDuration = splitDuration(EVENT_START_DATE);
+        const newDuration = splitDuration(EVENT_START_DATE, 'YYYY-MM-DD HH:mm');
         setTimeUnits(newDuration);
         startCountdown();
       }, 1000);
     };
 
     startCountdown();
-    setTimeUnits(splitDuration(EVENT_START_DATE));
+    setTimeUnits(splitDuration(EVENT_START_DATE, 'YYYY-MM-DD HH:mm'));
 
     return () => clearTimeout(timerRef.current);
   }, []);
