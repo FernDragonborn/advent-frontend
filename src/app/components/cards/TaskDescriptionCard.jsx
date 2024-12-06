@@ -180,19 +180,18 @@ const TaskDescriptionCard = ({
           <div className={styles.inputs}>
             {answersIndexes.map(val => {
               return (
-                <SwiperSlide key={val}>
-                  <FormController
-                    name={`answer_${val + 1}`}
-                    control={formControl}
-                    render={({ field, fieldState: { error } }) => (
-                      <TextInputField
-                        placeholder="Введіть відповідь"
-                        error={error}
-                        {...field}
-                      />
-                    )}
-                  />
-                </SwiperSlide>
+                <FormController
+                  key={val}
+                  name={`answer_${val + 1}`}
+                  control={formControl}
+                  render={({ field, fieldState: { error } }) => (
+                    <TextInputField
+                      placeholder="Введіть відповідь"
+                      error={error}
+                      {...field}
+                    />
+                  )}
+                />
               );
             })}
           </div>

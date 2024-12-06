@@ -5,6 +5,8 @@ import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import momentTz from 'moment-timezone';
+import moment from 'moment';
 import clsx from 'clsx';
 
 import {
@@ -22,10 +24,9 @@ import {
   useIsMobileVersion,
 } from '@/hooks';
 import { api } from '@/services';
-import { getCurrentUkraineTime, getTaskStatus, isAnswerCorrect } from '@/utils';
+import { getTaskStatus, isAnswerCorrect } from '@/utils';
 import { DAY_STATUS, introductoryWord, QUERY_KEYS } from '@/constants';
 import styles from '@/styles/pages/DayPage.module.scss';
-import moment from 'moment';
 
 const TASK_STEP = {
   INTRO: 'intro',
@@ -150,15 +151,15 @@ export default function Page() {
         let hasError = false;
         const { answer_1, answer_2, answer_3 } = data || {};
 
-        if (isAnswerCorrect(correct_answer_1, answer_1)) {
+        if (!isAnswerCorrect(correct_answer_1, answer_1)) {
           hasError = true;
           setError('answer_1');
         }
-        if (isAnswerCorrect(correct_answer_2, answer_2)) {
+        if (!isAnswerCorrect(correct_answer_2, answer_2)) {
           hasError = true;
           setError('answer_2');
         }
-        if (isAnswerCorrect(correct_answer_3, answer_3)) {
+        if (!isAnswerCorrect(correct_answer_3, answer_3)) {
           hasError = true;
           setError('answer_3');
         }
@@ -222,7 +223,9 @@ export default function Page() {
     }
 
     const data = [];
-    video_link && data.push({ type: CONTENT_TYPE.VIDEO, src: video_link });
+    video_link &&
+      video_link !== '-' &&
+      data.push({ type: CONTENT_TYPE.VIDEO, src: video_link });
     images.forEach(imgSrc =>
       data.push({ type: CONTENT_TYPE.IMAGE, src: imgSrc }),
     );
@@ -252,15 +255,18 @@ export default function Page() {
 
       <div className={styles.block}>
         <CalendarBackButton className={styles.backBtn} onClick={onBack} />
-        <h1 className={styles.title}>День {dayNumber}</h1>
+        <h1 className={styles.title}>{momentTz(due_date).format('D MMMM')}</h1>
       </div>
 
       <div>
         {taskStep === TASK_STEP.INTRO && (
-          <TaskNarrativeCard imgSrc={intro_image} data={introductoryWord} />
+          <TaskNarrativeCard
+            imgSrc={intro_image || ''}
+            data={introductoryWord}
+          />
         )}
         {taskStep === TASK_STEP.NARRATIVE && (
-          <TaskNarrativeCard imgSrc={intro_image} text={intro_text} />
+          <TaskNarrativeCard imgSrc={intro_image || ''} text={intro_text} />
         )}
         {taskStep === TASK_STEP.DESCRIPTION && (
           <TaskDescriptionCard

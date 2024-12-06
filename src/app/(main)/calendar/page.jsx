@@ -52,7 +52,9 @@ export default function Page() {
           color="var(--color-bg-primary)"
         />
       )}
-      <h1 className={styles.title}>День {currentDay}</h1>
+      <h1 className={styles.title}>
+        {getCurrentUkraineTime().format('D MMMM')}
+      </h1>
       <ul className={styles.days}>
         {tasks.map(({ id, taskNumber, due_date }) => {
           const status = getTaskStatus(due_date, isTaskCompleted(id));
