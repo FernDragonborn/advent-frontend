@@ -10,12 +10,12 @@ export const getTaskStatus = (dueDate, isTaskCompleted) => {
   if (isTaskCompleted) {
     return DAY_STATUS.COMPLETED;
   }
-  if (currentLocalDate.diff(localDate, 'days') >= 3) {
+  if (currentLocalDate.diff(localDate, 'days') >= 5) {
     return DAY_STATUS.FAILED;
   }
   if (
     localDate.isSame(currentLocalDate, 'day') ||
-    (currentLocalDate.diff(localDate, 'days') < 3 &&
+    (currentLocalDate.diff(localDate, 'days') < 5 &&
       currentLocalDate.diff(localDate, 'days') > 0)
   ) {
     return DAY_STATUS.ACTIVE;
