@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import momentTz from 'moment-timezone';
@@ -48,6 +48,7 @@ export default function Page() {
   const router = useRouter();
   const { isMobileVersion, isVersionChecked } = useIsMobileVersion();
   const { control, handleSubmit, setError } = useForm();
+  const { answer_1, answer_2, answer_3 } = useWatch({ control });
   const queryClient = useQueryClient();
 
   const profileQuery = useFetchProfile();
@@ -196,7 +197,8 @@ export default function Page() {
   const onBack = () => {
     if (
       (taskStep === TASK_STEP.NARRATIVE && dayNumber !== 6) ||
-      taskStep === TASK_STEP.INTRO
+      taskStep === TASK_STEP.INTRO ||
+      taskStep === TASK_STEP.FINAL
     ) {
       router.replace('/calendar');
     } else if (taskStep === TASK_STEP.NARRATIVE) {
@@ -251,6 +253,12 @@ export default function Page() {
     return number;
   }, [taskQuery.data]);
 
+  const canSubmit =
+    answersNumber > 0
+      ? [answer_1, answer_2, answer_3].filter(val => val).length ===
+        answersNumber
+      : !!answer_1;
+
   return (
     <div className={styles.wrapper}>
       {(taskQuery.isLoading || !isVersionChecked) && (
@@ -295,6 +303,7 @@ export default function Page() {
           className={styles.submitBtn}
           appearance="orange"
           isLoading={taskResponsesMutation.isPending}
+          disabled={taskStep === TASK_STEP.DESCRIPTION && !canSubmit}
           onClick={onSubmit}>
           {taskStep === TASK_STEP.DESCRIPTION ? 'Надіслати' : 'Продовжити'}
         </Button>
