@@ -25,7 +25,12 @@ import {
 } from '@/hooks';
 import { api, taskTries } from '@/services';
 import { getTaskStatus, isAnswerCorrect } from '@/utils';
-import { DAY_STATUS, introductoryWord, QUERY_KEYS } from '@/constants';
+import {
+  congratulationWord,
+  DAY_STATUS,
+  introductoryWord,
+  QUERY_KEYS,
+} from '@/constants';
 import styles from '@/styles/pages/DayPage.module.scss';
 
 const TASK_STEP = {
@@ -33,6 +38,7 @@ const TASK_STEP = {
   NARRATIVE: 'narrative',
   DESCRIPTION: 'description',
   FINAL: 'final',
+  CONGRATULATION: 'congratulation',
 };
 
 const CONTENT_TYPE = {
@@ -185,7 +191,12 @@ export default function Page() {
           });
         }
       })();
-    } else if (taskStep === TASK_STEP.FINAL) {
+    } else if (taskStep === TASK_STEP.FINAL && dayNumber === 30) {
+      setTaskStep(TASK_STEP.CONGRATULATION);
+    } else if (
+      taskStep === TASK_STEP.FINAL ||
+      taskStep === TASK_STEP.CONGRATULATION
+    ) {
       router.replace('/calendar');
     } else if (taskStep === TASK_STEP.INTRO) {
       setTaskStep(TASK_STEP.NARRATIVE);
@@ -205,6 +216,8 @@ export default function Page() {
       setTaskStep(TASK_STEP.INTRO);
     } else if (taskStep === TASK_STEP.DESCRIPTION) {
       setTaskStep(TASK_STEP.NARRATIVE);
+    } else if (taskStep === TASK_STEP.CONGRATULATION) {
+      setTaskStep(TASK_STEP.FINAL);
     } else {
       setTaskStep(TASK_STEP.DESCRIPTION);
     }
@@ -296,6 +309,12 @@ export default function Page() {
           <TaskResultCard
             text={outro_text}
             imgSrc={teleport_image || '/images/portals/portal.png'}
+          />
+        )}
+        {taskStep === TASK_STEP.CONGRATULATION && (
+          <TaskNarrativeCard
+            imgSrc={intro_image || ''}
+            data={congratulationWord}
           />
         )}
 

@@ -11,3 +11,4 @@ export * from './genders';
 export * from './grades';
 export * from './regions';
 export * from './introductoryWord';
+export * from './congratulationWord';
